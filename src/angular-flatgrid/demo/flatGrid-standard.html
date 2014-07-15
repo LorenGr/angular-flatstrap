@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+	<title>Angular FlatGrid Demo : Standard (Loren Grixti)</title>
+	<meta name="description" content="AngularJS Module called angular-flatgrid">
+	<meta name="keywords" content="HTML,CSS,JavaScript,Angular,datagrid">
+	<meta name="author" content="Loren Grixti">
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="../libs/angular/angular.js"></script>
+	<!--script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script-->
+	<link rel="stylesheet" type="text/css" href="../build/angular-flatgrid.css">
+</head>
+<body ng-controller="MainCtrl" style="margin-top:50px">
+	
+
+	<div class="container">
+		<div flat-grid="gridOptions"></div>
+	</div>
+
+	<script type="text/javascript" src="../build/angular-flatgrid.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('demo', ['flatgrid']);
+		app.controller('MainCtrl', function($scope,$timeout,$q) {
+			$scope.loading = false;
+			$scope.gridOptions = {
+				"defaultSort" : "Name",
+				"rows" : employees,
+				"columns" : [
+					{
+						Name : "Name",
+						Label : "Name",
+						Sortable  : true,
+						AutoFocus : "loading",							
+						Form : "input"
+					}
+//					{
+//						 Name : "Surname"
+//						,Label : "Family Name"
+//						,Sortable : true
+//						,Type : "text"
+//						,Form : "input"
+//					}
+				]
+				,onsave : "saveItem"
+				,onadd : "addItem"
+				,ondelete : "deleteItem"
+			};			
+			$scope.addItem = function(pkg) {					
+				var p = $q.defer();					
+				p.resolve(pkg.data);
+				console.log(pkg);	
+				return p.promise;
+			}				
+			$scope.saveItem = function(pkg) {
+				var p = $q.defer();				
+				p.resolve(pkg.data);		
+				return p.promise;				
+			}			
+			$scope.deleteItem = function(pkg) {
+				var p = $q.defer();
+				p.resolve(pkg.data);
+				return p.promise;		
+			}
+			$timeout(function(){
+				$scope.loading = true;
+			},600);
+		});
+	</script>
+</body>
+</html>

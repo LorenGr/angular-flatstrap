@@ -1,0 +1,295 @@
+<div class="dataGridContainer">
+    <form name="gridPostForm" ng-submit="add(FG.pkg)">
+        <div class="dataGrid">
+            <header>
+                <h1 ng-if="::FG.Config.title" ng-bind=":: FG.Config.title"></h1>
+                <div class="tr">
+                    <div class="th {{::column.Name}} coltype-{{::column.Form}}" ng-repeat="column in ::FG.columns">
+                        <a ng-if="::column.Sortable" class="sorter" ng-click="sortBy(column.Name)">
+                            <span
+                                class="icon"
+                                ng-class="{'icon-arrow-down':!FG.Config.reverse,'icon-arrow-up':FG.Config.reverse}"
+                                ng-show="FG.Config.predicate==column.Name"
+                            ></span>
+                            {{::column.Label}}
+                        </a>
+                        <span ng-if="!column.Sortable">{{::column.Label}}</span>
+                    </div>
+                    <div class="th controls"></div>
+                </div>
+                <!-- Post Form -->
+                <div class="tr post">
+                    <!-- Name -->
+                    <div class="td {{::column.Name}} coltype-{{::column.Form}}"
+                        ng-repeat="column in ::FG.columns">
+
+                        <!-- Post Form = input -->
+                        <input ng-if="column.Form=='input' && column.Editable!=false" required
+                            ng-class="{'error-fld':error}"
+                            custom-tooltip="error"
+                            type=text
+                            ng-model="FG.pkg.data[column.Name]"
+                            placeholder="{{::column.FormPlaceholder}}"
+                            fg-auto-focus="{{::column.AutoFocus}}"
+                            tabindex=1
+                        />
+                        <!-- Post Form = textarea -->
+                        <textarea ng-if="column.Form=='textarea' && column.Editable!=false" required
+                                ng-class="{'error-fld':error}"
+                                custom-tooltip="error"
+                                ng-model="FG.pkg.data[column.Name]"
+								placeholder="{{::column.FormPlaceholder}}"
+                                fg-auto-focus="{{::column.AutoFocus}}"
+                                tabindex=1
+                        ></textarea>
+
+                        <!-- Post Form : datetime-->
+                        <div ng-if="column.Form=='datetime' && column.Editable!=false" class="postElement datetimepickerHolder">
+
+							<input class="datetimepicker" date-time-picker
+								   value="{{FG.pkg.data[column.Name]}}"
+                                   ng-model="FG.pkg.data[column.Name]"
+                                   type="text"/>
+                            <date><span class="icon icon-calendar"></span>{{FG.pkg.data[column.Name] | formatDate:'date' }}</date>
+                            <time><span class="icon icon-time"></span>{{FG.pkg.data[column.Name] | formatDate:'time' }}</time>
+                        </div>
+
+                        <!-- Post Form : checkbox -->
+                        <button   ng-if="column.Form=='checkbox' && column.Editable!=false"
+                                  ng-model="FG.pkg.data[column.Name]"
+                                  type="button"
+                                  ng-class="{'icon-ok':FG.pkg.data[column.Name]}"
+                                  class="checkbox"
+                                  btn-checkbox
+                                  btn-checkbox-true="FG.pkg.data[column.Name]"
+                                  btn-checkbox-false="!FG.pkg.data[column.Name]"
+                                />
+
+                        <!--Post Form : planner-->
+                        <div ng-if="column.Form=='planner' && column.Editable!=false" class="postElement plannerHolder">
+                            <input class="plannerpicker" planner ng-model="FG.pkg.data[column.Name]" />
+                            <span class="icon noclick icon-repeat"></span>
+                            <label>{{FG.pkg.data[column.Name].Repeat || 'Choose Frequency' }}</label>
+                        </div>
+
+                    </div>
+                    <div class="td controls">
+                        <button type="submit" ng-show="!FG.pkg.Config.loading" class="icon icon-plus"></button>
+                        <span class="loading go" ng-show="FG.pkg.Config.loading"></span>
+                    </div>
+                </div>
+                <!-- / Post Form -->
+            </header>
+        </div>
+    </form>
+	<div id="gridScrollHeight" class="scrollItems" ng-class="{'scrollbar':!FG.Config.pagination}">
+		<span class="settingsNoContent noControls" ng-show="nodata" ng-if="FG.Config.controls == false"><label><em>No data found!</em></span>
+		<span class="settingsNoContent" ng-show="nodata" ng-if="FG.Config.controls != false"><label><em>No items found!</em>You can add new items from the above form.</label></span>
+
+		<div class="dataGrid" ng-class="{
+				'loading' : loading
+				 ,'selectableRows' : FG.Config.onrowfocus
+			}">
+			<div class="tbody">
+				<div ng-repeat="item in rowsArray() | orderBy:sorter:FG.Config.reverse track by item.Id "
+					ng-class="{
+						 'editing':item.Config.editing
+						,'running':item.Config.running
+						,'active' :item.Id==activeRowId
+					}"
+					class="tr status-{{item.data.Status}}"
+					ng-click="selectRow(item.data)"
+					fg-force-focus="forcedFocus"
+					fg-forced-focus-cb="nextPage('reset')"
+					fg-forced-focus="{ currentPage : currentPage
+									  ,firstRow    : $first }"
+					>
+					<div ng-class="{'editable':column.Editable!=false}"
+                        class="td {{column.Name}} coltype-{{column.Form}}"
+						ng-repeat="column in FG.columns">
+                        <!--Form : input -->
+                        <input 	ng-if="column.Editable!=false && (column.Form=='input' || column.Form=='textarea')"
+                                fg-first-row-ready="{{$parent.$last && $parent.$parent.$first}}"
+                                ng-click="editThis(item,$index+1)"
+                                fg-focus="editThis(item,$index+1)"
+                                fg-position="{{$parent.$last && $parent.$parent.$last}}"
+                                fg-tabulation="nextPage('auto')"
+                                fg-goto-next-row
+                               	ng-click="editThis(item,$index+1)"
+                               	ng-model="item[item.Config.model][column.Name]"
+                               	type=text
+                                ng-disabled="!item.data[column.Name] && item.data[column.Name]!=''"
+                                fg-enter-tabulation="nextPage($parent.$index)"
+                                fg-blur-on-escape="cancelThis(item)"
+                                fg-blur="confirm(item,false,$index+1,column.Name)"
+                                tabindex={{($parent.$index+1)+(FG.columns.length*$parent.$parent.$index)}}
+                                placeholder="{{column.CellPlaceholder}}"
+                                xng-maxlength="column.MaxLength"
+                        />
+
+						<!--Form : title  -->
+                        <label ng-if="column.Editable==false && column.Form=='input' && column.Name != 'Message' "
+							   ng-bind=":: item.data[column.Name]"></label>
+
+						<!--Form : title : message  -->
+						<label tooltip="{{:: item.data[column.Name]}}"
+							   tooltip-append-to-body = true
+							   tooltip-popup-delay='600'
+							   ng-if="column.Editable==false && column.Form=='input' && column.Name == 'Message'"
+							   ng-bind=":: item.data[column.Name]"></label>
+
+						<!--Change Status-->
+                        <div ng-if="column.Form=='status'" class="changeStatus status-{{item.data.ChangeStatus}}">
+							<span class="status-icon"></span>
+						</div>
+
+						<!--Form : checkbox-->
+                        <button   ng-change="confirm(item,true)"
+                                  ng-if="column.Editable!=false && column.Form=='checkbox'"
+                                  ng-model="item.data[column.Name]"
+                                  type="button"
+                                  ng-class="{'icon-ok':item.data[column.Name]}"
+                                  class="checkbox"
+                                  btn-checkbox
+                                  btn-checkbox-true="item.data[column.Name]"
+                                  btn-checkbox-false="!item.data[column.Name]"
+                                />
+
+                        <!--Toggler-->
+                        <button fg-toggler ng-change="confirm(item,true)"
+                                  ng-if="column.Editable!=false && column.Form=='toggler'"
+                                  ng-model="item.data[column.Name]"
+                                  type="button"
+                                  ng-class="{'icon-ok':item.data[column.Name]}"
+                                  class="checkbox"
+                                  btn-checkbox
+                                  btn-checkbox-true="item.data[column.Name]"
+                                  btn-checkbox-false="!item.data[column.Name]"
+                                />
+
+                        <!--Form : datetime-->
+                        <div ng-if="column.Form=='datetime'"
+                             class="datetimepickerHolder"
+                             ng-class="{'editable':column.Editable!=false}">
+                            <input ng-if="column.Editable!=false && column.Form=='datetime'"
+                                   class="datetimepicker"
+                                   date-time-picker date-time-picker-cb="confirm(item,true)"
+								   value="{{item[item.Config.model][column.Name] | formatDate:'datetimepicker' }}"
+								   ng-model="item[item.Config.model][column.Name]"
+								   type="text" />
+                            <date><span class="icon noclick icon-calendar"></span>{{item[item.Config.model][column.Name] | formatDate:'date' }}</date>
+                            <time><span class="icon noclick icon-time"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>
+                        </div>
+
+                        <!--Form : planner-->
+                        <div ng-if="column.Form=='planner'"
+							 planner check-active="item==_activePlanner"
+							 class="plannerHolder"
+							 ng-class="{
+							 	 'editable'		 : column.Editable != false
+							 	,'activePlanner' : item == _activePlanner
+							 }"
+							 ng-click="togglePlanner(true,item);$event.stopPropagation()">
+                            <input class="plannerpicker"  />
+                            <span class="icon noclick icon-repeat"></span>
+                            <label>{{item.data[column.Name].Repeat}}</label>
+                        </div>
+
+						<!--Form : actiondropdown-->
+						<span ng-if="column.Form=='actiondropdown'" class="actiondropdownHolder">
+							<select ng-model="chosenAction" ng-init="chosenAction = item.data[column.Name][0]"
+									ng-options="action.Name for action in item.data[column.Name]">
+							</select>
+							<span class="icon icon-sort"></span>
+
+							<button ng-click="fix(item,chosenAction)"
+									class="themeButton orange">
+									<span class="icon icon-fix"></span>FIX
+							</button>
+
+						</span>
+
+					</div>
+
+                    <!-- Controls -->
+					<div ng-class-odd="'odd'" class="td controls">
+                        <span class="loading go" ng-show="item.Config.loading"></span>
+                        <!-- DELETE -->
+						<button ng-if="FG.Config.controls" ng-click="remove(item)"
+							ng-show="!item.Config.editing && !item.Config.loading && !item.Config.running" class="icon icon-close"
+						></button>
+						<!-- SAVE -->
+						<button ng-if="FG.Config.controls" ng-click="confirm(item)"
+							ng-show="item.Config.editing && !item.Config.loading" 
+							class="icon icon-ok"
+						></button>
+						<!-- CANCEL -->
+						<button ng-if="FG.Config.controls" ng-click="closeEditMode(item)"
+							ng-show="item.Config.editing && !item.Config.loading" 
+							class="icon icon-wrong"
+						></button>
+						<!--PUBLISHING-->
+						<span class="running" ng-show="item.Config.running">publishing...</span>
+					</div><!-- / Controls -->
+
+					<span ng-if="$last" fit-rows></span>
+
+				</div> <!--/ repeat : tr -->
+			</div> <!--/ tbody -->
+		</div> <!--/ DataGrid -->
+	</div>
+
+	<!--Planner-->
+	<div class="planner_plugin planner_container"
+		 is-open="{{_activePlanner!=false}}"
+		 click-outside-identifier="planner"
+		 click-outside="togglePlanner(false)"
+		 onclick="event.stopPropagation();"
+		>
+
+		<!--Frequencies-->
+		<div class="col freq">
+			<div ng-repeat="item in Repeaters">
+				<input  id="{{item}}{{_activePlanner.Id}}"
+						type="radio"
+						ng-change="confirmPlanner(_activePlanner,true,item)"
+						name="every"
+						ng-model="_activePlanner.data.Frequency.Repeat"
+						value="{{item}}"></input>
+				<label for="{{item}}{{_activePlanner.Id}}">{{item}}</label>
+			</div>
+		</div>
+
+		<!--Days of the week-->
+		<div class="col days" ng-class="{ 'disabled': _activePlanner.data.Frequency.Repeat != 'Weekly' }">
+			<div ng-repeat="(key,day) in _activePlanner.data.Frequency.Days">
+				<input ng-disabled="_activePlanner.data.Frequency.Repeat != 'Weekly'"
+					   id="{{key}}{{_activePlanner.Id}}"
+					   type="checkbox"
+					   ng-model="day.Status" />
+				<label for="{{key}}{{_activePlanner.Id}}">{{day.Text}}</label>
+			</div>
+		</div>
+	</div>
+
+
+	<!--Grid Tools-->
+	<div class="gridTools">
+		<div id="search" id="search" ng-show="!nodata && FG.Config.search">
+			<span class="icon-search"></span>
+			<input placeholder="search" type="text" ng-model="search" />
+		</div>
+		<pagination ng-show="activeListSize > FG.Config.Pager.ListSize && FG.Config.pagination"
+					ng-init="currentPage=1"
+					rotate="true"
+					items-per-page="FG.Config.Pager.ListSize"
+					total-items="FG.Config.Pager.PagerTotal"
+					page="currentPage"
+					max-size="FG.Config.Pager.PagerSize"
+					boundary-links="true"
+					first-text="" last-text=""
+					next-text="" previous-text="">
+		</pagination>
+
+	</div>
+</div>

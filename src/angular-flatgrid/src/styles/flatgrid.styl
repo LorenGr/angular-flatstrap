@@ -1,0 +1,258 @@
+$theme1_main = green
+$theme1_main2 = darkgreen
+$borderColor = grey
+
+.dataGrid
+	table-layout fixed
+	//Grid Global Styles
+	button
+		border none
+		outline 0
+
+	//Font aliasing
+	label , .icon
+		-webkit-text-stroke-width 0.5px
+		-webkit-text-stroke-color rgba($theme1_main,.6)
+
+	input[type=text] , textarea
+		-webkit-text-stroke-width 0.6px
+		-webkit-text-stroke-color rgba(black,0.4)
+
+	th, td , input[type=text] , textarea
+		font-size 16px
+		box()
+		padding-left 0
+		height 46px
+		line-height 46px
+
+
+	//Grid Container
+	width 100%
+
+	//Col Widths
+	td , th
+		width auto
+		&.Active
+			padding-left 0px
+			width 55px
+			text-align center
+
+	.controls
+		width 173px
+
+	.center
+		text-align center
+		padding-left 0
+
+/****************************************************************************/
+/*** THEAD ******************************************************************/
+/****************************************************************************/
+.dataGrid thead
+	th
+		&, a
+			text()
+		font-size 12px
+		color black
+		line-height 16px
+		padding-left 7px
+
+	//Column Header
+	.sorter
+		cursor pointer
+		padding 10px
+		display inline-block
+		border-radius 30px
+		border 3px solid transparent
+		&:hover
+			border 3px solid $borderColor
+
+	//Form
+	tr.post
+		$formHeight = 83px
+
+		.datetimepickerHolder
+			&,*
+				color black
+
+		td>input[type=text] , textarea
+			text-indent 15px
+
+		td>input[type=text] , .datetimepickerHolder
+			line-height $formHeight
+
+		td>input[type=text] , textarea , .datetimepickerHolder
+			height $formHeight
+			width 100%
+			outline 0
+			border 2px dotted $borderColor
+			text()
+			box()
+			vertical-align top
+			&:focus , &:hover
+				border 2px solid black
+		&>td
+			background-color transparent !important
+			border-right 2px solid $borderColor
+		td.controls
+			vertical-align top
+			.icon.icon-plus
+				text-align center
+				display block
+				height $formHeight
+				line-height $formHeight
+				background-color $theme1_main
+				opacity 1
+				color white
+				font-size 23px
+				&:hover
+					background-color lighten($theme1_main,20%)
+
+		background-color lighten($borderColor,90%)
+		td:nth-last-child(2)
+			border-right 0px none transparent
+
+	tr.post , tr.editing
+		td.controls
+			border-right 0px none transparent
+
+/****************************************************************************/
+/*** TBODY ******************************************************************/
+/****************************************************************************/
+.dataGrid tbody
+	//Alternate row Colouring
+	tr:hover td , tr.odd:hover td
+		background-color darken($theme1_main,20%)
+	tr.odd td
+		background-color darken($theme1_main,5%)
+	//Row Background/Borders
+	td
+		background-color $theme1_main
+		border-right 1px solid white
+		border-bottom 1px solid darken($theme1_main,10%)
+		&:last-child
+			border-right 0 none transparent
+	&>tr:last-child
+		border-bottom 0 none transparent
+
+	tr.running //active/running schedule or event
+		td.controls
+			.loading.go
+				loading()
+
+	span.checkbox //checkbox in non edit mode
+		background none
+		border 0 !important
+		line-height 25px
+
+	//Edit Mode
+	.editing
+		input[type=text] , textarea
+			&:focus
+				cursor text
+				border 2px solid black
+				background-color white
+				color black
+		& .controls
+			background-color $theme1_main2
+
+	//Default mode
+	td>label
+		cursor default
+		text()
+		font-size 13px
+		color white
+		text-indent 15px
+		height 47px
+		line-height 47px
+		width 100%
+		margin 0
+		vertical-align middle
+		white-space nowrap
+		overflow hidden
+		text-overflow ellipsis
+		display block
+
+	input[type=text] , textarea
+		//transition background-color 0.2s
+		cursor pointer
+		background-color transparent
+		border 2px solid transparent
+		text()
+		outline 0
+		color white
+		text-indent 15px
+		width 100%
+		margin 0
+		vertical-align middle
+		height 47px
+		&:hover
+			background-color rgba( darken($theme1_main,55%) , 0.4 )
+
+	//Controls
+	tr td.controls
+		button
+			background-color transparent
+			&:hover
+				background-color $theme1_main
+		padding-left 0
+		text-align center
+		line-height 0
+		.loading.go
+			loaderBar()
+		.icon
+			opacity 0.6
+			&:hover
+				opacity 1
+			color white
+
+			&.icon-plus , &.icon-ok , &.icon-wrong , &.icon-close
+				margin-left 0
+				font-size 24px
+				box()
+				height 47px
+				width 48.5%
+				font-size 23px
+				display inline-block
+			&.icon-close
+				width 100%
+				display block
+/****************************************************************************/
+/*** DATETIMEPICKER *********************************************************/
+/****************************************************************************/
+.dataGrid
+	.datetimepickerHolder
+		height 47px
+		font-size 17px
+		-webkit-text-stroke-width 0.5px
+		cursor default
+		&.editable
+			cursor pointer
+		.datetimepicker //hidden field
+			width 0
+			border none
+			outline 0
+			margin 0
+		color white
+
+
+		date,time
+			display inline-block
+			vertical-align top
+
+		date
+			text-indent 9px
+			.icon
+				font-size 14px
+				margin-right 7px
+				vertical-align baseline
+		time
+			.icon
+				font-size 22px
+				vertical-align sub
+
+
+
+
+
+
+

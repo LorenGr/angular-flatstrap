@@ -1,0 +1,63 @@
+.dataGrid{table-layout:fixed;width:100%;}
+.dataGrid button{border:none;outline:0}
+.dataGrid label,.dataGrid .icon{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(0,128,0,0.6)}
+.dataGrid input[type=text],.dataGrid textarea{-webkit-text-stroke-width:.6px;-webkit-text-stroke-color:rgba(0,0,0,0.4)}
+.dataGrid th,.dataGrid td,.dataGrid input[type=text],.dataGrid textarea{font-size:16px;padding-left:0;height:46px;line-height:46px}
+.dataGrid td,.dataGrid th{width:auto;}
+.dataGrid td.Active,.dataGrid th.Active{padding-left:0;width:55px;text-align:center}
+.dataGrid .controls{width:173px}
+.dataGrid .center{text-align:center;padding-left:0}
+.dataGrid thead th{font-size:12px;color:#000;line-height:16px;padding-left:7px}
+.dataGrid thead .sorter{cursor:pointer;padding:10px;display:inline-block;border-radius:30px;border:3px solid transparent;}
+.dataGrid thead .sorter:hover{border:3px solid #808080}
+.dataGrid thead tr.post{background-color:#f2f2f2;}
+.dataGrid thead tr.post .datetimepickerHolder,.dataGrid thead tr.post .datetimepickerHolder *{color:#000}
+.dataGrid thead tr.post td>input[type=text],.dataGrid thead tr.post textarea{text-indent:15px}
+.dataGrid thead tr.post td>input[type=text],.dataGrid thead tr.post .datetimepickerHolder{line-height:83px}
+.dataGrid thead tr.post td>input[type=text],.dataGrid thead tr.post textarea,.dataGrid thead tr.post .datetimepickerHolder{height:83px;width:100%;outline:0;border:2px dotted #808080;vertical-align:top;}
+.dataGrid thead tr.post td>input[type=text]:focus,.dataGrid thead tr.post textarea:focus,.dataGrid thead tr.post .datetimepickerHolder:focus,.dataGrid thead tr.post td>input[type=text]:hover,.dataGrid thead tr.post textarea:hover,.dataGrid thead tr.post .datetimepickerHolder:hover{border:2px solid #000}
+.dataGrid thead tr.post>td{background-color:transparent !important;border-right:2px solid #808080}
+.dataGrid thead tr.post td.controls{vertical-align:top;}
+.dataGrid thead tr.post td.controls .icon.icon-plus{text-align:center;display:block;height:83px;line-height:83px;background-color:#008000;opacity:1;color:#fff;font-size:23px;}
+.dataGrid thead tr.post td.controls .icon.icon-plus:hover{background-color:#0c0}
+.dataGrid thead tr.post td:nth-last-child(2){border-right:0 none transparent}
+.dataGrid thead tr.post td.controls,.dataGrid thead tr.editing td.controls{border-right:0 none transparent}
+.dataGrid tbody tr:hover td,.dataGrid tbody tr.odd:hover td{background-color:#060}
+.dataGrid tbody tr.odd td{background-color:#007a00}
+.dataGrid tbody td{background-color:#008000;border-right:1px solid #fff;border-bottom:1px solid #007300;}
+.dataGrid tbody td:last-child{border-right:0 none transparent}
+.dataGrid tbody>tr:last-child{border-bottom:0 none transparent}
+.dataGrid tbody span.checkbox{background:none;border:0 !important;line-height:25px}
+.dataGrid tbody .editing input[type=text]:focus,.dataGrid tbody .editing textarea:focus{cursor:text;border:2px solid #000;background-color:#fff;color:#000}
+.dataGrid tbody .editing .controls{background-color:#006400}
+.dataGrid tbody td>label{cursor:default;font-size:13px;color:#fff;text-indent:15px;height:47px;line-height:47px;width:100%;margin:0;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.dataGrid tbody input[type=text],.dataGrid tbody textarea{cursor:pointer;background-color:transparent;border:2px solid transparent;outline:0;color:#fff;text-indent:15px;width:100%;margin:0;vertical-align:middle;height:47px;}
+.dataGrid tbody input[type=text]:hover,.dataGrid tbody textarea:hover{background-color:rgba(0,58,0,0.4)}
+.dataGrid tbody tr td.controls{padding-left:0;text-align:center;line-height:0;}
+.dataGrid tbody tr td.controls button{background-color:transparent;}
+.dataGrid tbody tr td.controls button:hover{background-color:#008000}
+.dataGrid tbody tr td.controls .icon{opacity:.6;color:#fff;}
+.dataGrid tbody tr td.controls .icon:hover{opacity:1}
+.dataGrid tbody tr td.controls .icon.icon-plus,.dataGrid tbody tr td.controls .icon.icon-ok,.dataGrid tbody tr td.controls .icon.icon-wrong,.dataGrid tbody tr td.controls .icon.icon-close{margin-left:0;font-size:24px;height:47px;width:48.5%;font-size:23px;display:inline-block}
+.dataGrid tbody tr td.controls .icon.icon-close{width:100%;display:block}
+.dataGrid .datetimepickerHolder{height:47px;font-size:17px;-webkit-text-stroke-width:.5px;cursor:default;color:#fff;}
+.dataGrid .datetimepickerHolder.editable{cursor:pointer}
+.dataGrid .datetimepickerHolder .datetimepicker{width:0;border:none;outline:0;margin:0}
+.dataGrid .datetimepickerHolder date,.dataGrid .datetimepickerHolder time{display:inline-block;vertical-align:top}
+.dataGrid .datetimepickerHolder date{text-indent:9px;}
+.dataGrid .datetimepickerHolder date .icon{font-size:14px;margin-right:7px;vertical-align:baseline}
+.dataGrid .datetimepickerHolder time .icon{font-size:22px;vertical-align:sub}
+
+@font-face{font-family:'icomoon';src:url("../src/styles/icomoon/icomoon.eot");src:url("../src/styles/icomoon/icomoon.svg#icomoon") format('svg'),url("../src/styles/icomoon/icomoon.eot?#iefix") format('embedded-opentype'),url("../src/styles/icomoon/icomoon.woff") format('woff'),url("../src/styles/icomoon/icomoon.ttf") format('truetype');font-weight:normal;font-style:normal}
+.icon,i{cursor:pointer;-webkit-text-stroke-width:0;}
+.icon.noclick,i.noclick{cursor:default}
+.icon.ring,i.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
+[data-icon]:before,.icon,.test{font-family:'icomoon';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important}
+.icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
+.icon-arrow-up:before{content:"\f0d8"}
+.icon-arrow-down:before{content:"\f0d7"}
+.icon-plus:before{content:"\e001"}
+.icon-close:before{content:"\e007"}
+.icon-wrong:before{content:"\e031"}
+.icon-ok:before{content:"\f00c"}
+

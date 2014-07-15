@@ -1,0 +1,325 @@
+@import url("http://fonts.googleapis.com/css?family=Quicksand:400,700");
+@font-face {
+  font-family: 'icomoon';
+  src: url("../src/styles/icomoon/icomoon.eot");
+  src: url("../src/styles/icomoon/icomoon.svg#icomoon") format('svg'), url("../src/styles/icomoon/icomoon.eot?#iefix") format('embedded-opentype'), url("../src/styles/icomoon/icomoon.woff") format('woff'), url("../src/styles/icomoon/icomoon.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.icon,
+i {
+  cursor: pointer;
+  -webkit-text-stroke-width: 0;
+}
+.icon.noclick,
+i.noclick {
+  cursor: default;
+}
+.icon.ring,
+i.ring {
+  border: 3px solid #000;
+  border-radius: 21px;
+  padding: 6px !important;
+}
+[data-icon]:before,
+.icon,
+.test {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+.icon-arrow-down,
+.icon-arrow-up,
+.icon-plus,
+.icon-close,
+.icon-wrong,
+.icon-ok {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-arrow-up:before {
+  content: "\f0d8";
+}
+.icon-arrow-down:before {
+  content: "\f0d7";
+}
+.icon-plus:before {
+  content: "\e001";
+}
+.icon-close:before {
+  content: "\e007";
+}
+.icon-wrong:before {
+  content: "\e031";
+}
+.icon-ok:before {
+  content: "\f00c";
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+.dataGrid {
+  width: 100%;
+}
+.dataGrid button {
+  border: none;
+  outline: 0;
+}
+.dataGrid label,
+.dataGrid .icon,
+.dataGrid input[type=text] {
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: rgba(0,161,144,0.6);
+}
+.dataGrid th,
+.dataGrid td,
+.dataGrid input[type=text],
+.dataGrid textarea {
+  font-size: 16px;
+  box-sizing: border-box;
+  padding-left: 0;
+  height: 46px;
+  line-height: 46px;
+}
+.dataGrid td.controls {
+  width: 173px;
+}
+.dataGrid .center {
+  text-align: center;
+  padding-left: 0;
+}
+/****************************************************************************/
+/*** THEAD ******************************************************************/
+/****************************************************************************/
+.dataGrid thead th {
+  font-size: 12px;
+  color: #000;
+  line-height: 16px;
+  padding-left: 7px;
+}
+.dataGrid thead th,
+.dataGrid thead th a {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+}
+.dataGrid thead .sorter {
+  cursor: pointer;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 3px solid transparent;
+}
+.dataGrid thead .sorter:hover {
+  border: 3px solid #d1d1d1;
+}
+.dataGrid thead tr.post {
+  background-color: #fafafa;
+}
+.dataGrid thead tr.post .textEntry input[type=text],
+.dataGrid thead tr.post .textEntry textarea {
+  height: 83px;
+  width: 100%;
+  text-indent: 15px;
+  outline: 0;
+  border: 2px dotted #d1d1d1;
+}
+.dataGrid thead tr.post .textEntry input[type=text]:focus,
+.dataGrid thead tr.post .textEntry textarea:focus {
+  border: 2px solid #000;
+}
+.dataGrid thead tr.post>td {
+  background-color: transparent !important;
+  border-right: 2px solid #d1d1d1;
+}
+.dataGrid thead tr.post td.controls .icon.icon-plus {
+  text-align: center;
+  display: block;
+  height: 83px;
+  line-height: 83px;
+  background-color: #ffa500;
+  opacity: 1;
+  color: #fff;
+}
+.dataGrid thead tr.post td.controls .icon.icon-plus:hover {
+  background-color: #ffb733;
+}
+.dataGrid thead tr.post td:nth-last-child(2) {
+  border-right: 0px none transparent;
+}
+.dataGrid thead tr.post td.controls,
+.dataGrid thead tr.editing td.controls {
+  border-right: 0px none transparent;
+}
+/****************************************************************************/
+/*** TBODY ******************************************************************/
+/****************************************************************************/
+.dataGrid tbody tr:hover td,
+.dataGrid tbody tr.odd:hover td {
+  background-color: #008173;
+}
+.dataGrid tbody tr.odd td {
+  background-color: #009989;
+}
+.dataGrid tbody td {
+  background-color: #00a190;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #009182;
+}
+.dataGrid tbody td:last-child {
+  border-right: 0 none transparent;
+}
+.dataGrid tbody>tr:last-child {
+  border-bottom: 0 none transparent;
+}
+.dataGrid tbody .editing input[type=text]:focus,
+.dataGrid tbody .editing textarea:focus {
+  cursor: text;
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+}
+.dataGrid tbody .editing .controls {
+  background-color: #ffa500;
+}
+.dataGrid tbody input[type=text],
+.dataGrid tbody textarea {
+  transition: background-color 0.2s;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid transparent;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  outline: 0;
+  color: #fff;
+  text-indent: 15px;
+  width: 100%;
+  margin: 0;
+  vertical-align: middle;
+  height: 47px;
+}
+.dataGrid tbody input[type=text]:hover,
+.dataGrid tbody textarea:hover {
+  background-color: rgba(0,72,65,0.4);
+}
+.dataGrid tbody tr td.controls {
+  padding-left: 0;
+  text-align: center;
+  line-height: 0;
+}
+.dataGrid tbody tr td.controls button {
+  background-color: transparent;
+}
+.dataGrid tbody tr td.controls .icon {
+  opacity: 0.6;
+  margin-left: 4px;
+  color: #fff;
+}
+.dataGrid tbody tr td.controls .icon:hover {
+  opacity: 1;
+}
+.dataGrid tbody tr td.controls .icon.icon-plus,
+.dataGrid tbody tr td.controls .icon.icon-ok,
+.dataGrid tbody tr td.controls .icon.icon-wrong {
+  margin-left: 0;
+  font-size: 24px;
+}
