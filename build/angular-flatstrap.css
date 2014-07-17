@@ -46,6 +46,7 @@
 .dataGridContainer .dataGrid div.td.coltype-status .changeStatus,.dataGridContainer .dataGrid div.th.coltype-status .changeStatus{background-color:#f7f7f7;height:50px;line-height:45px;text-align:center}
 .dataGridContainer .dataGrid div.td.controls,.dataGridContainer .dataGrid div.th.controls{width:173px;flex:none}
 .dataGridContainer .dataGrid .center{text-align:center;padding-left:0}
+.dataGridContainer .dataGrid header div.tr{height:25px}
 .dataGridContainer .dataGrid header div.th{font-size:14px;color:#000;line-height:16px;cursor:pointer;padding-left:7px;height:25px}
 .dataGridContainer .dataGrid header div.th,.dataGridContainer .dataGrid header div.th a{font-family:'Open Sans',sans-serif;color:#000}
 .dataGridContainer .dataGrid header div.tr.post{background-color:#f2f2f2;}
