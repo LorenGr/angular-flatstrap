@@ -118,7 +118,7 @@
 .dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#f29d00}
 .dataGridContainer .dataGrid>div.tbody div.tr.active,.dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#805300}
 .dataGridContainer .dataGrid>div.tbody div.tr:hover,.dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#cc8400}
-.dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,165,0,0.6)}
+.dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(255,165,0,0.6)}
 .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#ffc966;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,165,0,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
