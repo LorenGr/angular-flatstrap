@@ -57,7 +57,7 @@
 .dataGridContainer .dataGrid header div.tr.post textarea:focus{position:absolute;top:0;width:750px;height:100px}
 .dataGridContainer .dataGrid header div.tr.post div.td>input[type=text],.dataGridContainer .dataGrid header div.tr.post textarea,.dataGridContainer .dataGrid header div.tr.post .postElement{height:50px;width:100%;outline:0;border:1px dotted #808080;font-family:'Open Sans',sans-serif;vertical-align:top;}
 .dataGridContainer .dataGrid header div.tr.post div.td>input[type=text]:focus,.dataGridContainer .dataGrid header div.tr.post textarea:focus,.dataGridContainer .dataGrid header div.tr.post .postElement:focus,.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text]:hover,.dataGridContainer .dataGrid header div.tr.post textarea:hover,.dataGridContainer .dataGrid header div.tr.post .postElement:hover{border:1px solid #000}
-.dataGridContainer .dataGrid header div.tr.post>div.td{background-color:transparent !important;border-right:2px solid #808080}
+.dataGridContainer .dataGrid header div.tr.post>div.td{background-color:transparent !important;border-right:1px solid #808080}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls{vertical-align:top;}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls span.loading{background-color:#ffa500}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls .icon.icon-plus{text-align:center;display:block;height:50px;line-height:50px;background-color:#ffa500;opacity:1;color:#dfdfdf;font-size:23px;width:100%;}
@@ -65,8 +65,7 @@
 .dataGridContainer .dataGrid header div.tr.post div.td.coltype-status{background-color:#fff !important;border-right:none}
 .dataGridContainer .dataGrid header div.tr.post div.td:nth-last-child(2){border-right:0 none transparent}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls,.dataGridContainer .dataGrid header div.tr.editing div.td.controls{border-right:0 none transparent}
-.dataGridContainer .dataGrid div.tbody div.td{border-right:1px solid #fff;height:50px;max-height:50px;overflow:hidden;}
-.dataGridContainer .dataGrid div.tbody div.td:last-child{border-right:0 none transparent}
+.dataGridContainer .dataGrid div.tbody div.td{border-right:1px solid #fff;height:50px;max-height:50px;overflow:hidden;border-right:0 none transparent}
 .dataGridContainer .dataGrid div.tbody>div.tr:last-child{border-bottom:0 none transparent}
 .dataGridContainer .dataGrid div.tbody div.tr.running{pointer-events:none}
 .dataGridContainer .dataGrid div.tbody span.checkbox{background:none;border:0 !important;line-height:50px;height:50px;width:100%;}
