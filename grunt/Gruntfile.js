@@ -24,7 +24,7 @@ module.exports = function (grunt) {
         stylus: {
             compile: {
                 files: {
-                  '../build/angular-flatgrid.css': ['../src/styles/*.styl'] 
+                  '../build/angular-flatgrid.css': ['../src/angular-flatgrid/src/styles/*.styl']
                 }
             }
         }    
@@ -34,9 +34,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-stylus');
-
     grunt.registerTask('default', [
         'concat'
-        //,'stylus'
+        ,'stylus'
     ]);
 };

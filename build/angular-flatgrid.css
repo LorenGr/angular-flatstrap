@@ -1,0 +1,126 @@
+.dataGridContainer{display:flex;position:absolute;width:100%;height:100%;flex-direction:column;}
+.dataGridContainer .scrollItems{flex:1;position:relative;}
+.dataGridContainer .scrollItems.scrollbar{overflow-y:auto}
+.dataGrid{width:100%;}
+.dataGrid.selectableRows div.tr,.dataGrid.selectableRows div.tr *{cursor:pointer !important}
+.dataGrid button{border:none;outline:0}
+.dataGrid label,.dataGrid .icon{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.dataGrid input[type=text],.dataGrid textarea{-webkit-text-stroke-width:.6px;-webkit-text-stroke-color:rgba(0,0,0,0.4)}
+.dataGrid div.td,.dataGrid div.th{display:inline-block;vertical-align:top;flex:1}
+.dataGrid div.tr{display:flex;height:50px}
+.dataGrid div.th,.dataGrid div.td,.dataGrid input[type=text],.dataGrid textarea{font-size:16px;padding-left:0;height:50px;line-height:50px}
+.dataGrid div.td,.dataGrid div.th{width:auto;}
+.dataGrid div.td.coltype-checkbox,.dataGrid div.th.coltype-checkbox,.dataGrid div.td.coltype-toggler,.dataGrid div.th.coltype-toggler{padding-left:0;width:55px;flex:none;text-align:center}
+.dataGrid div.td.coltype-datetime,.dataGrid div.th.coltype-datetime{min-width:169px}
+.dataGrid div.td.coltype-status,.dataGrid div.th.coltype-status{padding-left:0;width:40px;flex:none;text-align:center;border-top:1px solid #fff !important;border-bottom:1px solid #fff !important;background-color:#fff !important;}
+.dataGrid div.td.coltype-status .changeStatus,.dataGrid div.th.coltype-status .changeStatus{background-color:#f7f7f7;height:50px;line-height:45px;text-align:center}
+.dataGrid div.td.controls,.dataGrid div.th.controls{width:173px;flex:none}
+.dataGrid .center{text-align:center;padding-left:0}
+.dataGrid header div.th{amargin-left:-19px;font-size:12px;color:#000;line-height:16px;padding-left:7px}
+.dataGrid header div.th a:first-child{margin-left:-7px}
+.dataGrid header div.tr.post{background-color:#f2f2f2;}
+.dataGrid header div.tr.post .postElement,.dataGrid header div.tr.post .postElement *{cursor:pointer;color:#000;-webkit-text-stroke-width:.7px;-webkit-text-stroke-color:rgba(0,0,0,0.7)}
+.dataGrid header div.tr.post div.td>input[type=text],.dataGrid header div.tr.post textarea{padding-left:15px}
+.dataGrid header div.tr.post div.td>input[type=text],.dataGrid header div.tr.post .postElement{line-height:50px}
+.dataGrid header div.tr.post textarea{line-height:21px;}
+.dataGrid header div.tr.post textarea:focus{position:absolute;top:0;width:750px;height:100px}
+.dataGrid header div.tr.post div.td>input[type=text],.dataGrid header div.tr.post textarea,.dataGrid header div.tr.post .postElement{height:50px;width:100%;outline:0;border:2px dotted #808080;vertical-align:top;}
+.dataGrid header div.tr.post div.td>input[type=text]:focus,.dataGrid header div.tr.post textarea:focus,.dataGrid header div.tr.post .postElement:focus,.dataGrid header div.tr.post div.td>input[type=text]:hover,.dataGrid header div.tr.post textarea:hover,.dataGrid header div.tr.post .postElement:hover{border:2px solid #000}
+.dataGrid header div.tr.post>div.td{background-color:transparent !important;border-right:2px solid #808080}
+.dataGrid header div.tr.post div.td.controls{vertical-align:top;}
+.dataGrid header div.tr.post div.td.controls span.loading{background-color:#ffa500}
+.dataGrid header div.tr.post div.td.controls .icon.icon-plus{text-align:center;display:block;height:50px;line-height:50px;background-color:#ffa500;opacity:1;color:#dfdfdf;font-size:23px;width:100%;}
+.dataGrid header div.tr.post div.td.controls .icon.icon-plus:hover{background-color:#ffb733}
+.dataGrid header div.tr.post div.td.coltype-status{background-color:#fff !important;border-right:none}
+.dataGrid header div.tr.post div.td:nth-last-child(2){border-right:0 none transparent}
+.dataGrid header div.tr.post div.td.controls,.dataGrid header div.tr.editing div.td.controls{border-right:0 none transparent}
+.dataGrid div.tbody div.td{border-right:1px solid #fff;height:50px;max-height:50px;overflow:hidden;}
+.dataGrid div.tbody div.td:last-child{border-right:0 none transparent}
+.dataGrid div.tbody>div.tr:last-child{border-bottom:0 none transparent}
+.dataGrid div.tbody div.tr.running{pointer-events:none}
+.dataGrid div.tbody span.checkbox{background:none;border:0 !important;line-height:50px;height:50px;width:100%;}
+.dataGrid div.tbody .editing input[type=text]:focus,.dataGrid div.tbody .editing textarea:focus{cursor:text;border:2px solid #000;background-color:#fff;color:#000}
+.dataGrid div.tbody div.td>label{cursor:default;font-size:13px;color:#fff;text-indent:15px;height:50px;line-height:50px;width:100%;margin:0;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:left}
+.dataGrid div.tbody input[type=text],.dataGrid div.tbody textarea{cursor:pointer;background-color:transparent;border:2px solid transparent;outline:0;color:#fff;text-indent:15px;width:100%;margin:0;vertical-align:middle;height:50px;}
+.dataGrid div.tbody input[type=text]:disabled,.dataGrid div.tbody textarea:disabled{opacity:.3;pointer-events:none}
+.dataGrid div.tbody div.tr div.td.controls{position:relative;padding-left:0;text-align:center;line-height:0;font-size:0;white-space:nowrap;}
+.dataGrid div.tbody div.tr div.td.controls button{background-color:transparent;}
+.dataGrid div.tbody div.tr div.td.controls button:hover{background-color:#ffa500}
+.dataGrid div.tbody div.tr div.td.controls span.loading{background-color:#ffa500;position:absolute;display:inline-block;right:0;opacity:.6;width:100%}
+.dataGrid div.tbody div.tr div.td.controls .running{color:#fff;font-size:15px;display:block;text-align:center;line-height:50px;animation-name:blinker;background-color:#f00;animation-duration:1s;animation-timing-function:linear;animation-iteration-count:infinite}
+.dataGrid div.tbody div.tr div.td.controls .icon{opacity:.6;color:#fff;}
+.dataGrid div.tbody div.tr div.td.controls .icon:hover{opacity:1}
+.dataGrid div.tbody div.tr div.td.controls .icon.icon-ok{background-color:#008000;float:left}
+.dataGrid div.tbody div.tr div.td.controls .icon.icon-wrong{background-color:#f00}
+.dataGrid div.tbody div.tr div.td.controls .icon.icon-plus,.dataGrid div.tbody div.tr div.td.controls .icon.icon-ok,.dataGrid div.tbody div.tr div.td.controls .icon.icon-wrong,.dataGrid div.tbody div.tr div.td.controls .icon.icon-close{margin-left:0;font-size:24px;height:51px;width:50%;height:50px;font-size:23px;display:block}
+.dataGrid div.tbody div.tr div.td.controls .icon.icon-close{width:100%;display:block;position:relative}
+.dataGrid .datetimepickerHolder{height:50px;font-size:15px;-webkit-text-stroke-width:.5px;cursor:default;text-align:left;color:#fff;}
+.dataGrid .datetimepickerHolder.editable,.dataGrid .datetimepickerHolder.editable *{cursor:pointer}
+.dataGrid .datetimepickerHolder .datetimepicker{width:0 !important;border:none !important;outline:0 !important;margin:0 !important}
+.dataGrid .datetimepickerHolder date,.dataGrid .datetimepickerHolder time{display:inline-block;vertical-align:top}
+.dataGrid .datetimepickerHolder date{text-indent:9px;}
+.dataGrid .datetimepickerHolder date .icon{font-size:12px;margin-right:7px;vertical-align:baseline}
+.dataGrid .datetimepickerHolder time .icon{font-size:19px;vertical-align:sub}
+.dataGrid .plannerHolder.activePlanner{background-color:#fff;}
+.dataGrid .plannerHolder.activePlanner label,.dataGrid .plannerHolder.activePlanner .icon{color:#000}
+.dataGrid .plannerHolder.editable,.dataGrid .plannerHolder.editable label,.dataGrid .plannerHolder.editable .icon{cursor:pointer}
+.dataGrid .plannerHolder>input.plannerpicker{width:0;border:none;outline:0;margin:0}
+.dataGrid .plannerHolder>label{color:#fff}
+.dataGrid .plannerHolder>.icon{margin-left:10px;margin-right:10px;color:#fff;font-size:12px}
+.dataGridContainer .gridTools{height:42px}
+.dataGridContainer #search{display:inline-block;margin-left:36px;position:absolute;bottom:5px;z-index:1000;}
+.dataGridContainer #search input{width:200px;vertical-align:top;height:30px;line-height:30px;outline:0;border-radius:20px;text-indent:32px;border:2px solid #808080;cursor:pointer;}
+.dataGridContainer #search input:focus{cursor:text}
+.dataGridContainer #search input:hover,.dataGridContainer #search input:focus{border:2px solid #000}
+.dataGridContainer #search .icon-search{width:22px;height:34px;display:inline-block;line-height:35px;position:absolute;font-size:21px;margin-left:9px}
+.dataGridContainer .actiondropdownHolder{display:flex;}
+.dataGridContainer .actiondropdownHolder .themeButton{font-size:15px;color:#fff;-webkit-text-stroke-color:#fff !important;width:80px;margin-top:8px;height:35px;line-height:35px;}
+.dataGridContainer .actiondropdownHolder .themeButton .icon{font-size:18px}
+.dataGridContainer .actiondropdownHolder .icon-sort{color:#fff;height:50px;line-height:50px;pointer-events:none;margin-left:-18px;position:absolute}
+.dataGridContainer .actiondropdownHolder select:focus+.icon-sort{color:#000}
+.dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
+.dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
+@-moz-keyframes arrow{0%{background-position:100px 0}
+50%{background-position:100px 20px}
+100%{background-position:100px 0}
+}@-webkit-keyframes arrow{0%{background-position:100px 0}
+50%{background-position:100px 20px}
+100%{background-position:100px 0}
+}@-o-keyframes arrow{0%{background-position:100px 0}
+50%{background-position:100px 20px}
+100%{background-position:100px 0}
+}@-ms-keyframes arrow{0%{background-position:100px 0}
+50%{background-position:100px 20px}
+100%{background-position:100px 0}
+}@keyframes arrow{0%{background-position:100px 0}
+50%{background-position:100px 20px}
+100%{background-position:100px 0}
+}@-moz-keyframes blinker{0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}@-webkit-keyframes blinker{0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}@-o-keyframes blinker{0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}@-ms-keyframes blinker{0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}@keyframes blinker{0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
+@font-face{font-family:'icomoon';src:url("../src/styles/icomoon/icomoon.eot");src:url("../src/styles/icomoon/icomoon.svg#icomoon") format('svg'),url("../src/styles/icomoon/icomoon.eot?#iefix") format('embedded-opentype'),url("../src/styles/icomoon/icomoon.woff") format('woff'),url("../src/styles/icomoon/icomoon.ttf") format('truetype');font-weight:normal;font-style:normal}
+.icon,i{cursor:pointer;-webkit-text-stroke-width:0;}
+.icon.noclick,i.noclick{cursor:default}
+.icon.ring,i.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
+[data-icon]:before,.icon,.test{font-family:'icomoon';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important}
+.icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
+.icon-arrow-up:before{content:"\f0d8"}
+.icon-arrow-down:before{content:"\f0d7"}
+.icon-plus:before{content:"\e001"}
+.icon-close:before{content:"\e007"}
+.icon-wrong:before{content:"\e031"}
+.icon-ok:before{content:"\f00c"}
+
