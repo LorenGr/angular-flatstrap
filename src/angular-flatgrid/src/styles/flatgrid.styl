@@ -46,6 +46,16 @@ datagridStyles(n)
 				div.td *
 					-webkit-text-stroke-color rgba(white,.6)
 
+
+ui-popup()
+	box-shadow 0px 5px 15px -5px rgba(0, 0, 0, 0.506)
+	background #FFFFFF
+	border-bottom 1px solid #BBBBBB
+	border-left 1px solid #CCCCCC
+	border-right 1px solid #CCCCCC
+	border-top 1px solid #CCCCCC
+	color #333333
+	font-family:"Helvetica Neue", "Helvetica", "Arial", sans-serif
 /****************************************************************************/
 /*** DATAGRID STYLES ********************************************************/
 /****************************************************************************/
@@ -339,7 +349,7 @@ $borderColor = grey
 					background-color red
 				&.icon-plus , &.icon-ok , &.icon-wrong , &.icon-close
 					margin-left 0
-					font-size 24px
+					font-size 20px
 					box()
 					height $rowHeight+1px
 					width 50%
@@ -388,27 +398,65 @@ $borderColor = grey
 	/****************************************************************************/
 	/*** PLANNER ****************************************************************/
 	/****************************************************************************/
-	.dataGrid
-		.plannerHolder
-			&.activePlanner
-				background-color white
-				label,.icon
-					color black
-			&.editable
-				&, label,.icon
+	.planner_plugin
+		position absolute
+		z-index 9999
+		margin-top -73px
+		background-color #ffffff
+		ui-popup()
+		display none
+		&.planner_top
+			margin-top -223px
+		.col
+			float left
+			background #F5F5F5
+			border 1px solid #DDDDDD
+			color #666666
+			width 101px
+			input , label
+				vertical-align middle
+
+			&>div
+				border-bottom 1px solid #DDDDDD
+				&,*
 					cursor pointer
-			&>input.plannerpicker
-				width 0
-				border none
-				outline 0
-				margin 0
-			&>label
-				color white
-			&>.icon
-				margin-left 10px
-				margin-right 10px
-				color #ffffff
-				font-size 12px
+				&:hover
+					background-color white
+			&.freq
+				font-size 13px
+				color black
+				line-height 37px
+				&>div
+					&, label
+						height 41px
+						line-height 41px
+					label
+						display inline-block
+						position relative
+						width 101px
+						margin-top -83px
+						text-indent 25px
+			&.days
+				&.disabled
+					opacity 0.3
+					&, *
+						cursor default
+				line-height 22px
+				font-size 11px
+				background lighten(#F5F5F5,35%)
+
+				&>div
+					&, label
+						height 23px
+						line-height 23px
+					label
+						display inline-block
+						position relative
+						width 101px
+						text-indent 22px
+						margin-top -43px
+
+
 
 	/****************************************************************************/
 	/*** SEARCH ****************************************************************/
@@ -512,4 +560,4 @@ $borderColor = grey
 
 
 	//DEFAULT STYLES
-	datagridStyles(#6cbcb2)
+	datagridStyles(#4b857e)
