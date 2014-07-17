@@ -119,15 +119,15 @@
 .dataGridContainer .actiondropdownHolder select:focus+.icon-sort{color:#000}
 .dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-family:'Open Sans',sans-serif;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
-.dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(75,133,126,0.6)}
-.dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #3c6a65;}
-.dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#26423f}
-.dataGridContainer .dataGrid>div.tbody div.tr{background-color:#4b857e}
-.dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#477e78}
-.dataGridContainer .dataGrid>div.tbody div.tr.active,.dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#26423f}
-.dataGridContainer .dataGrid>div.tbody div.tr:hover,.dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#3c6a65}
+.dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(88,152,144,0.6)}
+.dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #467a73;}
+.dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#2c4c48}
+.dataGridContainer .dataGrid>div.tbody div.tr{background-color:#589890}
+.dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#549089}
+.dataGridContainer .dataGrid>div.tbody div.tr.active,.dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#2c4c48}
+.dataGridContainer .dataGrid>div.tbody div.tr:hover,.dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#467a73}
 .dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#65a8a0;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#76b0a9;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 @-moz-keyframes arrow{0%{background-position:100px 0}
@@ -167,8 +167,8 @@
 .icon.ring,i.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
 [data-icon]:before,.icon,.test{font-family:'Glyphicons Halflings';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important;-moz-osx-font-smoothing:grayscale;top:1px;position:relative;display:inline-block}
 .icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
-.icon-arrow-up:before{content:"\f0d8"}
-.icon-arrow-down:before{content:"\f0d7"}
+.icon-arrow-up:before{content:"\E093"}
+.icon-arrow-down:before{content:"\E094"}
 .icon-plus:before{content:"\E081"}
 .icon-close:before{content:"\E088"}
 .icon-wrong:before{content:"\E014"}
