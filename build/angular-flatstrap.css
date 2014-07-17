@@ -111,15 +111,15 @@
 .dataGridContainer .actiondropdownHolder select:focus+.icon-sort{color:#000}
 .dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-family:'Open Sans',sans-serif;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
-.dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(255,165,0,0.6)}
-.dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #cc8400;}
-.dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#805300}
-.dataGridContainer .dataGrid>div.tbody div.tr{background-color:#ffa500}
-.dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#f29d00}
-.dataGridContainer .dataGrid>div.tbody div.tr.active,.dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#805300}
-.dataGridContainer .dataGrid>div.tbody div.tr:hover,.dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#cc8400}
-.dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(255,165,0,0.6)}
-.dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#ffc966;-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(255,165,0,0.6)}
+.dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(108,188,178,0.6)}
+.dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #4aa398;}
+.dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#2e665f}
+.dataGridContainer .dataGrid>div.tbody div.tr{background-color:#6cbcb2}
+.dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#62b7ad}
+.dataGridContainer .dataGrid>div.tbody div.tr.active,.dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#2e665f}
+.dataGridContainer .dataGrid>div.tbody div.tr:hover,.dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#4aa398}
+.dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(108,188,178,0.6)}
+.dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#a7d7d1;-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(108,188,178,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 @-moz-keyframes arrow{0%{background-position:100px 0}
