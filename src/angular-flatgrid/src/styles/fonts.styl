@@ -1,10 +1,10 @@
 @font-face 
 	font-family 'icomoon'
-	src:url('../src/styles/icomoon/icomoon.eot')
-	src:url('../src/styles/icomoon/icomoon.svg#icomoon') format('svg'),
-		url('../src/styles/icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
-		url('../src/styles/icomoon/icomoon.woff') format('woff'),
-		url('../src/styles/icomoon/icomoon.ttf') format('truetype')		
+	src:url('fonts/glyphicons-halflings-regular.eot')
+	src:url('fonts/glyphicons-halflings-regular.svg#icomoon') format('svg'),
+		url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/glyphicons-halflings-regular.woff') format('woff'),
+		url('fonts/glyphicons-halflings-regular.ttf') format('truetype')
 	font-weight normal
 	font-style normal
 
@@ -20,7 +20,7 @@
 
 
 [data-icon]:before , .icon , .test
-	font-family 'icomoon'
+	font-family 'Glyphicons Halflings'
 	content attr(data-icon)
 	speak none
 	font-weight normal
@@ -29,6 +29,10 @@
 	line-height 1
 	-webkit-font-smoothing antialiased !important
 	text-rendering optimizeLegibility !important
+	-moz-osx-font-smoothing grayscale
+	top 1px
+	position relative
+	display inline-block
 
 .icon-arrow-down , .icon-arrow-up , .icon-plus , .icon-close , .icon-wrong , .icon-ok
 	font-family 'icomoon'
@@ -50,7 +54,7 @@
 	content "\e001"
 
 .icon-close:before 
-	content "\e007"
+	content "\E088"
 
 .icon-wrong:before 
 	content "\e031"

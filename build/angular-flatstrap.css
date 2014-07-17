@@ -152,16 +152,16 @@
 50%{opacity:1}
 100%{opacity:0}
 }
-@font-face{font-family:'icomoon';src:url("../src/styles/icomoon/icomoon.eot");src:url("../src/styles/icomoon/icomoon.svg#icomoon") format('svg'),url("../src/styles/icomoon/icomoon.eot?#iefix") format('embedded-opentype'),url("../src/styles/icomoon/icomoon.woff") format('woff'),url("../src/styles/icomoon/icomoon.ttf") format('truetype');font-weight:normal;font-style:normal}
+@font-face{font-family:'icomoon';src:url("fonts/glyphicons-halflings-regular.eot");src:url("fonts/glyphicons-halflings-regular.svg#icomoon") format('svg'),url("fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-halflings-regular.woff") format('woff'),url("fonts/glyphicons-halflings-regular.ttf") format('truetype');font-weight:normal;font-style:normal}
 .icon,i{cursor:pointer;-webkit-text-stroke-width:0;}
 .icon.noclick,i.noclick{cursor:default}
 .icon.ring,i.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
-[data-icon]:before,.icon,.test{font-family:'icomoon';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important}
+[data-icon]:before,.icon,.test{font-family:'Glyphicons Halflings';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important;-moz-osx-font-smoothing:grayscale;top:1px;position:relative;display:inline-block}
 .icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
 .icon-arrow-up:before{content:"\f0d8"}
 .icon-arrow-down:before{content:"\f0d7"}
 .icon-plus:before{content:"\e001"}
-.icon-close:before{content:"\e007"}
+.icon-close:before{content:"\E088"}
 .icon-wrong:before{content:"\e031"}
 .icon-ok:before{content:"\f00c"}
 

@@ -24,7 +24,7 @@ module.exports = function (grunt) {
         stylus: {
             compile: {
                 files: {
-                  '../build/angular-flatgrid.css': ['../src/angular-flatgrid/src/styles/*.styl']
+                  '../build/angular-flatstrap.css': ['../src/angular-flatgrid/src/styles/*.styl']
                 }
             }
         }    
