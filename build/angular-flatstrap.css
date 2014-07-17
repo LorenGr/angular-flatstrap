@@ -100,9 +100,9 @@
 .dataGridContainer .dataGrid .plannerHolder>.icon{margin-left:10px;margin-right:10px;color:#fff;font-size:12px}
 .dataGridContainer .gridTools{height:42px}
 .dataGridContainer #search{display:inline-block;margin-left:36px;position:absolute;bottom:5px;z-index:1000;}
-.dataGridContainer #search input{width:200px;vertical-align:top;height:30px;line-height:30px;font-family:'Open Sans',sans-serif;outline:0;border-radius:20px;text-indent:32px;border:2px solid #808080;cursor:pointer;}
+.dataGridContainer #search input{width:200px;vertical-align:top;height:30px;line-height:30px;font-family:'Open Sans',sans-serif;outline:0;border-radius:20px;text-indent:32px;border:1px solid #808080;cursor:pointer;}
 .dataGridContainer #search input:focus{cursor:text}
-.dataGridContainer #search input:hover,.dataGridContainer #search input:focus{border:2px solid #000}
+.dataGridContainer #search input:hover,.dataGridContainer #search input:focus{border:1px solid #000}
 .dataGridContainer #search .icon-search{width:22px;height:34px;display:inline-block;line-height:35px;position:absolute;font-size:21px;margin-left:9px}
 .dataGridContainer .actiondropdownHolder{display:flex;}
 .dataGridContainer .actiondropdownHolder .themeButton{font-size:15px;color:#fff;-webkit-text-stroke-color:#fff !important;width:80px;font-family:'Open Sans',sans-serif;margin-top:8px;height:35px;line-height:35px;}
@@ -161,7 +161,7 @@
 .icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
 .icon-arrow-up:before{content:"\f0d8"}
 .icon-arrow-down:before{content:"\f0d7"}
-.icon-plus:before{content:"\e001"}
+.icon-plus:before{content:"\E081"}
 .icon-close:before{content:"\E088"}
 .icon-wrong:before{content:"\e031"}
 .icon-ok:before{content:"\f00c"}
