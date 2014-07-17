@@ -55,8 +55,8 @@
 .dataGridContainer .dataGrid header div.tr.post div.td>input[type=text],.dataGridContainer .dataGrid header div.tr.post .postElement{line-height:50px}
 .dataGridContainer .dataGrid header div.tr.post textarea{line-height:21px;}
 .dataGridContainer .dataGrid header div.tr.post textarea:focus{position:absolute;top:0;width:750px;height:100px}
-.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text],.dataGridContainer .dataGrid header div.tr.post textarea,.dataGridContainer .dataGrid header div.tr.post .postElement{height:50px;width:100%;outline:0;border:2px dotted #808080;font-family:'Open Sans',sans-serif;vertical-align:top;}
-.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text]:focus,.dataGridContainer .dataGrid header div.tr.post textarea:focus,.dataGridContainer .dataGrid header div.tr.post .postElement:focus,.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text]:hover,.dataGridContainer .dataGrid header div.tr.post textarea:hover,.dataGridContainer .dataGrid header div.tr.post .postElement:hover{border:2px solid #000}
+.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text],.dataGridContainer .dataGrid header div.tr.post textarea,.dataGridContainer .dataGrid header div.tr.post .postElement{height:50px;width:100%;outline:0;border:1px dotted #808080;font-family:'Open Sans',sans-serif;vertical-align:top;}
+.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text]:focus,.dataGridContainer .dataGrid header div.tr.post textarea:focus,.dataGridContainer .dataGrid header div.tr.post .postElement:focus,.dataGridContainer .dataGrid header div.tr.post div.td>input[type=text]:hover,.dataGridContainer .dataGrid header div.tr.post textarea:hover,.dataGridContainer .dataGrid header div.tr.post .postElement:hover{border:1px solid #000}
 .dataGridContainer .dataGrid header div.tr.post>div.td{background-color:transparent !important;border-right:2px solid #808080}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls{vertical-align:top;}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls span.loading{background-color:#ffa500}
@@ -70,9 +70,9 @@
 .dataGridContainer .dataGrid div.tbody>div.tr:last-child{border-bottom:0 none transparent}
 .dataGridContainer .dataGrid div.tbody div.tr.running{pointer-events:none}
 .dataGridContainer .dataGrid div.tbody span.checkbox{background:none;border:0 !important;line-height:50px;height:50px;width:100%;}
-.dataGridContainer .dataGrid div.tbody .editing input[type=text]:focus,.dataGridContainer .dataGrid div.tbody .editing textarea:focus{cursor:text;border:2px solid #000;background-color:#fff;color:#000}
+.dataGridContainer .dataGrid div.tbody .editing input[type=text]:focus,.dataGridContainer .dataGrid div.tbody .editing textarea:focus{cursor:text;border:1px solid #000;background-color:#fff;color:#000}
 .dataGridContainer .dataGrid div.tbody div.td>label{cursor:default;font-family:'Open Sans',sans-serif;font-size:13px;color:#fff;text-indent:15px;height:50px;line-height:50px;width:100%;margin:0;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:left}
-.dataGridContainer .dataGrid div.tbody input[type=text],.dataGridContainer .dataGrid div.tbody textarea{cursor:pointer;background-color:transparent;border:2px solid transparent;font-family:'Open Sans',sans-serif;outline:0;color:#fff;text-indent:15px;width:100%;margin:0;vertical-align:middle;height:50px;}
+.dataGridContainer .dataGrid div.tbody input[type=text],.dataGridContainer .dataGrid div.tbody textarea{cursor:pointer;background-color:transparent;border:1px solid transparent;font-family:'Open Sans',sans-serif;outline:0;color:#fff;text-indent:15px;width:100%;margin:0;vertical-align:middle;height:50px;}
 .dataGridContainer .dataGrid div.tbody input[type=text]:disabled,.dataGridContainer .dataGrid div.tbody textarea:disabled{opacity:.3;pointer-events:none}
 .dataGridContainer .dataGrid div.tbody div.tr div.td.controls{position:relative;padding-left:0;text-align:center;line-height:0;font-size:0;white-space:nowrap;}
 .dataGridContainer .dataGrid div.tbody div.tr div.td.controls button{background-color:transparent;}
