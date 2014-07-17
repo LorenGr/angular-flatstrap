@@ -50,7 +50,7 @@ $borderColor = grey
 
 .dataGridContainer
 	display flex
-	position absolute
+	position relative
 	width 100%
 	height 100%
 	flex-direction column
@@ -61,372 +61,356 @@ $borderColor = grey
 		&.scrollbar
 			overflow-y auto
 
-.dataGrid
-	width 100%
+	.dataGrid
+		width 100%
 
-	&.selectableRows
+		&.selectableRows
+			div.tr
+				&,*
+					cursor pointer !important
+		button
+			border none
+			outline 0
+
+		//Font aliasing
+		label , .icon
+			-webkit-text-stroke-width 0.5px
+			-webkit-text-stroke-color rgba(white,.6)
+
+		input[type=text] , textarea
+			-webkit-text-stroke-width 0.6px
+			-webkit-text-stroke-color rgba(black,0.4)
+
+
+		div.td,div.th
+			display inline-block
+			vertical-align top
+			flex 1
 		div.tr
-			&,*
-				cursor pointer !important
-	button
-		border none
-		outline 0
+			display flex
+			height 50px
 
-	//Font aliasing
-	label , .icon
-		-webkit-text-stroke-width 0.5px
-		-webkit-text-stroke-color rgba(white,.6)
-
-	input[type=text] , textarea
-		-webkit-text-stroke-width 0.6px
-		-webkit-text-stroke-color rgba(black,0.4)
-
-
-	div.td,div.th
-		display inline-block
-		vertical-align top
-		flex 1
-	div.tr
-		display flex
-		height 50px
-
-	div.th, div.td , input[type=text] , textarea
-		font-size 16px
-		box()
-		padding-left 0
-		height $rowHeight
-		line-height $rowHeight
-
-	//Col Widths
-	div.td , div.th
-		width auto
-		&.coltype-checkbox , &.coltype-toggler
-			padding-left 0px
-			width 55px
-			flex none
-			text-align center
-
-		&.coltype-datetime
-			min-width 169px
-		&.coltype-status
-			padding-left 0px
-			width 40px
-			flex none
-			text-align center
-			border-top 1px solid white !important
-			border-bottom 1px solid white !important
-			background-color white !important
+		div.th, div.td , input[type=text] , textarea
+			font-size 16px
 			box()
-			.changeStatus
-				background-color #f7f7f7
-				height $rowHeight
-				line-height 45px
+			padding-left 0
+			height $rowHeight
+			line-height $rowHeight
+
+		//Col Widths
+		div.td , div.th
+			width auto
+			&.coltype-checkbox , &.coltype-toggler
+				padding-left 0px
+				width 55px
+				flex none
 				text-align center
 
-		&.controls
-			width 173px
-			flex none
+			&.coltype-datetime
+				min-width 169px
+			&.coltype-status
+				padding-left 0px
+				width 40px
+				flex none
+				text-align center
+				border-top 1px solid white !important
+				border-bottom 1px solid white !important
+				background-color white !important
+				box()
+				.changeStatus
+					background-color #f7f7f7
+					height $rowHeight
+					line-height 45px
+					text-align center
 
-	.center
-		text-align center
-		padding-left 0
+			&.controls
+				width 173px
+				flex none
 
-/****************************************************************************/
-/*** THEAD ******************************************************************/
-/****************************************************************************/
-.dataGrid header
-	div.th
-		//@extend .smallWhiteIcon
-		a
-		margin-left -19px
-		a:first-child
-			margin-left -7px
-		&, a
-			text()
-		font-size 12px
-		color black
-		line-height 16px
-		padding-left 7px
+		.center
+			text-align center
+			padding-left 0
 
-	//Form
-	div.tr.post
-		$formHeight = 50px
-		.postElement
-			&,*
-				cursor pointer
-				color black
-				-webkit-text-stroke-width 0.7px
-				-webkit-text-stroke-color rgba(black,0.7)
+	/****************************************************************************/
+	/*** THEAD ******************************************************************/
+	/****************************************************************************/
+	.dataGrid header
+		div.th
+			//@extend .smallWhiteIcon
+			a
+			margin-left -19px
+			a:first-child
+				margin-left -7px
+			&, a
+				text()
+			font-size 12px
+			color black
+			line-height 16px
+			padding-left 7px
 
-		div.td>input[type=text] , textarea
-			padding-left 15px
+		//Form
+		div.tr.post
+			$formHeight = 50px
+			.postElement
+				&,*
+					cursor pointer
+					color black
+					-webkit-text-stroke-width 0.7px
+					-webkit-text-stroke-color rgba(black,0.7)
 
-		div.td>input[type=text] , .postElement
-			line-height $formHeight
+			div.td>input[type=text] , textarea
+				padding-left 15px
 
-		textarea
-			line-height 21px
-			&:focus
-				position absolute
-				top 0
-				width 750px
-				height 100px
+			div.td>input[type=text] , .postElement
+				line-height $formHeight
 
-		div.td>input[type=text] , textarea , .postElement
-			height $formHeight
-			width 100%
-			outline 0
-			border 2px dotted $borderColor
-			text()
+			textarea
+				line-height 21px
+				&:focus
+					position absolute
+					top 0
+					width 750px
+					height 100px
+
+			div.td>input[type=text] , textarea , .postElement
+				height $formHeight
+				width 100%
+				outline 0
+				border 2px dotted $borderColor
+				text()
+				box()
+				vertical-align top
+				&:focus , &:hover
+					border 2px solid black
+			&>div.td
+				background-color transparent !important
+				border-right 2px solid $borderColor
+			div.td.controls
+				vertical-align top
+				.loading.go
+					loading()
+				span.loading
+					background-color $flatgridTheme
+
+				.icon.icon-plus
+					text-align center
+					display block
+					height $formHeight
+					line-height $formHeight
+					background-color $flatgridTheme
+					opacity 1
+					color #dfdfdf
+					font-size 23px
+					width 100%
+					&:hover
+						background-color lighten($flatgridTheme,20%)
+
+			div.td.coltype-status
+				background-color white !important
+				border-right none
+
+			background-color lighten($borderColor,90%)
+			div.td:nth-last-child(2)
+				border-right 0px none transparent
+
+		div.tr.post , div.tr.editing
+			div.td.controls
+				border-right 0px none transparent
+
+	/****************************************************************************/
+	/*** TBODY ******************************************************************/
+	/****************************************************************************/
+	.dataGrid div.tbody
+		div.td
+			border-right 1px solid white
+			height $rowHeight
+			max-height $rowHeight
+			overflow hidden
 			box()
-			vertical-align top
-			&:focus , &:hover
-				border 2px solid black
-		&>div.td
-			background-color transparent !important
-			border-right 2px solid $borderColor
-		div.td.controls
-			vertical-align top
+
+			&:last-child
+				border-right 0 none transparent
+		&>div.tr:last-child
+			border-bottom 0 none transparent
+
+		div.tr.running
+			pointer-events none
+
+		span.checkbox //checkbox in non edit mode
+			background none
+			border 0 !important
+			line-height $rowHeight
+			height $rowHeight
+			width 100%
+			box()
+
+		//Edit Mode
+		.editing
+			input[type=text] , textarea
+				&:focus
+					cursor text
+					border 2px solid black
+					background-color white
+					color black
+
+		//Default mode
+		div.td>label
+			cursor default
+			text()
+			font-size 13px
+			color white
+			text-indent 15px
+			height $rowHeight
+			box()
+			line-height $rowHeight
+			width 100%
+			margin 0
+			vertical-align middle
+			white-space nowrap
+			overflow hidden
+			text-overflow ellipsis
+			display block
+			text-align left
+
+		input[type=text] , textarea
+			//transition background-color 0.2s
+			cursor pointer
+			background-color transparent
+			border 2px solid transparent
+			text()
+			outline 0
+			color white
+			text-indent 15px
+			width 100%
+			margin 0
+			vertical-align middle
+			height $rowHeight
+			box()
+			&:disabled
+				opacity 0.3
+				pointer-events none
+
+		//Controls
+		div.tr div.td.controls
+			button
+				background-color transparent
+				&:hover
+					background-color $flatgridTheme
+			position relative
+			padding-left 0
+			text-align center
+			line-height 0
+			font-size 0
+			white-space nowrap
 			.loading.go
 				loading()
 			span.loading
 				background-color $flatgridTheme
+				position absolute
+				display inline-block
+				right 0
+				opacity 0.6
+				width 100%
 
-			.icon.icon-plus
+			.running
+				color white
+				font-size 15px
+				display block
 				text-align center
-				display block
-				height $formHeight
-				line-height $formHeight
-				background-color $flatgridTheme
-				opacity 1
-				color #dfdfdf
-				font-size 23px
-				width 100%
-				&:hover
-					background-color lighten($flatgridTheme,20%)
-
-		div.td.coltype-status
-			background-color white !important
-			border-right none
-
-		background-color lighten($borderColor,90%)
-		div.td:nth-last-child(2)
-			border-right 0px none transparent
-
-	div.tr.post , div.tr.editing
-		div.td.controls
-			border-right 0px none transparent
-
-/****************************************************************************/
-/*** TBODY ******************************************************************/
-/****************************************************************************/
-@keyframes arrow
-	0%
-		background-position 100px 0
-	50%
-		background-position 100px 20px
-	100%
-		background-position 100px 0
-
-@keyframes blinker
-	0%
-		opacity 0
-	50%
-		opacity 1
-	100%
-		opacity 0
-
-.dataGrid div.tbody
-	div.td
-		border-right 1px solid white
-		height $rowHeight
-		max-height $rowHeight
-		overflow hidden
-		box()
-
-		&:last-child
-			border-right 0 none transparent
-	&>div.tr:last-child
-		border-bottom 0 none transparent
-
-	div.tr.running
-		pointer-events none
-
-	span.checkbox //checkbox in non edit mode
-		background none
-		border 0 !important
-		line-height $rowHeight
-		height $rowHeight
-		width 100%
-		box()
-
-	//Edit Mode
-	.editing
-		input[type=text] , textarea
-			&:focus
-				cursor text
-				border 2px solid black
-				background-color white
-				color black
-
-	//Default mode
-	div.td>label
-		cursor default
-		text()
-		font-size 13px
-		color white
-		text-indent 15px
-		height $rowHeight
-		box()
-		line-height $rowHeight
-		width 100%
-		margin 0
-		vertical-align middle
-		white-space nowrap
-		overflow hidden
-		text-overflow ellipsis
-		display block
-		text-align left
-
-	input[type=text] , textarea
-		//transition background-color 0.2s
-		cursor pointer
-		background-color transparent
-		border 2px solid transparent
-		text()
-		outline 0
-		color white
-		text-indent 15px
-		width 100%
-		margin 0
-		vertical-align middle
-		height $rowHeight
-		box()
-		&:disabled
-			opacity 0.3
-			pointer-events none
-
-	//Controls
-	div.tr div.td.controls
-		button
-			background-color transparent
-			&:hover
-				background-color $flatgridTheme
-		position relative
-		padding-left 0
-		text-align center
-		line-height 0
-		font-size 0
-		white-space nowrap
-		.loading.go
-			loading()
-		span.loading
-			background-color $flatgridTheme
-			position absolute
-			display inline-block
-			right 0
-			opacity 0.6
-			width 100%
-
-		.running
-			color white
-			font-size 15px
-			display block
-			text-align center
-			line-height $rowHeight
-			animation-name blinker
-			background-color red
-			animation-duration 1s
-			animation-timing-function linear
-			animation-iteration-count infinite
-		.icon
-			opacity 0.6
-			&:hover
-				opacity 1
-			color white
-
-			&.icon-ok
-				background-color #008000
-				float left
-			&.icon-wrong
+				line-height $rowHeight
+				animation-name blinker
 				background-color red
-			&.icon-plus , &.icon-ok , &.icon-wrong , &.icon-close
-				margin-left 0
-				font-size 24px
-				box()
-				height $rowHeight+1px
-				width 50%
-				height $rowHeight
-				font-size 23px
-				display block
-			&.icon-close
-				width 100%
-				display block
-				position relative
-/****************************************************************************/
-/*** DATETIMEPICKER *********************************************************/
-/****************************************************************************/
-.dataGrid
-	.datetimepickerHolder
-		height $rowHeight
-		font-size 15px
-		-webkit-text-stroke-width 0.5px
-		cursor default
-		text-align left
-		&.editable
-			&,*
-				cursor pointer
-		.datetimepicker //hidden field
-			width 0 !important
-			border none !important
-			outline 0 !important
-			margin 0 !important
-		color white
-
-		date,time
-			display inline-block
-			vertical-align top
-
-		date
-			text-indent 9px
+				animation-duration 1s
+				animation-timing-function linear
+				animation-iteration-count infinite
 			.icon
-				font-size 12px
-				margin-right 7px
-				vertical-align baseline
-		time
-			.icon
-				font-size 19px
-				vertical-align sub
+				opacity 0.6
+				&:hover
+					opacity 1
+				color white
 
-/****************************************************************************/
-/*** PLANNER ****************************************************************/
-/****************************************************************************/
-.dataGrid
-	.plannerHolder
-		&.activePlanner
-			background-color white
-			label,.icon
-				color black
-		&.editable
-			&, label,.icon
-				cursor pointer
-		&>input.plannerpicker
-			width 0
-			border none
-			outline 0
-			margin 0
-		&>label
+				&.icon-ok
+					background-color #008000
+					float left
+				&.icon-wrong
+					background-color red
+				&.icon-plus , &.icon-ok , &.icon-wrong , &.icon-close
+					margin-left 0
+					font-size 24px
+					box()
+					height $rowHeight+1px
+					width 50%
+					height $rowHeight
+					font-size 23px
+					display block
+				&.icon-close
+					width 100%
+					display block
+					position relative
+	/****************************************************************************/
+	/*** DATETIMEPICKER *********************************************************/
+	/****************************************************************************/
+	.dataGrid
+		.datetimepickerHolder
+			height $rowHeight
+			font-size 15px
+			-webkit-text-stroke-width 0.5px
+			cursor default
+			text-align left
+			&.editable
+				&,*
+					cursor pointer
+			.datetimepicker //hidden field
+				width 0 !important
+				border none !important
+				outline 0 !important
+				margin 0 !important
 			color white
-		&>.icon
-			margin-left 10px
-			margin-right 10px
-			color #ffffff
-			font-size 12px
 
-/****************************************************************************/
-/*** SEARCH ****************************************************************/
-/****************************************************************************/
-.dataGridContainer
+			date,time
+				display inline-block
+				vertical-align top
+
+			date
+				text-indent 9px
+				.icon
+					font-size 12px
+					margin-right 7px
+					vertical-align baseline
+			time
+				.icon
+					font-size 19px
+					vertical-align sub
+
+	/****************************************************************************/
+	/*** PLANNER ****************************************************************/
+	/****************************************************************************/
+	.dataGrid
+		.plannerHolder
+			&.activePlanner
+				background-color white
+				label,.icon
+					color black
+			&.editable
+				&, label,.icon
+					cursor pointer
+			&>input.plannerpicker
+				width 0
+				border none
+				outline 0
+				margin 0
+			&>label
+				color white
+			&>.icon
+				margin-left 10px
+				margin-right 10px
+				color #ffffff
+				font-size 12px
+
+	/****************************************************************************/
+	/*** SEARCH ****************************************************************/
+	/****************************************************************************/
+
 	.gridTools
 		height 42px
 	#search
@@ -461,10 +445,9 @@ $borderColor = grey
 			font-size 21px
 			margin-left 9px
 
-/****************************************************************************/
-/*** ACTION DROPDOWN ****************************************************************/
-/****************************************************************************/
-.dataGridContainer
+	/****************************************************************************/
+	/*** ACTION DROPDOWN ********************************************************/
+	/****************************************************************************/
 	.actiondropdownHolder
 		display flex
 		.themeButton
@@ -506,3 +489,24 @@ $borderColor = grey
 			&:focus
 				background-color white
 				color black
+
+	//Animations
+	@keyframes arrow
+		0%
+			background-position 100px 0
+		50%
+			background-position 100px 20px
+		100%
+			background-position 100px 0
+
+	@keyframes blinker
+		0%
+			opacity 0
+		50%
+			opacity 1
+		100%
+			opacity 0
+
+
+	//DEFAULT STYLES
+	datagridStyles(orange)
