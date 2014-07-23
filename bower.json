@@ -1,0 +1,22 @@
+{
+  "name": "angular-flatstrap",
+  "version": "0.1.0",
+  "homepage": "http://lorengr.github.io",
+  "authors": [
+    "Loren <lorengrx@gmail.com>"
+  ],
+  "description": "An angularJS component data grid with advanced features such as excel-style cell editing and a very easily configurable row and column data structure through json.",
+  "main": "build/angular-flatstrap.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "datagrid",
+    "tooltip",
+    "contextual",
+    "excel",
+    "cells",
+    "json"
+  ],
+  "license": "MIT"
+}
