@@ -131,11 +131,11 @@ datagridStyles(n)
 				div.td *
 					-webkit-text-stroke-color rgba(white,.6)
 		.pagination
-			li
-				a
-					color n !important
-				&.active a
-					background-color n !important
+			&>li
+				&>a , &>a:focus
+					color n
+				&.active>a , &.active>a:focus
+					background-color n
 
 ui-popup()
 	box-shadow 0px 5px 15px -5px rgba(0, 0, 0, 0.506)
