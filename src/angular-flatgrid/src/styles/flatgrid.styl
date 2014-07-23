@@ -657,32 +657,7 @@ $borderColor = grey
 		margin-right 20px
 		text-align right
 		display inline-block
-		li:first-child a
-			//beginning
-			@extend .icon
-			font-size 23px
-			&:before
-				content "\e60c"
-		li:nth-child(2) a
-			//previous
-			@extend .icon
-			font-size 23px
-			margin-right 10px
-			&:before
-				content "\e609"
-		li:last-child a
-			//end
-			@extend .icon
-			font-size 23px
-			&:before
-				content "\e60e"
-		li:nth-last-child(2) a
-			//next
-			@extend .icon
-			margin-left 10px
-			font-size 23px
-			&:before
-				content "\e60b"
+
 		li
 			@extend .smallWhiteIcon
 			display inline
@@ -694,7 +669,31 @@ $borderColor = grey
 			line-height 25px !important
 			text-decoration none
 			a
+				@extend .icon
 				cursor pointer
+				font-size 23px
+
+		li:first-child a
+			//beginning
+			@extend .icon
+			&:before
+				content "\e60c"
+		li:nth-child(2) a
+			//previous
+			@extend .icon
+			margin-right 10px
+			&:before
+				content "\e609"
+		li:last-child a
+			//end
+			&:before
+				content "\e60e"
+		li:nth-last-child(2) a
+			//next
+			margin-left 10px
+			&:before
+				content "\e60b"
+
 
 	//DEFAULT STYLES
 	datagridStyles(#589890)
