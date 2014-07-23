@@ -66,6 +66,9 @@
 .icon-ok:before
 	content "\E013"
 
+.icon-search:before
+	content "\E003"
+
 .smallWhiteIcon
 	a
 		text-align center
@@ -656,9 +659,11 @@ $borderColor = grey
 	/*** PAGINATION      ********************************************************/
 	/****************************************************************************/
 	.pagination
-		margin-right 20px
+		margin 0
 		text-align right
 		display inline-block
+		position absolute
+		right 0
 
 		li
 			@extend .smallWhiteIcon

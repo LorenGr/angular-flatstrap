@@ -10,6 +10,7 @@
 .icon-close:before{content:"\E088"}
 .icon-wrong:before{content:"\E014"}
 .icon-ok:before{content:"\E013"}
+.icon-search:before{content:"\E003"}
 .smallWhiteIcon a,.dataGridContainer .pagination li a{text-align:center;min-width:15px;font-size:12px;cursor:pointer;padding:10px;display:inline-block;border-radius:30px;border:3px solid transparent;white-space:nowrap;}
 .smallWhiteIcon a:hover,.dataGridContainer .pagination li a:hover,.smallWhiteIcon a:focus,.dataGridContainer .pagination li a:focus{border:3px solid $borderColor}
 .dataGridContainer@-moz-keyframes arrow{0%{background-position:100px 0}
@@ -134,7 +135,7 @@
 .dataGridContainer .actiondropdownHolder select:focus+.icon-sort{color:#000}
 .dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-family:'Open Sans',sans-serif;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
-.dataGridContainer .pagination{margin-right:20px;text-align:right;display:inline-block;}
+.dataGridContainer .pagination{margin:0;text-align:right;display:inline-block;position:absolute;right:0;}
 .dataGridContainer .pagination li{display:inline;a:,span;float:left;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
 .dataGridContainer .pagination li a{cursor:pointer;font-size:15px}
 .dataGridContainer .pagination li:first-child a:before{content:"\E070"}
