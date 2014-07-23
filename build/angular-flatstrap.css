@@ -32,6 +32,7 @@
 .dataGridContainer .scrollItems{flex:1;position:relative;}
 .dataGridContainer .scrollItems.scrollbar{overflow-y:auto}
 .dataGridContainer .dataGrid{width:100%;}
+.dataGridContainer .dataGrid .scrollItems{height:400px;overflow:auto}
 .dataGridContainer .dataGrid.selectableRows div.tr,.dataGridContainer .dataGrid.selectableRows div.tr *{cursor:pointer !important}
 .dataGridContainer .dataGrid button{border:none;outline:0}
 .dataGridContainer .dataGrid label,.dataGridContainer .dataGrid .icon{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
@@ -49,7 +50,7 @@
 .dataGridContainer .dataGrid header div.tr{height:25px}
 .dataGridContainer .dataGrid header div.th{font-size:14px;color:#000;line-height:16px;cursor:pointer;padding-left:7px;height:25px}
 .dataGridContainer .dataGrid header div.th,.dataGridContainer .dataGrid header div.th a{font-family:'Open Sans',sans-serif;color:#000}
-.dataGridContainer .dataGrid header div.tr.post{background-color:#f2f2f2;}
+.dataGridContainer .dataGrid header div.tr.post{height:50px;background-color:#f2f2f2;}
 .dataGridContainer .dataGrid header div.tr.post .postElement,.dataGridContainer .dataGrid header div.tr.post .postElement *{cursor:pointer;color:#000;-webkit-text-stroke-width:.7px;-webkit-text-stroke-color:rgba(0,0,0,0.7)}
 .dataGridContainer .dataGrid header div.tr.post div.td>input[type=text],.dataGridContainer .dataGrid header div.tr.post textarea{padding-left:15px}
 .dataGridContainer .dataGrid header div.tr.post div.td>input[type=text],.dataGridContainer .dataGrid header div.tr.post .postElement{line-height:50px}
@@ -65,7 +66,7 @@
 .dataGridContainer .dataGrid header div.tr.post div.td.coltype-status{background-color:#fff !important;border-right:none}
 .dataGridContainer .dataGrid header div.tr.post div.td:nth-last-child(2){border-right:0 none transparent}
 .dataGridContainer .dataGrid header div.tr.post div.td.controls,.dataGridContainer .dataGrid header div.tr.editing div.td.controls{border-right:0 none transparent}
-.dataGridContainer .dataGrid div.tbody div.td{border-right:1px solid #fff;height:50px;max-height:50px;overflow:hidden;border-right:0 none transparent}
+.dataGridContainer .dataGrid div.tbody div.td{border-right:1px solid #fff;height:50px;max-height:50px;overflow:hidden;font-size:0;border-right:0 none transparent}
 .dataGridContainer .dataGrid div.tbody>div.tr:last-child{border-bottom:0 none transparent}
 .dataGridContainer .dataGrid div.tbody div.tr.running{pointer-events:none}
 .dataGridContainer .dataGrid div.tbody span.checkbox{background:none;border:0 !important;line-height:50px;height:50px;width:100%;}

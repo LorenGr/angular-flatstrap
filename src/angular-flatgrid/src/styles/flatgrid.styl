@@ -77,6 +77,10 @@ $borderColor = grey
 			overflow-y auto
 
 	.dataGrid
+
+		.scrollItems
+			height 400px
+			overflow auto
 		width 100%
 
 		&.selectableRows
@@ -166,6 +170,7 @@ $borderColor = grey
 		//Form
 		div.tr.post
 			$formHeight = 50px
+			height $formHeight
 			.postElement
 				&,*
 					cursor pointer
@@ -242,6 +247,7 @@ $borderColor = grey
 			max-height $rowHeight
 			overflow hidden
 			box()
+			font-size 0
 			border-right 0 none transparent
 		&>div.tr:last-child
 			border-bottom 0 none transparent
