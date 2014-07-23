@@ -67,8 +67,6 @@
 	content "\E013"
 
 .smallWhiteIcon
-	&.active a
-		border 3px solid black
 	a
 		text-align center
 		min-width 15px
@@ -129,7 +127,11 @@ datagridStyles(n)
 				background-color red
 				div.td *
 					-webkit-text-stroke-color rgba(white,.6)
-
+		.pagination
+			a
+				color n
+			li.active a
+				background-color n
 
 ui-popup()
 	box-shadow 0px 5px 15px -5px rgba(0, 0, 0, 0.506)
@@ -671,7 +673,7 @@ $borderColor = grey
 			a
 				@extend .icon
 				cursor pointer
-				font-size 23px
+				font-size 15px
 
 		li:first-child a
 			//beginning

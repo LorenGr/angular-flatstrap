@@ -10,7 +10,6 @@
 .icon-close:before{content:"\E088"}
 .icon-wrong:before{content:"\E014"}
 .icon-ok:before{content:"\E013"}
-.smallWhiteIcon.active a,.dataGridContainer .pagination li.active a{border:3px solid #000}
 .smallWhiteIcon a,.dataGridContainer .pagination li a{text-align:center;min-width:15px;font-size:12px;cursor:pointer;padding:10px;display:inline-block;border-radius:30px;border:3px solid transparent;white-space:nowrap;}
 .smallWhiteIcon a:hover,.dataGridContainer .pagination li a:hover,.smallWhiteIcon a:focus,.dataGridContainer .pagination li a:focus{border:3px solid $borderColor}
 .dataGridContainer@-moz-keyframes arrow{0%{background-position:100px 0}
@@ -137,7 +136,7 @@
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
 .dataGridContainer .pagination{margin-right:20px;text-align:right;display:inline-block;}
 .dataGridContainer .pagination li{display:inline;a:,span;float:left;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
-.dataGridContainer .pagination li a{cursor:pointer;font-size:23px}
+.dataGridContainer .pagination li a{cursor:pointer;font-size:15px}
 .dataGridContainer .pagination li:first-child a:before{content:"\E070"}
 .dataGridContainer .pagination li:nth-child(2) a{margin-right:10px;}
 .dataGridContainer .pagination li:nth-child(2) a:before{content:"\E071"}
@@ -155,6 +154,8 @@
 .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#76b0a9;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.dataGridContainer .dataGrid .pagination a{color:#589890}
+.dataGridContainer .dataGrid .pagination li.active a{background-color:#589890}
 @-moz-keyframes arrow{0%{background-position:100px 0}
 50%{background-position:100px 20px}
 100%{background-position:100px 0}
