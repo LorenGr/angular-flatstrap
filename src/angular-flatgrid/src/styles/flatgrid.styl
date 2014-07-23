@@ -135,11 +135,12 @@ datagridStyles(n)
 		&>.active>a , &>.active>a:focus
 			background-color n !important
 			color white !important
+		&>.disabled
+			opacity 0.5 !important
 		&>li
 			&>a , &>a:focus
 				color n !important
-			&>a.disabled , &.disabled>a:focus
-				opacity 0.5 !important
+
 
 ui-popup()
 	box-shadow 0px 5px 15px -5px rgba(0, 0, 0, 0.506)

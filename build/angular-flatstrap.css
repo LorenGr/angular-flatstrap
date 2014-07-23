@@ -156,8 +156,8 @@
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .dataGridContainer .pagination>.active>a,.dataGridContainer .pagination>.active>a:focus{background-color:#589890 !important;color:#fff !important}
+.dataGridContainer .pagination>.disabled{opacity:.5 !important}
 .dataGridContainer .pagination>li>a,.dataGridContainer .pagination>li>a:focus{color:#589890 !important}
-.dataGridContainer .pagination>li>a.disabled,.dataGridContainer .pagination>li.disabled>a:focus{opacity:.5 !important}
 @-moz-keyframes arrow{0%{background-position:100px 0}
 50%{background-position:100px 20px}
 100%{background-position:100px 0}
