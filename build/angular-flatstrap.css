@@ -155,8 +155,8 @@
 .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#76b0a9;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.dataGridContainer .dataGrid .pagination>li>a,.dataGridContainer .dataGrid .pagination>li>a:focus{color:#589890 !important}
-.dataGridContainer .dataGrid .pagination>li>a.active,.dataGridContainer .dataGrid .pagination>li.active>a:focus{background-color:#589890 !important}
+.dataGridContainer .pagination>li>a,.dataGridContainer .pagination>li>a:focus{color:#589890 !important}
+.dataGridContainer .pagination>li>a.active,.dataGridContainer .pagination>li.active>a:focus{background-color:#589890 !important}
 @-moz-keyframes arrow{0%{background-position:100px 0}
 50%{background-position:100px 20px}
 100%{background-position:100px 0}
