@@ -1,3 +1,18 @@
+@font-face{font-family:'icomoon';src:url("fonts/glyphicons-halflings-regular.eot");src:url("fonts/glyphicons-halflings-regular.svg#icomoon") format('svg'),url("fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-halflings-regular.woff") format('woff'),url("fonts/glyphicons-halflings-regular.ttf") format('truetype');font-weight:normal;font-style:normal}
+.icon,i,.dataGridContainer .pagination ul li:first-child a,.dataGridContainer .pagination ul li:nth-child(2) a,.dataGridContainer .pagination ul li:last-child a,.dataGridContainer .pagination ul li:nth-last-child(2) a{cursor:pointer;-webkit-text-stroke-width:0;}
+.icon.noclick,i.noclick,.dataGridContainer .pagination ul li:first-child a.noclick,.dataGridContainer .pagination ul li:nth-child(2) a.noclick,.dataGridContainer .pagination ul li:last-child a.noclick,.dataGridContainer .pagination ul li:nth-last-child(2) a.noclick{cursor:default}
+.icon.ring,i.ring,.dataGridContainer .pagination ul li:first-child a.ring,.dataGridContainer .pagination ul li:nth-child(2) a.ring,.dataGridContainer .pagination ul li:last-child a.ring,.dataGridContainer .pagination ul li:nth-last-child(2) a.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
+[data-icon]:before,.icon,.test,.dataGridContainer .pagination ul li:first-child a,.dataGridContainer .pagination ul li:nth-child(2) a,.dataGridContainer .pagination ul li:last-child a,.dataGridContainer .pagination ul li:nth-last-child(2) a{font-family:'Glyphicons Halflings';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important;-moz-osx-font-smoothing:grayscale;top:1px;position:relative;display:inline-block}
+.icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
+.icon-arrow-up:before{content:"\E093"}
+.icon-arrow-down:before{content:"\E094"}
+.icon-plus:before{content:"\E081"}
+.icon-close:before{content:"\E088"}
+.icon-wrong:before{content:"\E014"}
+.icon-ok:before{content:"\E013"}
+.smallWhiteIcon.active a,.dataGridContainer .pagination ul li.active a{border:3px solid #000}
+.smallWhiteIcon a,.dataGridContainer .pagination ul li a{text-align:center;min-width:15px;font-size:12px;cursor:pointer;padding:10px;display:inline-block;border-radius:30px;border:3px solid transparent;white-space:nowrap;}
+.smallWhiteIcon a:hover,.dataGridContainer .pagination ul li a:hover,.smallWhiteIcon a:focus,.dataGridContainer .pagination ul li a:focus{border:3px solid $borderColor}
 .dataGridContainer@-moz-keyframes arrow{0%{background-position:100px 0}
 50%{background-position:100px 20px}
 100%{background-position:100px 0}
@@ -120,6 +135,18 @@
 .dataGridContainer .actiondropdownHolder select:focus+.icon-sort{color:#000}
 .dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-family:'Open Sans',sans-serif;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
+.dataGridContainer .pagination{margin-right:20px;text-align:right;}
+.dataGridContainer .pagination ul{display:inline-block;}
+.dataGridContainer .pagination ul li:first-child a{font-size:23px;}
+.dataGridContainer .pagination ul li:first-child a:before{content:"\e60c"}
+.dataGridContainer .pagination ul li:nth-child(2) a{font-size:23px;margin-right:10px;}
+.dataGridContainer .pagination ul li:nth-child(2) a:before{content:"\e609"}
+.dataGridContainer .pagination ul li:last-child a{font-size:23px;}
+.dataGridContainer .pagination ul li:last-child a:before{content:"\e60e"}
+.dataGridContainer .pagination ul li:nth-last-child(2) a{margin-left:10px;font-size:23px;}
+.dataGridContainer .pagination ul li:nth-last-child(2) a:before{content:"\e60b"}
+.dataGridContainer .pagination ul li{display:inline;a:,span;float:left;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
+.dataGridContainer .pagination ul li a{cursor:pointer}
 .dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(88,152,144,0.6)}
 .dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #467a73;}
 .dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#2c4c48}
@@ -162,16 +189,3 @@
 50%{opacity:1}
 100%{opacity:0}
 }
-@font-face{font-family:'icomoon';src:url("fonts/glyphicons-halflings-regular.eot");src:url("fonts/glyphicons-halflings-regular.svg#icomoon") format('svg'),url("fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-halflings-regular.woff") format('woff'),url("fonts/glyphicons-halflings-regular.ttf") format('truetype');font-weight:normal;font-style:normal}
-.icon,i{cursor:pointer;-webkit-text-stroke-width:0;}
-.icon.noclick,i.noclick{cursor:default}
-.icon.ring,i.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
-[data-icon]:before,.icon,.test{font-family:'Glyphicons Halflings';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important;-moz-osx-font-smoothing:grayscale;top:1px;position:relative;display:inline-block}
-.icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
-.icon-arrow-up:before{content:"\E093"}
-.icon-arrow-down:before{content:"\E094"}
-.icon-plus:before{content:"\E081"}
-.icon-close:before{content:"\E088"}
-.icon-wrong:before{content:"\E014"}
-.icon-ok:before{content:"\E013"}
-

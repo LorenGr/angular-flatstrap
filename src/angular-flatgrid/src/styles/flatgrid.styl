@@ -1,4 +1,88 @@
 /****************************************************************************/
+/*** DATAGRID FONTS / ICONS *************************************************/
+/****************************************************************************/
+
+@font-face
+	font-family 'icomoon'
+	src:url('fonts/glyphicons-halflings-regular.eot')
+	src:url('fonts/glyphicons-halflings-regular.svg#icomoon') format('svg'),
+	url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+	url('fonts/glyphicons-halflings-regular.woff') format('woff'),
+	url('fonts/glyphicons-halflings-regular.ttf') format('truetype')
+	font-weight normal
+	font-style normal
+
+.icon , i
+	cursor pointer
+	&.noclick
+		cursor default
+	-webkit-text-stroke-width 0
+	&.ring
+		border 3px solid black
+		border-radius 21px
+		padding 6px !important
+
+
+[data-icon]:before , .icon , .test
+	font-family 'Glyphicons Halflings'
+	content attr(data-icon)
+	speak none
+	font-weight normal
+	font-variant normal
+	text-transform none
+	line-height 1
+	-webkit-font-smoothing antialiased !important
+	text-rendering optimizeLegibility !important
+	-moz-osx-font-smoothing grayscale
+	top 1px
+	position relative
+	display inline-block
+
+.icon-arrow-down , .icon-arrow-up , .icon-plus , .icon-close , .icon-wrong , .icon-ok
+	font-family 'icomoon'
+	speak none
+	font-style normal
+	font-weight normal
+	font-variant normal
+	text-transform none
+	line-height 1
+	-webkit-font-smoothing antialiased
+
+.icon-arrow-up:before
+	content "\E093"
+
+.icon-arrow-down:before
+	content "\E094"
+
+.icon-plus:before
+	content "\E081"
+
+.icon-close:before
+	content "\E088"
+
+.icon-wrong:before
+	content "\E014"
+
+.icon-ok:before
+	content "\E013"
+
+.smallWhiteIcon
+	&.active a
+		border 3px solid black
+	a
+		text-align center
+		min-width 15px
+		font-size 12px
+		cursor pointer
+		padding 10px
+		display inline-block
+		border-radius 30px
+		border 3px solid transparent
+		white-space nowrap
+		&:hover , &:focus
+			border 3px solid $borderColor
+
+/****************************************************************************/
 /*** DATAGRID INTEGRATION/STYLING FUNCTION ********************************************************/
 /****************************************************************************/
 
@@ -564,6 +648,54 @@ $borderColor = grey
 		100%
 			opacity 0
 
+
+
+	/****************************************************************************/
+	/*** PAGINATION      ********************************************************/
+	/****************************************************************************/
+	.pagination
+		margin-right 20px
+		text-align right
+		ul
+			display inline-block
+			li:first-child a
+				//beginning
+				@extend .icon
+				font-size 23px
+				&:before
+					content "\e60c"
+			li:nth-child(2) a
+				//previous
+				@extend .icon
+				font-size 23px
+				margin-right 10px
+				&:before
+					content "\e609"
+			li:last-child a
+				//end
+				@extend .icon
+				font-size 23px
+				&:before
+					content "\e60e"
+			li:nth-last-child(2) a
+				//next
+				@extend .icon
+				margin-left 10px
+				font-size 23px
+				&:before
+					content "\e60b"
+			li
+				@extend .smallWhiteIcon
+				display inline
+				a , span
+				float left
+				padding 4px
+				min-height 25px
+				min-width 27px
+				line-height 25px !important
+				text-decoration none
+				a
+					cursor pointer
 
 	//DEFAULT STYLES
 	datagridStyles(#589890)
