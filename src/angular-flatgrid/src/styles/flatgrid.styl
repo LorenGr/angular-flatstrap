@@ -131,10 +131,11 @@ datagridStyles(n)
 				div.td *
 					-webkit-text-stroke-color rgba(white,.6)
 		.pagination
-			a
-				color n
-			li.active a
-				background-color n
+			li
+				a
+					color n !important
+				&.active a
+					background-color n !important
 
 ui-popup()
 	box-shadow 0px 5px 15px -5px rgba(0, 0, 0, 0.506)
@@ -561,7 +562,6 @@ $borderColor = grey
 		height 42px
 	#search
 		display inline-block
-		margin-left 36px
 		position absolute
 		bottom 5px
 		z-index 1000
@@ -583,12 +583,13 @@ $borderColor = grey
 				border 1px solid black
 
 		.icon-search
+			@extend .icon
 			width 22px
 			height 34px
 			display inline-block
-			line-height 35px
+			line-height 28px
 			position absolute
-			font-size 21px
+			font-size 16px
 			margin-left 9px
 
 	/****************************************************************************/
@@ -678,7 +679,10 @@ $borderColor = grey
 			a
 				@extend .icon
 				cursor pointer
+				height 34px
+				line-height 7px
 				font-size 15px
+				margin-top 4px
 
 		li:first-child a
 			//beginning

@@ -1,8 +1,8 @@
 @font-face{font-family:'icomoon';src:url("fonts/glyphicons-halflings-regular.eot");src:url("fonts/glyphicons-halflings-regular.svg#icomoon") format('svg'),url("fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-halflings-regular.woff") format('woff'),url("fonts/glyphicons-halflings-regular.ttf") format('truetype');font-weight:normal;font-style:normal}
-.icon,i,.dataGridContainer .pagination li a,.dataGridContainer .pagination li:first-child a,.dataGridContainer .pagination li:nth-child(2) a{cursor:pointer;-webkit-text-stroke-width:0;}
-.icon.noclick,i.noclick,.dataGridContainer .pagination li a.noclick,.dataGridContainer .pagination li:first-child a.noclick,.dataGridContainer .pagination li:nth-child(2) a.noclick{cursor:default}
-.icon.ring,i.ring,.dataGridContainer .pagination li a.ring,.dataGridContainer .pagination li:first-child a.ring,.dataGridContainer .pagination li:nth-child(2) a.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
-[data-icon]:before,.icon,.test,.dataGridContainer .pagination li a,.dataGridContainer .pagination li:first-child a,.dataGridContainer .pagination li:nth-child(2) a{font-family:'Glyphicons Halflings';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important;-moz-osx-font-smoothing:grayscale;top:1px;position:relative;display:inline-block}
+.icon,i,.dataGridContainer #search .icon-search,.dataGridContainer .pagination li a,.dataGridContainer .pagination li:first-child a,.dataGridContainer .pagination li:nth-child(2) a{cursor:pointer;-webkit-text-stroke-width:0;}
+.icon.noclick,i.noclick,.dataGridContainer #search .icon-search.noclick,.dataGridContainer .pagination li a.noclick,.dataGridContainer .pagination li:first-child a.noclick,.dataGridContainer .pagination li:nth-child(2) a.noclick{cursor:default}
+.icon.ring,i.ring,.dataGridContainer #search .icon-search.ring,.dataGridContainer .pagination li a.ring,.dataGridContainer .pagination li:first-child a.ring,.dataGridContainer .pagination li:nth-child(2) a.ring{border:3px solid #000;border-radius:21px;padding:6px !important}
+[data-icon]:before,.icon,.test,.dataGridContainer #search .icon-search,.dataGridContainer .pagination li a,.dataGridContainer .pagination li:first-child a,.dataGridContainer .pagination li:nth-child(2) a{font-family:'Glyphicons Halflings';content:attr(data-icon);speak:none;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased !important;text-rendering:optimizeLegibility !important;-moz-osx-font-smoothing:grayscale;top:1px;position:relative;display:inline-block}
 .icon-arrow-down,.icon-arrow-up,.icon-plus,.icon-close,.icon-wrong,.icon-ok{font-family:'icomoon';speak:none;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased}
 .icon-arrow-up:before{content:"\E093"}
 .icon-arrow-down:before{content:"\E094"}
@@ -123,11 +123,11 @@
 .dataGridContainer .planner_plugin .col.days>div,.dataGridContainer .planner_plugin .col.days>div label{height:23px;line-height:23px}
 .dataGridContainer .planner_plugin .col.days>div label{display:inline-block;position:relative;width:101px;text-indent:22px;margin-top:-43px}
 .dataGridContainer .gridTools{height:42px}
-.dataGridContainer #search{display:inline-block;margin-left:36px;position:absolute;bottom:5px;z-index:1000;}
+.dataGridContainer #search{display:inline-block;position:absolute;bottom:5px;z-index:1000;}
 .dataGridContainer #search input{width:200px;vertical-align:top;height:30px;line-height:30px;font-family:'Open Sans',sans-serif;outline:0;border-radius:20px;text-indent:32px;border:1px solid #808080;cursor:pointer;}
 .dataGridContainer #search input:focus{cursor:text}
 .dataGridContainer #search input:hover,.dataGridContainer #search input:focus{border:1px solid #000}
-.dataGridContainer #search .icon-search{width:22px;height:34px;display:inline-block;line-height:35px;position:absolute;font-size:21px;margin-left:9px}
+.dataGridContainer #search .icon-search{width:22px;height:34px;display:inline-block;line-height:28px;position:absolute;font-size:16px;margin-left:9px}
 .dataGridContainer .actiondropdownHolder{display:flex;}
 .dataGridContainer .actiondropdownHolder .themeButton{font-size:15px;color:#fff;-webkit-text-stroke-color:#fff !important;width:80px;font-family:'Open Sans',sans-serif;margin-top:8px;height:35px;line-height:35px;}
 .dataGridContainer .actiondropdownHolder .themeButton .icon{font-size:18px}
@@ -137,7 +137,7 @@
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
 .dataGridContainer .pagination{margin:0;text-align:right;display:inline-block;position:absolute;right:0;}
 .dataGridContainer .pagination li{display:inline;a:,span;float:left;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
-.dataGridContainer .pagination li a{cursor:pointer;font-size:15px}
+.dataGridContainer .pagination li a{cursor:pointer;height:34px;line-height:7px;font-size:15px;margin-top:4px}
 .dataGridContainer .pagination li:first-child a:before{content:"\E070"}
 .dataGridContainer .pagination li:nth-child(2) a{margin-right:10px;}
 .dataGridContainer .pagination li:nth-child(2) a:before{content:"\E071"}
@@ -155,8 +155,8 @@
 .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#76b0a9;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.dataGridContainer .dataGrid .pagination a{color:#589890}
-.dataGridContainer .dataGrid .pagination li.active a{background-color:#589890}
+.dataGridContainer .dataGrid .pagination li a{color:#589890 !important}
+.dataGridContainer .dataGrid .pagination li.active a{background-color:#589890 !important}
 @-moz-keyframes arrow{0%{background-position:100px 0}
 50%{background-position:100px 20px}
 100%{background-position:100px 0}
