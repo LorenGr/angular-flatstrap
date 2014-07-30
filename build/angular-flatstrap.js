@@ -193,7 +193,7 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <time><span class=\"icon noclick icon-time\"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <!--Form : planner-->\n" +
+    "                        <!-- Form : planner-->\n" +
     "                        <div ng-if=\"column.Form=='planner'\"\n" +
     "							 planner check-active=\"item==_activePlanner\"\n" +
     "							 class=\"plannerHolder\"\n" +
@@ -207,7 +207,11 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <label>{{item.data[column.Name].Repeat}}</label>\n" +
     "                        </div>\n" +
     "\n" +
-    "						<!--Form : actiondropdown-->\n" +
+    "                        <!--Form : button-->\n" +
+    "                        <button ng-click=\"formButtonHandler(item);\"\n" +
+    "                                ng-if=\"column.Form=='button'\">{{column.FormLabel}}</button>\n" +
+    "\n" +
+    "                        <!--Form : actiondropdown-->\n" +
     "						<span ng-if=\"column.Form=='actiondropdown'\" class=\"actiondropdownHolder\">\n" +
     "							<select ng-model=\"chosenAction\" ng-init=\"chosenAction = item.data[column.Name][0]\"\n" +
     "									ng-options=\"action.Name for action in item.data[column.Name]\">\n" +
@@ -218,7 +222,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "									class=\"themeButton orange\">\n" +
     "									<span class=\"icon icon-fix\"></span>FIX\n" +
     "							</button>\n" +
-    "\n" +
     "						</span>\n" +
     "\n" +
     "					</div>\n" +
@@ -519,12 +522,15 @@ flatgridControllers.controller('flatGrid_Controller',[
 			}
 		}
 
+        $scope.formButtonHandler = function(item) {
+            if($scope.FG.Config.onformbuttonclick) $scope[$scope.FG.Config.onformbuttonclick](item);
+        }
+
 		//Used in dropdownaction type rows
 		$scope.fix = function(item,action){
 			if($scope.FG.Config.onaction) {
 				$scope[$scope.FG.Config.onaction](item,action).then(function(){
 					$scope.FG.rows.splice($scope.findById(item.Id,true),1);
-					debugger;
 				});
 			}
 		}

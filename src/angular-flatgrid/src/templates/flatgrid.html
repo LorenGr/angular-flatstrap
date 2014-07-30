@@ -181,7 +181,7 @@
                             <time><span class="icon noclick icon-time"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>
                         </div>
 
-                        <!--Form : planner-->
+                        <!-- Form : planner-->
                         <div ng-if="column.Form=='planner'"
 							 planner check-active="item==_activePlanner"
 							 class="plannerHolder"
@@ -195,7 +195,11 @@
                             <label>{{item.data[column.Name].Repeat}}</label>
                         </div>
 
-						<!--Form : actiondropdown-->
+                        <!--Form : button-->
+                        <button ng-click="formButtonHandler(item);"
+                                ng-if="column.Form=='button'">{{column.FormLabel}}</button>
+
+                        <!--Form : actiondropdown-->
 						<span ng-if="column.Form=='actiondropdown'" class="actiondropdownHolder">
 							<select ng-model="chosenAction" ng-init="chosenAction = item.data[column.Name][0]"
 									ng-options="action.Name for action in item.data[column.Name]">
@@ -206,7 +210,6 @@
 									class="themeButton orange">
 									<span class="icon icon-fix"></span>FIX
 							</button>
-
 						</span>
 
 					</div>

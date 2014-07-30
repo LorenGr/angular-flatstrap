@@ -46,12 +46,15 @@ flatgridControllers.controller('flatGrid_Controller',[
 			}
 		}
 
+        $scope.formButtonHandler = function(item) {
+            if($scope.FG.Config.onformbuttonclick) $scope[$scope.FG.Config.onformbuttonclick](item);
+        }
+
 		//Used in dropdownaction type rows
 		$scope.fix = function(item,action){
 			if($scope.FG.Config.onaction) {
 				$scope[$scope.FG.Config.onaction](item,action).then(function(){
 					$scope.FG.rows.splice($scope.findById(item.Id,true),1);
-					debugger;
 				});
 			}
 		}
