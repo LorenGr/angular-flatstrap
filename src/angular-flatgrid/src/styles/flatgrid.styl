@@ -717,10 +717,12 @@ $borderColor = grey
 				content "\E071"
 		li:last-child a
 			//end
+			@extend .icon
 			&:before
 				content "\E075"
 		li:nth-last-child(2) a
 			//next
+			@extend .icon
 			margin-left 10px
 			&:before
 				content "\E076"
