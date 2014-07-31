@@ -2,6 +2,17 @@
 /*** DATAGRID FONTS / ICONS *************************************************/
 /****************************************************************************/
 
+:invalid
+	box-shadow: none
+
+:-moz-submit-invalid
+	box-shadow none
+
+
+:-moz-ui-invalid
+	box-shadow none
+
+
 @font-face
 	font-family 'icomoon'
 	src:url('fonts/glyphicons-halflings-regular.eot')
@@ -676,7 +687,6 @@ $borderColor = grey
 			@extend .smallWhiteIcon
 			display inline
 			a , span
-			float left
 			padding 4px
 			min-height 25px
 			min-width 27px
@@ -688,7 +698,11 @@ $borderColor = grey
 				height 34px
 				line-height 7px
 				font-size 15px
+				border none
+				line-height 11px !important
+				min-width 36px
 				margin-top 4px
+				text()
 
 		li:first-child a
 			//beginning

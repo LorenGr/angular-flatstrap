@@ -21,7 +21,8 @@
                 <div class="tr post">
                     <!-- Name -->
                     <div class="td {{::column.Name}} coltype-{{::column.Form}}"
-                        ng-repeat="column in ::FG.columns">
+                        ng-repeat="column in ::FG.columns"
+		                ng-class="{empty:column.Form=='button'}">
 
                         <!-- Post Form = input -->
                         <input ng-if="column.Form=='input' && column.Editable!=false" required

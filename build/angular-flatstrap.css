@@ -1,3 +1,6 @@
+:invalid{box-shadow:none}
+:-moz-submit-invalid{box-shadow:none}
+:-moz-ui-invalid{box-shadow:none}
 @font-face{font-family:'icomoon';src:url("fonts/glyphicons-halflings-regular.eot");src:url("fonts/glyphicons-halflings-regular.svg#icomoon") format('svg'),url("fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-halflings-regular.woff") format('woff'),url("fonts/glyphicons-halflings-regular.ttf") format('truetype');font-weight:normal;font-style:normal}
 .icon,i,.dataGridContainer #search .icon-search,.dataGridContainer .pagination li a,.dataGridContainer .pagination li:first-child a,.dataGridContainer .pagination li:nth-child(2) a{cursor:pointer;-webkit-text-stroke-width:0;}
 .icon.noclick,i.noclick,.dataGridContainer #search .icon-search.noclick,.dataGridContainer .pagination li a.noclick,.dataGridContainer .pagination li:first-child a.noclick,.dataGridContainer .pagination li:nth-child(2) a.noclick{cursor:default}
@@ -136,8 +139,8 @@
 .dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-family:'Open Sans',sans-serif;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
 .dataGridContainer .pagination{margin:0;text-align:right;display:inline-block;position:absolute;right:0;}
-.dataGridContainer .pagination li{display:inline;a:,span;float:left;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
-.dataGridContainer .pagination li a{cursor:pointer;height:34px;line-height:7px;font-size:15px;margin-top:4px}
+.dataGridContainer .pagination li{display:inline;a:,span;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
+.dataGridContainer .pagination li a{cursor:pointer;height:34px;line-height:7px;font-size:15px;border:none;line-height:11px !important;min-width:36px;margin-top:4px;font-family:'Open Sans',sans-serif}
 .dataGridContainer .pagination li:first-child a:before{content:"\E070"}
 .dataGridContainer .pagination li:nth-child(2) a{margin-right:10px;}
 .dataGridContainer .pagination li:nth-child(2) a:before{content:"\E071"}

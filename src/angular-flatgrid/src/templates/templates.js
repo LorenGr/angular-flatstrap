@@ -25,7 +25,8 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                <div class=\"tr post\">\n" +
     "                    <!-- Name -->\n" +
     "                    <div class=\"td {{::column.Name}} coltype-{{::column.Form}}\"\n" +
-    "                        ng-repeat=\"column in ::FG.columns\">\n" +
+    "                        ng-repeat=\"column in ::FG.columns\"\n" +
+    "		                ng-class=\"{empty:column.Form=='button'}\">\n" +
     "\n" +
     "                        <!-- Post Form = input -->\n" +
     "                        <input ng-if=\"column.Form=='input' && column.Editable!=false\" required\n" +
