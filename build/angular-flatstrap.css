@@ -161,13 +161,13 @@
 .dataGridContainer .dataGrid div.tbody div.tr div.td.controls .icon.icon-wrong{background-color:#f00}
 .dataGridContainer .dataGrid div.tbody div.tr div.td.controls .icon.icon-plus,.dataGridContainer .dataGrid div.tbody div.tr div.td.controls .icon.icon-ok,.dataGridContainer .dataGrid div.tbody div.tr div.td.controls .icon.icon-wrong,.dataGridContainer .dataGrid div.tbody div.tr div.td.controls .icon.icon-close{margin-left:0;font-size:20px;height:51px;width:50%;height:50px;font-size:23px;display:block}
 .dataGridContainer .dataGrid div.tbody div.tr div.td.controls .icon.icon-close{width:100%;display:block;position:relative}
-.dataGridContainer .dataGrid .datetimepickerHolder{height:50px;font-size:15px;-webkit-text-stroke-width:.5px;cursor:default;text-align:left;color:#fff;}
+.dataGridContainer .dataGrid .datetimepickerHolder{height:50px;font-size:15px;-webkit-text-stroke-width:.5px;cursor:default;text-align:left;font-family:'Open Sans',sans-serif;color:#fff;}
 .dataGridContainer .dataGrid .datetimepickerHolder.editable,.dataGridContainer .dataGrid .datetimepickerHolder.editable *{cursor:pointer}
 .dataGridContainer .dataGrid .datetimepickerHolder .datetimepicker{width:0 !important;border:none !important;outline:0 !important;margin:0 !important}
 .dataGridContainer .dataGrid .datetimepickerHolder date,.dataGridContainer .dataGrid .datetimepickerHolder time{display:inline-block;vertical-align:top}
 .dataGridContainer .dataGrid .datetimepickerHolder date{text-indent:9px;}
 .dataGridContainer .dataGrid .datetimepickerHolder date .icon{font-size:12px;margin-right:7px;vertical-align:baseline}
-.dataGridContainer .dataGrid .datetimepickerHolder time .icon{font-size:19px;vertical-align:sub}
+.dataGridContainer .dataGrid .datetimepickerHolder time .icon{font-size:14px;vertical-align:baseline;margin:0 5px}
 .dataGridContainer .planner_plugin{position:absolute;z-index:9999;margin-top:-73px;background-color:#fff;box-shadow:0 5px 15px -5px rgba(0,0,0,0.506);background:#fff;border-bottom:1px solid #bbb;border-left:1px solid #ccc;border-right:1px solid #ccc;border-top:1px solid #ccc;color:#333;font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;display:none;}
 .dataGridContainer .planner_plugin.planner_top{margin-top:-223px}
 .dataGridContainer .planner_plugin .col{float:left;background:#f5f5f5;border:1px solid #ddd;color:#666;width:101px;}
