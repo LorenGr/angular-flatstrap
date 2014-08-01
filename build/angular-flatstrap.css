@@ -191,18 +191,18 @@
 }@keyframes blinker{0%{opacity:0}
 50%{opacity:1}
 100%{opacity:0}
-}.flatGridBlackTheme .dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(0,0,0,0.6)}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #000;}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#000}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr{background-color:#000}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#000}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.active,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#000}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr:hover,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#000}
+}.flatGridBlackTheme .dataGridContainer .dataGrid .datetimepickerHolder{-webkit-text-stroke-color:rgba(66,66,66,0.6)}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr>div.td,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td{border-bottom:1px solid #353535;}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr>div.td.editable:hover,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody>div.tr.odd>div.td.editable:hover{background-color:#212121}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr{background-color:#424242}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#3f3f3f}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.active,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#212121}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr:hover,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#353535}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#333;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#686868;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.flatGridBlackTheme .dataGridContainer .pagination>.active>a,.flatGridBlackTheme .dataGridContainer .pagination>.active>a:focus{background-color:#000 !important;color:#fff !important}
+.flatGridBlackTheme .dataGridContainer .pagination>.active>a,.flatGridBlackTheme .dataGridContainer .pagination>.active>a:focus{background-color:#424242 !important;color:#fff !important}
 .flatGridBlackTheme .dataGridContainer .pagination>.disabled{opacity:.5 !important}
-.flatGridBlackTheme .dataGridContainer .pagination>li>a,.flatGridBlackTheme .dataGridContainer .pagination>li>a:focus{color:#000 !important}
+.flatGridBlackTheme .dataGridContainer .pagination>li>a,.flatGridBlackTheme .dataGridContainer .pagination>li>a:focus{color:#424242 !important}
 
