@@ -12,7 +12,7 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
   $templateCache.put("/src/templates/flatgrid.html",
     "<div class=\"dataGridContainer\">\n" +
     "    <form name=\"gridPostForm\" ng-submit=\"add(FG.pkg)\">\n" +
-    "        <div class=\"dataGrid\">\n" +
+    "        <div class=\"dataGrid\" ng-class=\"{'noControls':FG.Config.controls==false}\">\n" +
     "            <header>\n" +
     "                <h1 ng-if=\"::FG.Config.title\" ng-bind=\":: FG.Config.title\"></h1>\n" +
     "                <div class=\"tr\">\n" +

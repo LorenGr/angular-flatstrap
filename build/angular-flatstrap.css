@@ -122,6 +122,7 @@
 .dataGridContainer .dataGrid div.td.coltype-status,.dataGridContainer .dataGrid div.th.coltype-status{padding-left:0;width:40px;flex:none;text-align:center;border-top:1px solid #fff !important;border-bottom:1px solid #fff !important;background-color:#fff !important;}
 .dataGridContainer .dataGrid div.td.coltype-status .changeStatus,.dataGridContainer .dataGrid div.th.coltype-status .changeStatus{background-color:#f7f7f7;height:50px;line-height:45px;text-align:center}
 .dataGridContainer .dataGrid div.td.controls,.dataGridContainer .dataGrid div.th.controls{width:173px;flex:none}
+.dataGridContainer .dataGrid.noControls div.td.controls,.dataGridContainer .dataGrid.noControls div.th.controls{display:none}
 .dataGridContainer .dataGrid .center{text-align:center;padding-left:0}
 .dataGridContainer .dataGrid header div.tr{height:25px}
 .dataGridContainer .dataGrid header div.th{font-size:14px;color:#000;line-height:16px;cursor:pointer;padding-left:7px;height:25px}

@@ -1,6 +1,6 @@
 <div class="dataGridContainer">
     <form name="gridPostForm" ng-submit="add(FG.pkg)">
-        <div class="dataGrid">
+        <div class="dataGrid" ng-class="{'noControls':FG.Config.controls==false}">
             <header>
                 <h1 ng-if="::FG.Config.title" ng-bind=":: FG.Config.title"></h1>
                 <div class="tr">
