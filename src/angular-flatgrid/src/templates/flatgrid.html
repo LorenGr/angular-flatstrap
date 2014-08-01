@@ -90,6 +90,7 @@
 		<div class="dataGrid" ng-class="{
 				'loading' : loading
 				 ,'selectableRows' : FG.Config.onrowfocus
+				 ,'noControls':FG.Config.controls==false
 			}">
 			<div class="tbody">
 				<div ng-repeat="item in rowsArray() | orderBy:sorter:FG.Config.reverse track by item.Id "
@@ -97,7 +98,6 @@
 						 'editing':item.Config.editing
 						,'running':item.Config.running
 						,'active' :item.Id==activeRowId
-						,'noControls':FG.Config.controls==false
 					}"
 					class="tr status-{{item.data.Status}}"
 					ng-click="selectRow(item.data)"

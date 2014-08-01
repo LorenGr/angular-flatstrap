@@ -102,6 +102,7 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "		<div class=\"dataGrid\" ng-class=\"{\n" +
     "				'loading' : loading\n" +
     "				 ,'selectableRows' : FG.Config.onrowfocus\n" +
+    "				 ,'noControls':FG.Config.controls==false\n" +
     "			}\">\n" +
     "			<div class=\"tbody\">\n" +
     "				<div ng-repeat=\"item in rowsArray() | orderBy:sorter:FG.Config.reverse track by item.Id \"\n" +
@@ -109,7 +110,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "						 'editing':item.Config.editing\n" +
     "						,'running':item.Config.running\n" +
     "						,'active' :item.Id==activeRowId\n" +
-    "						,'noControls':FG.Config.controls==false\n" +
     "					}\"\n" +
     "					class=\"tr status-{{item.data.Status}}\"\n" +
     "					ng-click=\"selectRow(item.data)\"\n" +
