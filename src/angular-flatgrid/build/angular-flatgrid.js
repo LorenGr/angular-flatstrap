@@ -24,7 +24,7 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                    <div class=\"th controls\"></div>\n" +
     "                </div>\n" +
     "                <!-- Post Form -->\n" +
-    "                <div class=\"tr post\">\n" +
+    "                <div class=\"tr post\" ng-if=\"FG.Config.postForm\">\n" +
     "                    <!-- Name -->\n" +
     "                    <div class=\"td {{::column.Name}} coltype-{{::column.Form}}\"\n" +
     "                        ng-repeat=\"column in ::FG.columns\"\n" +
@@ -90,8 +90,8 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "        </div>\n" +
     "    </form>\n" +
     "	<div id=\"gridScrollHeight\" class=\"scrollItems\" ng-class=\"{'scrollbar':!FG.Config.pagination}\">\n" +
-    "		<span class=\"settingsNoContent noControls\" ng-show=\"nodata\" ng-if=\"FG.Config.controls == false\"><label><em>No data found!</em></span>\n" +
-    "		<span class=\"settingsNoContent\" ng-show=\"nodata\" ng-if=\"FG.Config.controls != false\"><label><em>No items found!</em>You can add new items from the above form.</label></span>\n" +
+    "		<span class=\"settingsNoContent noControls\" ng-show=\"nodata\" ng-if=\"FG.Config.postForm == false\"><label><em>No data found!</em></span>\n" +
+    "		<span class=\"settingsNoContent\" ng-show=\"nodata\" ng-if=\"FG.Config.postForm != false\"><label><em>No items found!</em>You can add new items from the above form.</label></span>\n" +
     "\n" +
     "		<div class=\"dataGrid\" ng-class=\"{\n" +
     "				'loading' : loading\n" +

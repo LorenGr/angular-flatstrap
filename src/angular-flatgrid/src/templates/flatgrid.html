@@ -18,7 +18,7 @@
                     <div class="th controls"></div>
                 </div>
                 <!-- Post Form -->
-                <div class="tr post">
+                <div class="tr post" ng-if="FG.Config.postForm">
                     <!-- Name -->
                     <div class="td {{::column.Name}} coltype-{{::column.Form}}"
                         ng-repeat="column in ::FG.columns"
@@ -84,8 +84,8 @@
         </div>
     </form>
 	<div id="gridScrollHeight" class="scrollItems" ng-class="{'scrollbar':!FG.Config.pagination}">
-		<span class="settingsNoContent noControls" ng-show="nodata" ng-if="FG.Config.controls == false"><label><em>No data found!</em></span>
-		<span class="settingsNoContent" ng-show="nodata" ng-if="FG.Config.controls != false"><label><em>No items found!</em>You can add new items from the above form.</label></span>
+		<span class="settingsNoContent noControls" ng-show="nodata" ng-if="FG.Config.postForm == false"><label><em>No data found!</em></span>
+		<span class="settingsNoContent" ng-show="nodata" ng-if="FG.Config.postForm != false"><label><em>No items found!</em>You can add new items from the above form.</label></span>
 
 		<div class="dataGrid" ng-class="{
 				'loading' : loading

@@ -115,7 +115,7 @@
 .dataGridContainer .dataGrid input[type=text],.dataGridContainer .dataGrid textarea{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(0,0,0,0.4)}
 .dataGridContainer .dataGrid div.td,.dataGridContainer .dataGrid div.th{display:inline-block;vertical-align:top;flex:1}
 .dataGridContainer .dataGrid div.tr{display:flex;height:50px}
-.dataGridContainer .dataGrid div.th,.dataGridContainer .dataGrid div.td,.dataGridContainer .dataGrid input[type=text],.dataGridContainer .dataGrid textarea{font-size:16px;padding-left:0;height:50px;line-height:50px}
+.dataGridContainer .dataGrid div.th,.dataGridContainer .dataGrid div.td,.dataGridContainer .dataGrid input[type=text],.dataGridContainer .dataGrid textarea{font-size:14px;padding-left:0;height:50px;line-height:50px}
 .dataGridContainer .dataGrid div.td,.dataGridContainer .dataGrid div.th{width:auto;}
 .dataGridContainer .dataGrid div.td.coltype-checkbox,.dataGridContainer .dataGrid div.th.coltype-checkbox,.dataGridContainer .dataGrid div.td.coltype-toggler,.dataGridContainer .dataGrid div.th.coltype-toggler{padding-left:0;width:55px;flex:none;text-align:center}
 .dataGridContainer .dataGrid div.td.coltype-datetime,.dataGridContainer .dataGrid div.th.coltype-datetime{min-width:169px}
@@ -147,7 +147,7 @@
 .dataGridContainer .dataGrid div.tbody div.tr.running{pointer-events:none}
 .dataGridContainer .dataGrid div.tbody span.checkbox{background:none;border:0 !important;line-height:50px;height:50px;width:100%;}
 .dataGridContainer .dataGrid div.tbody .editing input[type=text]:focus,.dataGridContainer .dataGrid div.tbody .editing textarea:focus{cursor:text;border:1px solid #000;background-color:#fff;color:#000}
-.dataGridContainer .dataGrid div.tbody div.td>label{cursor:default;font-family:'Open Sans',sans-serif;font-size:13px;color:#fff;text-indent:15px;height:50px;line-height:50px;width:100%;margin:0;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:left}
+.dataGridContainer .dataGrid div.tbody div.td>label{cursor:default;font-family:'Open Sans',sans-serif;font-size:14px;color:#fff;text-indent:15px;height:50px;line-height:50px;width:100%;margin:0;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:left}
 .dataGridContainer .dataGrid div.tbody input[type=text],.dataGridContainer .dataGrid div.tbody textarea{cursor:pointer;background-color:transparent;border:1px solid transparent;font-family:'Open Sans',sans-serif;outline:0;color:#fff;text-indent:15px;width:100%;margin:0;vertical-align:middle;height:50px;}
 .dataGridContainer .dataGrid div.tbody input[type=text]:disabled,.dataGridContainer .dataGrid div.tbody textarea:disabled{opacity:.3;pointer-events:none}
 .dataGridContainer .dataGrid div.tbody div.tr div.td.controls{position:relative;padding-left:0;text-align:center;line-height:0;font-size:0;white-space:nowrap;}
@@ -220,8 +220,8 @@
 .dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#549089}
 .dataGridContainer .dataGrid>div.tbody div.tr.active,.dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#2c4c48}
 .dataGridContainer .dataGrid>div.tbody div.tr:hover,.dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#467a73}
-.dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#76b0a9;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(88,152,144,0.6)}
+.dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#76b0a9;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(88,152,144,0.6)}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .dataGridContainer .pagination>.active>a,.dataGridContainer .pagination>.active>a:focus{background-color:#589890 !important;color:#fff !important}
@@ -266,8 +266,8 @@
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.odd{background-color:#3f3f3f}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.active,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.active:hover{background-color:#212121}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr:hover,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.odd:hover{background-color:#353535}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
-.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#686868;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr div.td *{-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(66,66,66,0.6)}
+.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody input[type=text]::-webkit-input-placeholder,.flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody textarea::-webkit-input-placeholder{color:#686868;-webkit-text-stroke-width:.5px;-webkit-text-stroke-color:rgba(66,66,66,0.6)}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed{background-color:#f00;}
 .flatGridBlackTheme .dataGridContainer .dataGrid>div.tbody div.tr.status-Failed div.td *{-webkit-text-stroke-color:rgba(255,255,255,0.6)}
 .flatGridBlackTheme .dataGridContainer .pagination>.active>a,.flatGridBlackTheme .dataGridContainer .pagination>.active>a:focus{background-color:#424242 !important;color:#fff !important}
