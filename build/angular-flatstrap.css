@@ -70,6 +70,8 @@
 .icon-wrong:before{content:"\E014"}
 .icon-ok:before{content:"\E013"}
 .icon-search:before{content:"\E003"}
+.icon-calendar:before{content:"\E109"}
+.icon-time:before{content:"\E023"}
 .smallWhiteIcon a,.dataGridContainer .pagination li a{text-align:center;min-width:15px;font-size:12px;cursor:pointer;padding:10px;display:inline-block;border-radius:30px;border:3px solid transparent;white-space:nowrap;}
 .smallWhiteIcon a:hover,.dataGridContainer .pagination li a:hover,.smallWhiteIcon a:focus,.dataGridContainer .pagination li a:focus{border:3px solid $borderColor}
 .dataGridContainer@-moz-keyframes arrow{0%{background-position:100px 0}
