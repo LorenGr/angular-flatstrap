@@ -111,7 +111,7 @@
 .dataGridContainer .dataGrid .scrollItems{height:400px;overflow:auto}
 .dataGridContainer .dataGrid.selectableRows div.tr,.dataGridContainer .dataGrid.selectableRows div.tr *{cursor:pointer !important}
 .dataGridContainer .dataGrid button{border:none;outline:0}
-.dataGridContainer .dataGrid label,.dataGridContainer .dataGrid .icon{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(255,255,255,0.6)}
+.dataGridContainer .dataGrid label,.dataGridContainer .dataGrid .icon{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(255,255,255,0.6);font-weight:normal}
 .dataGridContainer .dataGrid input[type=text],.dataGridContainer .dataGrid textarea{-webkit-text-stroke-width:.1px;-webkit-text-stroke-color:rgba(0,0,0,0.4)}
 .dataGridContainer .dataGrid div.td,.dataGridContainer .dataGrid div.th{display:inline-block;vertical-align:top;flex:1}
 .dataGridContainer .dataGrid div.tr{display:flex;height:50px}
