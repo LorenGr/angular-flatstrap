@@ -102,6 +102,12 @@
 text()
 	font-family: 'Open Sans', sans-serif;
 
+checkboxFlatStyle(n)
+	color n
+	background linear-gradient(top,lighten(n,80%),lighten(n,40%))
+	border 2px solid n !important
+	&:hover
+		background linear-gradient(top,lighten(n,100%),n)
 
 datagridStyles(n)
 	.dataGrid
@@ -671,6 +677,9 @@ $borderColor = grey
 		100%
 			opacity 0
 
+	/****************************************************************************/
+	/*** CHECKBOX     ***********************************************************/
+	/****************************************************************************/
 
 
 	/****************************************************************************/
