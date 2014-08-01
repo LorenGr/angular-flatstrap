@@ -138,6 +138,12 @@
 .dataGridContainer .actiondropdownHolder select:focus+.icon-sort{color:#000}
 .dataGridContainer .actiondropdownHolder select{flex:1;outline:0;border:none;margin:0;flex:1;height:50px;color:#fff;font-family:'Open Sans',sans-serif;font-size:13px;text-indent:10px;vertical-align:middle;cursor:pointer;background-color:transparent;appearance:none;text-overflow:"";}
 .dataGridContainer .actiondropdownHolder select:focus{background-color:#fff;color:#000}
+.dataGridContainer .checkbox{outline:0;display:inline-block;border-radius:17px;padding-left:6px;color:#fff;width:25px;height:25px;line-height:15px;cursor:pointer;vertical-align:middle;font-size:15px;}
+.dataGridContainer .checkbox:before{margin-left:-1px;font-size:12px;line-height:21px}
+.dataGridContainer .checkbox.label{width:auto;}
+.dataGridContainer .checkbox.label.large label{font-size:22px}
+.dataGridContainer .checkbox.label label{font-family:'Open Sans',sans-serif;font-size:11px;cursor:pointer;margin:0 5px;display:inline-block;height:20px;line-height:20px;vertical-align:top}
+.dataGridContainer .checkbox.label.false{opacity:.5}
 .dataGridContainer .pagination{margin:0;text-align:right;display:inline-block;position:absolute;right:0;}
 .dataGridContainer .pagination li{display:inline;a:,span;padding:4px;min-height:25px;min-width:27px;line-height:25px !important;text-decoration:none;}
 .dataGridContainer .pagination li a{cursor:pointer;height:34px;font-size:13px;border:none;line-height:14px !important;min-width:36px;margin-top:4px;font-family:'Open Sans',sans-serif}

@@ -680,7 +680,40 @@ $borderColor = grey
 	/****************************************************************************/
 	/*** CHECKBOX     ***********************************************************/
 	/****************************************************************************/
+	//Form Elements
+	.checkbox
+		outline 0
+		display inline-block
+		border-radius 17px
+		padding-left 6px
+		color white
+		width 25px
+		height 25px
+		line-height 15px
+		cursor pointer
+		vertical-align middle
+		font-size 15px
 
+		&:before
+			margin-left -1px
+			font-size 12px
+			line-height 21px
+		&.label
+			width auto
+			&.large
+				label
+					font-size 22px
+			label
+				text()
+				font-size 11px
+				cursor pointer
+				margin 0 5px
+				display inline-block
+				height 20px
+				line-height 20px
+				vertical-align top
+			&.false
+				opacity 0.5
 
 	/****************************************************************************/
 	/*** PAGINATION      ********************************************************/
