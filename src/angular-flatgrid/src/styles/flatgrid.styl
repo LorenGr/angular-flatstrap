@@ -696,10 +696,9 @@ $borderColor = grey
 				@extend .icon
 				cursor pointer
 				height 34px
-				line-height 7px
-				font-size 15px
+				font-size 13px
 				border none
-				line-height 11px !important
+				line-height 14px !important
 				min-width 36px
 				margin-top 4px
 				text()
@@ -719,14 +718,19 @@ $borderColor = grey
 			//end
 			@extend .icon
 			&:before
-				content "\E075"
+				content "\E076"
 		li:nth-last-child(2) a
 			//next
 			@extend .icon
 			margin-left 10px
 			&:before
-				content "\E076"
+				content "\E075"
 
 
 	//DEFAULT STYLES
 	datagridStyles(#589890)
+
+
+.flatGridBlackTheme
+	.dataGridContainer
+		datagridStyles(black)

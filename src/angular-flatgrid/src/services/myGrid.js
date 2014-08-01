@@ -37,11 +37,15 @@ flatgridServices.service('myGrid',function() {
 			for(var x=0;x<=FG.columns.length-1;x++) {
 				var coltype = FG.columns[x].Form,
 					col 	= FG.columns[x].Name;
-
-				if(coltype == 'planner' )  					item.data[col] = freqObject;
-				if(coltype == 'datetime' && col !="Next" ) 	item.data[col] = new Date().toISOString();
-				if(coltype == 'checkbox' ) 					item.data[col] = false;
-				if(coltype == 'checkbox' && col=='Active' )	item.data[col] = true;
+				if(coltype) {
+					if(coltype == 'planner' )  					item.data[col] = freqObject;
+					if(coltype == 'datetime' && col !="Next" ) 	item.data[col] = new Date().toISOString();
+					if(coltype == 'checkbox' ) 					item.data[col] = false;
+					if(coltype == 'checkbox' && col=='Active' )	item.data[col] = true;
+				} else {
+					//Set default column type
+					FG.columns[x].Form = "input";
+				}
 			};
 
 
