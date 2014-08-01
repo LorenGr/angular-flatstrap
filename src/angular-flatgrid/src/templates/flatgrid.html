@@ -97,6 +97,7 @@
 						 'editing':item.Config.editing
 						,'running':item.Config.running
 						,'active' :item.Id==activeRowId
+						,'noControls':FG.Config.controls==false
 					}"
 					class="tr status-{{item.data.Status}}"
 					ng-click="selectRow(item.data)"

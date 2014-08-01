@@ -101,6 +101,7 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "						 'editing':item.Config.editing\n" +
     "						,'running':item.Config.running\n" +
     "						,'active' :item.Id==activeRowId\n" +
+    "						,'noControls':FG.Config.controls==false\n" +
     "					}\"\n" +
     "					class=\"tr status-{{item.data.Status}}\"\n" +
     "					ng-click=\"selectRow(item.data)\"\n" +
