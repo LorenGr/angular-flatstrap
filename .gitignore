@@ -1,2 +1,6 @@
 /.idea/*
-/lorengr.github.io/
+/src/angular-flatgrid/.idea/*
+/src/angular-contextual-tooltip/idea/*
+/src/angular-flatgrid/grunt/*
+/src/angular-contextual-tooltip/grunt/*
+/grunt/node_modules/*
