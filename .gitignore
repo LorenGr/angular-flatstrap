@@ -5,7 +5,7 @@
 /src/angular-flatgrid/libs/*
 /src/angular-flatgrid/demo/*
 /src/angular-flatgrid/grunt/node_modules/*
-/src/angular-contextual-tooltip/idea/*
+/src/angular-contextual-tooltip/.idea/*
 /src/angular-contextual-tooltip/grunt/node_modules/*
 
 
