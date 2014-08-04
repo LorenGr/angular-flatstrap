@@ -1,6 +1,13 @@
 /.idea/*
-/src/angular-flatgrid/.idea/*
-/src/angular-contextual-tooltip/idea/*
-/src/angular-flatgrid/grunt/*
-/src/angular-contextual-tooltip/grunt/*
 /grunt/node_modules/*
+/src/angular-flatgrid/.idea/*
+/src/angular-flatgrid/tests/*
+/src/angular-flatgrid/libs/*
+/src/angular-flatgrid/demo/*
+/src/angular-flatgrid/grunt/node_modules/*
+/src/angular-contextual-tooltip/idea/*
+/src/angular-contextual-tooltip/grunt/node_modules/*
+
+
+
+
