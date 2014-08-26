@@ -15,7 +15,9 @@
                         </a>
                         <span ng-if="!column.Sortable">{{::column.Label}}</span>
                     </div>
-                    <div class="th controls"></div>
+                    <div class="th controls">
+	                    <button ng-click="postButton()" type="button" ng-if="FG.Config.postButton" class="icon icon-plus"></button>
+                    </div>
                 </div>
                 <!-- Post Form -->
                 <div class="tr post" ng-if="FG.Config.postForm">
@@ -73,6 +75,19 @@
                             <label>{{FG.pkg.data[column.Name].Repeat || 'Choose Frequency' }}</label>
                         </div>
 
+	                    <!--Form : dropdown-->
+						<span ng-if="column.Form=='dropdown'" class="actiondropdownHolder">
+							<!--An object array found-->
+							<select ng-if="isDeep(column.Options)"
+							        ng-model="FG.pkg.data[column.Name]" ng-options="item.Name for item in column.Options"></select>
+
+							<!--A string array found-->
+							<select ng-if="!isDeep(column.Options)"
+							        ng-model="FG.pkg.data[column.Name]" ng-options="item for item in column.Options"></select>
+
+							<span class="icon icon-sort"></span>
+						</span>
+
                     </div>
                     <div class="td controls">
                         <button type="submit" ng-show="!FG.pkg.Config.loading" class="icon icon-plus"></button>
@@ -128,23 +143,19 @@
                                 placeholder="{{column.CellPlaceholder}}"
                                 xng-maxlength="column.MaxLength"
                         />
-
 						<!--Form : title  -->
                         <label ng-if="column.Editable==false && column.Form=='input' && column.Name != 'Message' "
 							   ng-bind=":: item.data[column.Name]"></label>
-
 						<!--Form : title : message  -->
 						<label tooltip="{{:: item.data[column.Name]}}"
 							   tooltip-append-to-body = true
 							   tooltip-popup-delay='600'
 							   ng-if="column.Editable==false && column.Form=='input' && column.Name == 'Message'"
 							   ng-bind=":: item.data[column.Name]"></label>
-
 						<!--Change Status-->
                         <div ng-if="column.Form=='status'" class="changeStatus status-{{item.data.ChangeStatus}}">
 							<span class="status-icon"></span>
 						</div>
-
 						<!--Form : checkbox-->
                         <button   ng-change="confirm(item,true)"
                                   ng-if="column.Editable!=false && column.Form=='checkbox'"
@@ -156,7 +167,6 @@
                                   btn-checkbox-true="item.data[column.Name]"
                                   btn-checkbox-false="!item.data[column.Name]"
                                 />
-
                         <!--Toggler-->
                         <button fg-toggler ng-change="confirm(item,true)"
                                   ng-if="column.Editable!=false && column.Form=='toggler'"
@@ -168,7 +178,6 @@
                                   btn-checkbox-true="item.data[column.Name]"
                                   btn-checkbox-false="!item.data[column.Name]"
                                 />
-
                         <!--Form : datetime-->
                         <div ng-if="column.Form=='datetime'"
                              class="datetimepickerHolder"
@@ -182,7 +191,6 @@
                             <date><span class="icon noclick icon-calendar"></span>{{item[item.Config.model][column.Name] | formatDate:'date' }}</date>
                             <time><span class="icon noclick icon-time"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>
                         </div>
-
                         <!-- Form : planner-->
                         <div ng-if="column.Form=='planner'"
 							 planner check-active="item==_activePlanner"
@@ -196,11 +204,17 @@
                             <span class="icon noclick icon-repeat"></span>
                             <label>{{item.data[column.Name].Repeat}}</label>
                         </div>
-
+						<!--Form : multidropdown-->
+						<multiselect ng-if="column.Form=='multidropdown'"
+									 class="multiselectHolder" multiple="true"
+						             ng-model="item.data[column.Name]"
+						             options="c for c in column.Options"
+						             change="confirm(item,true)" ></multiselect>
                         <!--Form : button-->
                         <button ng-click="formButtonHandler(item);"
-                                ng-if="column.Form=='button'">{{column.FormLabel}}</button>
-
+                                ng-if="column.Form=='button'">{{column.FormLabel}}
+                                <span class="icon icon-right"></span>
+                        </button>
                         <!--Form : actiondropdown-->
 						<span ng-if="column.Form=='actiondropdown'" class="actiondropdownHolder">
 							<select ng-model="chosenAction" ng-init="chosenAction = item.data[column.Name][0]"
@@ -213,7 +227,21 @@
 									<span class="icon icon-fix"></span>FIX
 							</button>
 						</span>
+						<!--Form : dropdown-->
+						<span ng-if="column.Form=='dropdown'" class="actiondropdownHolder">
+							<!--An object array found-->
+							<select ng-change="confirm(item,true)"
+									ng-if="isDeep(column.Options)"
+							        ng-init="optionSelected=getDefaultOption(item.data,column.Name,column.Options)"
+									ng-model="optionSelected" ng-options="item.Name for item in column.Options"></select>
 
+							<!--A string array found-->
+							<select ng-change="confirm(item,true)"
+									ng-if="!isDeep(column.Options)"
+							        ng-model="item.data[column.Name]" ng-options="item for item in column.Options"></select>
+
+							<span class="icon icon-sort"></span>
+						</span>
 					</div>
 
                     <!-- Controls -->

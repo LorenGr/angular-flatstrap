@@ -17,8 +17,8 @@ module.exports = function (grunt) {
             },
             main: {
                 src: [
+					'../src/templates/multiselect.html',
 					'../src/templates/flatgrid.html',
-					'../src/templates/planner.html'
 				],
                 dest: '../src/templates/templates.js'
             },
@@ -27,6 +27,7 @@ module.exports = function (grunt) {
             dist: {
               src: [ 
                     '../src/templates/templates.js'
+	              ,'../src/directives/multiselect.js'
                     ,'../src/angular-flatgrid.js'
                     ,'../src/services/myGrid.js'
                     ,'../src/controllers/flatGrid.js'

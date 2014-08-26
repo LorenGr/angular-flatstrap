@@ -5,7 +5,6 @@ flatgridDirectives.directive('planner',function ($parse,$timeout){
 			var model = $parse(attrs.checkActive);
 			scope.$watch(model,function(value) {
 				if(value) {
-					console.log("watcher triggered");
 					$timeout(function() {
 						jQuery(".planner_plugin").css({
 							 "top" 	: elem[0].offsetTop + "px"

@@ -8,6 +8,7 @@ angular.module('flatstrap.flatgrid',[
 	,'flatgrid.controllers'
 	,'flatgrid.filters'
 	,'flatgrid.templates'
+	,'ui.multiselect'
 ]);
 var FlatGrid = {
 	defaults : {

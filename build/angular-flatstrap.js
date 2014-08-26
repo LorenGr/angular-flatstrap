@@ -6,7 +6,27 @@ angular.module("flatstrap",[
 ]);
 (function( window, $ ){ 
  'use strict'; 
-angular.module('flatgrid.templates', ['/src/templates/flatgrid.html', '/src/templates/planner.html']);
+angular.module('flatgrid.templates', ['/src/templates/multiselect.html', '/src/templates/flatgrid.html']);
+
+angular.module("/src/templates/multiselect.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/src/templates/multiselect.html",
+    "<div class=\"dropdown\">\n" +
+    "	<ul class=\"dropdown-menu\">\n" +
+    "		<li ng-show=\"multiple\">\n" +
+    "			<button class=\"btn-link btn-small\" ng-click=\"checkAll()\"><i class=\"icon-ok\"></i> Check all</button>\n" +
+    "			<button class=\"btn-link btn-small\" ng-click=\"uncheckAll()\"><i class=\"icon-wrong\"></i> Uncheck all</button>\n" +
+    "		</li>\n" +
+    "		<li ng-repeat=\"i in items | filter:searchText\">\n" +
+    "			<a ng-click=\"select(i); focus()\">\n" +
+    "				<i ng-class=\"{'icon-ok': i.checked, 'icon-empty': !i.checked}\"></i>{{i.label}}</a>\n" +
+    "		</li>\n" +
+    "	</ul>\n" +
+    "	<button class=\"btn\" ng-click=\"toggleSelect()\" ng-disabled=\"disabled\" ng-class=\"{'error': !valid()}\">\n" +
+    "		<span class=\"pull-left\">{{header}}</span>\n" +
+    "		<span class=\"icon icon-sort\"></span>\n" +
+    "	</button>\n" +
+    "</div>");
+}]);
 
 angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/src/templates/flatgrid.html",
@@ -27,7 +47,9 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                        </a>\n" +
     "                        <span ng-if=\"!column.Sortable\">{{::column.Label}}</span>\n" +
     "                    </div>\n" +
-    "                    <div class=\"th controls\"></div>\n" +
+    "                    <div class=\"th controls\">\n" +
+    "	                    <button ng-click=\"postButton()\" type=\"button\" ng-if=\"FG.Config.postButton\" class=\"icon icon-plus\"></button>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "                <!-- Post Form -->\n" +
     "                <div class=\"tr post\" ng-if=\"FG.Config.postForm\">\n" +
@@ -85,6 +107,19 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <label>{{FG.pkg.data[column.Name].Repeat || 'Choose Frequency' }}</label>\n" +
     "                        </div>\n" +
     "\n" +
+    "	                    <!--Form : dropdown-->\n" +
+    "						<span ng-if=\"column.Form=='dropdown'\" class=\"actiondropdownHolder\">\n" +
+    "							<!--An object array found-->\n" +
+    "							<select ng-if=\"isDeep(column.Options)\"\n" +
+    "							        ng-model=\"FG.pkg.data[column.Name]\" ng-options=\"item.Name for item in column.Options\"></select>\n" +
+    "\n" +
+    "							<!--A string array found-->\n" +
+    "							<select ng-if=\"!isDeep(column.Options)\"\n" +
+    "							        ng-model=\"FG.pkg.data[column.Name]\" ng-options=\"item for item in column.Options\"></select>\n" +
+    "\n" +
+    "							<span class=\"icon icon-sort\"></span>\n" +
+    "						</span>\n" +
+    "\n" +
     "                    </div>\n" +
     "                    <div class=\"td controls\">\n" +
     "                        <button type=\"submit\" ng-show=\"!FG.pkg.Config.loading\" class=\"icon icon-plus\"></button>\n" +
@@ -140,23 +175,19 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                                placeholder=\"{{column.CellPlaceholder}}\"\n" +
     "                                xng-maxlength=\"column.MaxLength\"\n" +
     "                        />\n" +
-    "\n" +
     "						<!--Form : title  -->\n" +
     "                        <label ng-if=\"column.Editable==false && column.Form=='input' && column.Name != 'Message' \"\n" +
     "							   ng-bind=\":: item.data[column.Name]\"></label>\n" +
-    "\n" +
     "						<!--Form : title : message  -->\n" +
     "						<label tooltip=\"{{:: item.data[column.Name]}}\"\n" +
     "							   tooltip-append-to-body = true\n" +
     "							   tooltip-popup-delay='600'\n" +
     "							   ng-if=\"column.Editable==false && column.Form=='input' && column.Name == 'Message'\"\n" +
     "							   ng-bind=\":: item.data[column.Name]\"></label>\n" +
-    "\n" +
     "						<!--Change Status-->\n" +
     "                        <div ng-if=\"column.Form=='status'\" class=\"changeStatus status-{{item.data.ChangeStatus}}\">\n" +
     "							<span class=\"status-icon\"></span>\n" +
     "						</div>\n" +
-    "\n" +
     "						<!--Form : checkbox-->\n" +
     "                        <button   ng-change=\"confirm(item,true)\"\n" +
     "                                  ng-if=\"column.Editable!=false && column.Form=='checkbox'\"\n" +
@@ -168,7 +199,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                                  btn-checkbox-true=\"item.data[column.Name]\"\n" +
     "                                  btn-checkbox-false=\"!item.data[column.Name]\"\n" +
     "                                />\n" +
-    "\n" +
     "                        <!--Toggler-->\n" +
     "                        <button fg-toggler ng-change=\"confirm(item,true)\"\n" +
     "                                  ng-if=\"column.Editable!=false && column.Form=='toggler'\"\n" +
@@ -180,7 +210,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                                  btn-checkbox-true=\"item.data[column.Name]\"\n" +
     "                                  btn-checkbox-false=\"!item.data[column.Name]\"\n" +
     "                                />\n" +
-    "\n" +
     "                        <!--Form : datetime-->\n" +
     "                        <div ng-if=\"column.Form=='datetime'\"\n" +
     "                             class=\"datetimepickerHolder\"\n" +
@@ -194,7 +223,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <date><span class=\"icon noclick icon-calendar\"></span>{{item[item.Config.model][column.Name] | formatDate:'date' }}</date>\n" +
     "                            <time><span class=\"icon noclick icon-time\"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>\n" +
     "                        </div>\n" +
-    "\n" +
     "                        <!-- Form : planner-->\n" +
     "                        <div ng-if=\"column.Form=='planner'\"\n" +
     "							 planner check-active=\"item==_activePlanner\"\n" +
@@ -208,11 +236,17 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <span class=\"icon noclick icon-repeat\"></span>\n" +
     "                            <label>{{item.data[column.Name].Repeat}}</label>\n" +
     "                        </div>\n" +
-    "\n" +
+    "						<!--Form : multidropdown-->\n" +
+    "						<multiselect ng-if=\"column.Form=='multidropdown'\"\n" +
+    "									 class=\"multiselectHolder\" multiple=\"true\"\n" +
+    "						             ng-model=\"item.data[column.Name]\"\n" +
+    "						             options=\"c for c in column.Options\"\n" +
+    "						             change=\"confirm(item,true)\" ></multiselect>\n" +
     "                        <!--Form : button-->\n" +
     "                        <button ng-click=\"formButtonHandler(item);\"\n" +
-    "                                ng-if=\"column.Form=='button'\">{{column.FormLabel}}</button>\n" +
-    "\n" +
+    "                                ng-if=\"column.Form=='button'\">{{column.FormLabel}}\n" +
+    "                                <span class=\"icon icon-right\"></span>\n" +
+    "                        </button>\n" +
     "                        <!--Form : actiondropdown-->\n" +
     "						<span ng-if=\"column.Form=='actiondropdown'\" class=\"actiondropdownHolder\">\n" +
     "							<select ng-model=\"chosenAction\" ng-init=\"chosenAction = item.data[column.Name][0]\"\n" +
@@ -225,7 +259,21 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "									<span class=\"icon icon-fix\"></span>FIX\n" +
     "							</button>\n" +
     "						</span>\n" +
+    "						<!--Form : dropdown-->\n" +
+    "						<span ng-if=\"column.Form=='dropdown'\" class=\"actiondropdownHolder\">\n" +
+    "							<!--An object array found-->\n" +
+    "							<select ng-change=\"confirm(item,true)\"\n" +
+    "									ng-if=\"isDeep(column.Options)\"\n" +
+    "							        ng-init=\"optionSelected=getDefaultOption(item.data,column.Name,column.Options)\"\n" +
+    "									ng-model=\"optionSelected\" ng-options=\"item.Name for item in column.Options\"></select>\n" +
     "\n" +
+    "							<!--A string array found-->\n" +
+    "							<select ng-change=\"confirm(item,true)\"\n" +
+    "									ng-if=\"!isDeep(column.Options)\"\n" +
+    "							        ng-model=\"item.data[column.Name]\" ng-options=\"item for item in column.Options\"></select>\n" +
+    "\n" +
+    "							<span class=\"icon icon-sort\"></span>\n" +
+    "						</span>\n" +
     "					</div>\n" +
     "\n" +
     "                    <!-- Controls -->\n" +
@@ -312,11 +360,280 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "</div>");
 }]);
 
-angular.module("/src/templates/planner.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("/src/templates/planner.html",
-    "");
-}]);
+angular.module('ui.multiselect', [])
 
+	//from bootstrap-ui typeahead parser
+	.factory('optionParser', ['$parse', function ($parse) {
+
+		//                      00000111000000000000022200000000000000003333333333333330000000000044000
+		var TYPEAHEAD_REGEXP = /^\s*(.*?)(?:\s+as\s+(.*?))?\s+for\s+(?:([\$\w][\$\w\d]*))\s+in\s+(.*)$/;
+
+		return {
+			parse: function (input) {
+
+				var match = input.match(TYPEAHEAD_REGEXP);
+
+				if (!match) {
+					throw new Error(
+							"Expected typeahead specification in form of '_modelValue_ (as _label_)? for _item_ in _collection_'" +
+							" but got '" + input + "'.");
+				}
+				return {
+					itemName: match[3],
+					source: $parse(match[4]),
+					viewMapper: $parse(match[2] || match[1]),
+					modelMapper: $parse(match[1])
+				};
+			}
+		};
+	}])
+
+	.directive('multiselect', ['$parse', '$document', '$compile', 'optionParser',
+
+		function ($parse, $document, $compile, optionParser) {
+			return {
+				restrict: 'E',
+				require: 'ngModel',
+				link: function (originalScope, element, attrs, modelCtrl) {
+
+					var exp = attrs.options,
+						parsedResult = optionParser.parse(exp),
+						isMultiple = attrs.multiple ? true : false,
+						required = false,
+						scope = originalScope.$new(),
+						changeHandler = attrs.change || angular.noop;
+
+					scope.items = [];
+					scope.header = 'Select';
+					scope.multiple = isMultiple;
+					scope.disabled = false;
+
+					originalScope.$on('$destroy', function () {
+						scope.$destroy();
+					});
+
+					var popUpEl = angular.element('<multiselect-popup></multiselect-popup>');
+
+					//required validator
+					if (attrs.required || attrs.ngRequired) {
+						required = true;
+					}
+					attrs.$observe('required', function(newVal) {
+						required = newVal;
+					});
+
+					//watch disabled state
+					scope.$watch(function () {
+						return $parse(attrs.disabled)(originalScope);
+					}, function (newVal) {
+						scope.disabled = newVal;
+					});
+
+					//watch single/multiple state for dynamically change single to multiple
+					scope.$watch(function () {
+						return $parse(attrs.multiple)(originalScope);
+					}, function (newVal) {
+						isMultiple = newVal || false;
+					});
+
+					//watch option changes for options that are populated dynamically
+					scope.$watch(function () {
+						return parsedResult.source(originalScope);
+					}, function (newVal) {
+						if (angular.isDefined(newVal))
+							parseModel();
+					}, true);
+
+					//watch model change
+					scope.$watch(function () {
+						return modelCtrl.$modelValue;
+					}, function (newVal, oldVal) {
+						//when directive initialize, newVal usually undefined. Also, if model value already set in the controller
+						//for preselected list then we need to mark checked in our scope item. But we don't want to do this every time
+						//model changes. We need to do this only if it is done outside directive scope, from controller, for example.
+						if (angular.isDefined(newVal)) {
+							markChecked(newVal);
+
+						}
+						getHeaderText();
+						modelCtrl.$setValidity('required', scope.valid());
+					}, true);
+
+					function parseModel() {
+						scope.items.length = 0;
+						var model = parsedResult.source(originalScope);
+						if(!angular.isDefined(model)) return;
+						for (var i = 0; i < model.length; i++) {
+							var local = {};
+							local[parsedResult.itemName] = model[i];
+							scope.items.push({
+								label: parsedResult.viewMapper(local),
+								model: model[i],
+								checked: false
+							});
+						}
+					}
+
+					parseModel();
+
+					element.append($compile(popUpEl)(scope));
+
+					function getHeaderText() {
+						if (is_empty(modelCtrl.$modelValue)) return scope.header = ' ';
+						if (isMultiple) {
+							//scope.header = modelCtrl.$modelValue.length + ' ' + 'selected';
+							scope.header = modelCtrl.$modelValue.join(",");
+						} else {
+							var local = {};
+							local[parsedResult.itemName] = modelCtrl.$modelValue;
+
+							scope.header = parsedResult.viewMapper(local);
+						}
+					}
+
+					function is_empty(obj) {
+						if (!obj) return true;
+						if (obj.length && obj.length > 0) return false;
+						for (var prop in obj) if (obj[prop]) return false;
+						return true;
+					};
+
+					scope.valid = function validModel() {
+						if(!required) return true;
+						var value = modelCtrl.$modelValue;
+						return (angular.isArray(value) && value.length > 0) || (!angular.isArray(value) && value != null);
+					};
+
+					function selectSingle(item) {
+						if (item.checked) {
+							scope.uncheckAll();
+						} else {
+							scope.uncheckAll();
+							item.checked = !item.checked;
+						}
+						setModelValue(false);
+					}
+
+					function selectMultiple(item) {
+						item.checked = !item.checked;
+						setModelValue(true);
+					}
+
+					function setModelValue(isMultiple) {
+						var value;
+
+						if (isMultiple) {
+							value = [];
+							angular.forEach(scope.items, function (item) {
+								if (item.checked) value.push(item.model);
+							});
+
+							scope.$eval(changeHandler);
+
+						} else {
+							angular.forEach(scope.items, function (item) {
+								if (item.checked) {
+									value = item.model;
+									return false;
+								}
+							})
+						}
+						modelCtrl.$setViewValue(value);
+					}
+
+					function markChecked(newVal) {
+						if (!angular.isArray(newVal)) {
+							angular.forEach(scope.items, function (item) {
+								if (angular.equals(item.model, newVal)) {
+									item.checked = true;
+									return false;
+								}
+							});
+						} else {
+							angular.forEach(newVal, function (i) {
+								angular.forEach(scope.items, function (item) {
+									if (angular.equals(item.model, i)) {
+										item.checked = true;
+									}
+								});
+							});
+						}
+					}
+
+					scope.checkAll = function () {
+						if (!isMultiple) return;
+						angular.forEach(scope.items, function (item) {
+							item.checked = true;
+						});
+						setModelValue(true);
+					};
+
+					scope.uncheckAll = function () {
+						angular.forEach(scope.items, function (item) {
+							item.checked = false;
+						});
+						setModelValue(true);
+					};
+
+					scope.select = function (item) {
+						if (isMultiple === false) {
+							selectSingle(item);
+							scope.toggleSelect();
+						} else {
+							selectMultiple(item);
+						}
+					}
+				}
+			};
+		}])
+
+	.directive('multiselectPopup', ['$document', function ($document) {
+		return {
+			restrict: 'E',
+			scope: false,
+			replace: true,
+			templateUrl: '/src/templates/multiselect.html',
+			link: function (scope, element, attrs) {
+
+
+				var ch = attrs.change || angular.noop;
+				console.log(ch);
+
+				scope.isVisible = false;
+
+				scope.toggleSelect = function () {
+					if (element.hasClass('open')) {
+						element.removeClass('open');
+						$document.unbind('click', clickHandler);
+					} else {
+						element.addClass('open');
+						$document.bind('click', clickHandler);
+						scope.focus();
+					}
+				};
+
+				function clickHandler(event) {
+					if (elementMatchesAnyInArray(event.target, element.find(event.target.tagName)))
+						return;
+					element.removeClass('open');
+					$document.unbind('click', clickHandler);
+					scope.$apply();
+				}
+
+				scope.focus = function focus(){
+					//var searchBox = element.find('input')[0];
+					//searchBox.focus();
+				}
+
+				var elementMatchesAnyInArray = function (element, elementArray) {
+					for (var i = 0; i < elementArray.length; i++)
+						if (element == elementArray[i])
+							return true;
+					return false;
+				}
+			}
+		}
+	}]);
 var flatgridServices 	= angular.module('flatgrid.services', []);
 var flatgridDirectives 	= angular.module('flatgrid.directives', []);
 var flatgridFilters 	= angular.module('flatgrid.filters', []);
@@ -327,6 +644,7 @@ angular.module('flatstrap.flatgrid',[
 	,'flatgrid.controllers'
 	,'flatgrid.filters'
 	,'flatgrid.templates'
+	,'ui.multiselect'
 ]);
 var FlatGrid = {
 	defaults : {
@@ -497,10 +815,15 @@ flatgridControllers.controller('flatGrid_Controller',[
 
 		//Planner
 		$scope._activePlanner = false;
+		$scope._activeMultiDropdown = false;
+
 		$scope.Repeaters = ["Daily","Weekly","Monthly","Unique"];
 
 		$scope.togglePlanner = function(open,planner){
 			$scope._activePlanner = open ? planner : false;
+		}
+		$scope.toggleMultiDropdown = function(open,mdd){
+			$scope._activeMultiDropdown = open ? mdd : false;
 		}
 		$scope.sortBy = function(sorter) {
 			$scope.FG.Config.predicate = sorter;
@@ -566,6 +889,34 @@ flatgridControllers.controller('flatGrid_Controller',[
 			});
 		}
 
+		//Used to add new items through custom methods
+		$scope.postButton = function() {
+			if($scope.FG.Config.onpostbutton) {
+				$scope[$scope.FG.Config.onpostbutton]().then(function(pkg){
+					$scope.add(pkg);
+				});
+			}
+		}
+
+		//Used by dropdown
+		$scope.isDeep = function(arr) { return !angular.isString(arr[0]); }
+
+		$scope.getDefaultOption = function(value,key,comparator) {
+			if(comparator) {
+					var o;
+					for(var x=0;x<=comparator.length-1;x++) {
+						if(comparator[x]["Id"]==value[key]) {
+							o = comparator[x];
+							break;
+						}
+					}
+					return o;
+
+			} else {
+				return value;
+			}
+		}
+
 		$scope.remove = function(pkg) {
 			pkg.Config.loading = true;
 			if($scope.FG.Config.ondelete) {
@@ -590,8 +941,13 @@ flatgridControllers.controller('flatGrid_Controller',[
 		}
 		var process = function(row,grid) { return new FlatGrid.Row(row, grid); };
 
+		function resetPostForm() {
+			angular.forEach($scope.FG.pkg.data,function(key,value){
+				if(typeof value === 'string') $scope.FG.pkg.data[key] = "";
+			});
+		}
 		$scope.add = function(pkg) {
-			pkg.Config.loading = true;
+			if(pkg.Config) pkg.Config.loading = true;
 
 			if($scope.FG.Config.onadd) {
 				$scope[$scope.FG.Config.onadd](pkg).then(function(r) {
@@ -604,9 +960,9 @@ flatgridControllers.controller('flatGrid_Controller',[
 					} else {						
 						$scope.FG.rows.unshift(process(p));
 						$scope.nodata = false;
-					}					
-					pkg.Config.loading = false;
-					$scope.FG.pkg.data.Name = "";
+					}
+					if(pkg.Config) pkg.Config.loading = false;
+					resetPostForm();
 				});
 			} else {
 				$scope.FG.rows.unshift(pkg);	
@@ -652,6 +1008,7 @@ flatgridControllers.controller('flatGrid_Controller',[
 					$scope.closeEditMode(pkg);
 				}
 			}
+
 		};
 
 		$scope.findById = function(id,index) {
@@ -788,7 +1145,6 @@ flatgridDirectives.directive('planner',function ($parse,$timeout){
 			var model = $parse(attrs.checkActive);
 			scope.$watch(model,function(value) {
 				if(value) {
-					console.log("watcher triggered");
 					$timeout(function() {
 						jQuery(".planner_plugin").css({
 							 "top" 	: elem[0].offsetTop + "px"

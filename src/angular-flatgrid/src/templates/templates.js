@@ -1,4 +1,24 @@
-angular.module('flatgrid.templates', ['/src/templates/flatgrid.html', '/src/templates/planner.html']);
+angular.module('flatgrid.templates', ['/src/templates/multiselect.html', '/src/templates/flatgrid.html']);
+
+angular.module("/src/templates/multiselect.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("/src/templates/multiselect.html",
+    "<div class=\"dropdown\">\n" +
+    "	<ul class=\"dropdown-menu\">\n" +
+    "		<li ng-show=\"multiple\">\n" +
+    "			<button class=\"btn-link btn-small\" ng-click=\"checkAll()\"><i class=\"icon-ok\"></i> Check all</button>\n" +
+    "			<button class=\"btn-link btn-small\" ng-click=\"uncheckAll()\"><i class=\"icon-wrong\"></i> Uncheck all</button>\n" +
+    "		</li>\n" +
+    "		<li ng-repeat=\"i in items | filter:searchText\">\n" +
+    "			<a ng-click=\"select(i); focus()\">\n" +
+    "				<i ng-class=\"{'icon-ok': i.checked, 'icon-empty': !i.checked}\"></i>{{i.label}}</a>\n" +
+    "		</li>\n" +
+    "	</ul>\n" +
+    "	<button class=\"btn\" ng-click=\"toggleSelect()\" ng-disabled=\"disabled\" ng-class=\"{'error': !valid()}\">\n" +
+    "		<span class=\"pull-left\">{{header}}</span>\n" +
+    "		<span class=\"icon icon-sort\"></span>\n" +
+    "	</button>\n" +
+    "</div>");
+}]);
 
 angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("/src/templates/flatgrid.html",
@@ -19,7 +39,9 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                        </a>\n" +
     "                        <span ng-if=\"!column.Sortable\">{{::column.Label}}</span>\n" +
     "                    </div>\n" +
-    "                    <div class=\"th controls\"></div>\n" +
+    "                    <div class=\"th controls\">\n" +
+    "	                    <button ng-click=\"postButton()\" type=\"button\" ng-if=\"FG.Config.postButton\" class=\"icon icon-plus\"></button>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "                <!-- Post Form -->\n" +
     "                <div class=\"tr post\" ng-if=\"FG.Config.postForm\">\n" +
@@ -77,6 +99,19 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <label>{{FG.pkg.data[column.Name].Repeat || 'Choose Frequency' }}</label>\n" +
     "                        </div>\n" +
     "\n" +
+    "	                    <!--Form : dropdown-->\n" +
+    "						<span ng-if=\"column.Form=='dropdown'\" class=\"actiondropdownHolder\">\n" +
+    "							<!--An object array found-->\n" +
+    "							<select ng-if=\"isDeep(column.Options)\"\n" +
+    "							        ng-model=\"FG.pkg.data[column.Name]\" ng-options=\"item.Name for item in column.Options\"></select>\n" +
+    "\n" +
+    "							<!--A string array found-->\n" +
+    "							<select ng-if=\"!isDeep(column.Options)\"\n" +
+    "							        ng-model=\"FG.pkg.data[column.Name]\" ng-options=\"item for item in column.Options\"></select>\n" +
+    "\n" +
+    "							<span class=\"icon icon-sort\"></span>\n" +
+    "						</span>\n" +
+    "\n" +
     "                    </div>\n" +
     "                    <div class=\"td controls\">\n" +
     "                        <button type=\"submit\" ng-show=\"!FG.pkg.Config.loading\" class=\"icon icon-plus\"></button>\n" +
@@ -132,23 +167,19 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                                placeholder=\"{{column.CellPlaceholder}}\"\n" +
     "                                xng-maxlength=\"column.MaxLength\"\n" +
     "                        />\n" +
-    "\n" +
     "						<!--Form : title  -->\n" +
     "                        <label ng-if=\"column.Editable==false && column.Form=='input' && column.Name != 'Message' \"\n" +
     "							   ng-bind=\":: item.data[column.Name]\"></label>\n" +
-    "\n" +
     "						<!--Form : title : message  -->\n" +
     "						<label tooltip=\"{{:: item.data[column.Name]}}\"\n" +
     "							   tooltip-append-to-body = true\n" +
     "							   tooltip-popup-delay='600'\n" +
     "							   ng-if=\"column.Editable==false && column.Form=='input' && column.Name == 'Message'\"\n" +
     "							   ng-bind=\":: item.data[column.Name]\"></label>\n" +
-    "\n" +
     "						<!--Change Status-->\n" +
     "                        <div ng-if=\"column.Form=='status'\" class=\"changeStatus status-{{item.data.ChangeStatus}}\">\n" +
     "							<span class=\"status-icon\"></span>\n" +
     "						</div>\n" +
-    "\n" +
     "						<!--Form : checkbox-->\n" +
     "                        <button   ng-change=\"confirm(item,true)\"\n" +
     "                                  ng-if=\"column.Editable!=false && column.Form=='checkbox'\"\n" +
@@ -160,7 +191,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                                  btn-checkbox-true=\"item.data[column.Name]\"\n" +
     "                                  btn-checkbox-false=\"!item.data[column.Name]\"\n" +
     "                                />\n" +
-    "\n" +
     "                        <!--Toggler-->\n" +
     "                        <button fg-toggler ng-change=\"confirm(item,true)\"\n" +
     "                                  ng-if=\"column.Editable!=false && column.Form=='toggler'\"\n" +
@@ -172,7 +202,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                                  btn-checkbox-true=\"item.data[column.Name]\"\n" +
     "                                  btn-checkbox-false=\"!item.data[column.Name]\"\n" +
     "                                />\n" +
-    "\n" +
     "                        <!--Form : datetime-->\n" +
     "                        <div ng-if=\"column.Form=='datetime'\"\n" +
     "                             class=\"datetimepickerHolder\"\n" +
@@ -186,7 +215,6 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <date><span class=\"icon noclick icon-calendar\"></span>{{item[item.Config.model][column.Name] | formatDate:'date' }}</date>\n" +
     "                            <time><span class=\"icon noclick icon-time\"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>\n" +
     "                        </div>\n" +
-    "\n" +
     "                        <!-- Form : planner-->\n" +
     "                        <div ng-if=\"column.Form=='planner'\"\n" +
     "							 planner check-active=\"item==_activePlanner\"\n" +
@@ -200,11 +228,17 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "                            <span class=\"icon noclick icon-repeat\"></span>\n" +
     "                            <label>{{item.data[column.Name].Repeat}}</label>\n" +
     "                        </div>\n" +
-    "\n" +
+    "						<!--Form : multidropdown-->\n" +
+    "						<multiselect ng-if=\"column.Form=='multidropdown'\"\n" +
+    "									 class=\"multiselectHolder\" multiple=\"true\"\n" +
+    "						             ng-model=\"item.data[column.Name]\"\n" +
+    "						             options=\"c for c in column.Options\"\n" +
+    "						             change=\"confirm(item,true)\" ></multiselect>\n" +
     "                        <!--Form : button-->\n" +
     "                        <button ng-click=\"formButtonHandler(item);\"\n" +
-    "                                ng-if=\"column.Form=='button'\">{{column.FormLabel}}</button>\n" +
-    "\n" +
+    "                                ng-if=\"column.Form=='button'\">{{column.FormLabel}}\n" +
+    "                                <span class=\"icon icon-right\"></span>\n" +
+    "                        </button>\n" +
     "                        <!--Form : actiondropdown-->\n" +
     "						<span ng-if=\"column.Form=='actiondropdown'\" class=\"actiondropdownHolder\">\n" +
     "							<select ng-model=\"chosenAction\" ng-init=\"chosenAction = item.data[column.Name][0]\"\n" +
@@ -217,7 +251,21 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "									<span class=\"icon icon-fix\"></span>FIX\n" +
     "							</button>\n" +
     "						</span>\n" +
+    "						<!--Form : dropdown-->\n" +
+    "						<span ng-if=\"column.Form=='dropdown'\" class=\"actiondropdownHolder\">\n" +
+    "							<!--An object array found-->\n" +
+    "							<select ng-change=\"confirm(item,true)\"\n" +
+    "									ng-if=\"isDeep(column.Options)\"\n" +
+    "							        ng-init=\"optionSelected=getDefaultOption(item.data,column.Name,column.Options)\"\n" +
+    "									ng-model=\"optionSelected\" ng-options=\"item.Name for item in column.Options\"></select>\n" +
     "\n" +
+    "							<!--A string array found-->\n" +
+    "							<select ng-change=\"confirm(item,true)\"\n" +
+    "									ng-if=\"!isDeep(column.Options)\"\n" +
+    "							        ng-model=\"item.data[column.Name]\" ng-options=\"item for item in column.Options\"></select>\n" +
+    "\n" +
+    "							<span class=\"icon icon-sort\"></span>\n" +
+    "						</span>\n" +
     "					</div>\n" +
     "\n" +
     "                    <!-- Controls -->\n" +
@@ -302,9 +350,4 @@ angular.module("/src/templates/flatgrid.html", []).run(["$templateCache", functi
     "\n" +
     "	</div>\n" +
     "</div>");
-}]);
-
-angular.module("/src/templates/planner.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("/src/templates/planner.html",
-    "");
 }]);

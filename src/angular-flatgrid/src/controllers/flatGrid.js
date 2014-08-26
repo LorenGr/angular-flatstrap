@@ -15,10 +15,15 @@ flatgridControllers.controller('flatGrid_Controller',[
 
 		//Planner
 		$scope._activePlanner = false;
+		$scope._activeMultiDropdown = false;
+
 		$scope.Repeaters = ["Daily","Weekly","Monthly","Unique"];
 
 		$scope.togglePlanner = function(open,planner){
 			$scope._activePlanner = open ? planner : false;
+		}
+		$scope.toggleMultiDropdown = function(open,mdd){
+			$scope._activeMultiDropdown = open ? mdd : false;
 		}
 		$scope.sortBy = function(sorter) {
 			$scope.FG.Config.predicate = sorter;
@@ -84,6 +89,34 @@ flatgridControllers.controller('flatGrid_Controller',[
 			});
 		}
 
+		//Used to add new items through custom methods
+		$scope.postButton = function() {
+			if($scope.FG.Config.onpostbutton) {
+				$scope[$scope.FG.Config.onpostbutton]().then(function(pkg){
+					$scope.add(pkg);
+				});
+			}
+		}
+
+		//Used by dropdown
+		$scope.isDeep = function(arr) { return !angular.isString(arr[0]); }
+
+		$scope.getDefaultOption = function(value,key,comparator) {
+			if(comparator) {
+					var o;
+					for(var x=0;x<=comparator.length-1;x++) {
+						if(comparator[x]["Id"]==value[key]) {
+							o = comparator[x];
+							break;
+						}
+					}
+					return o;
+
+			} else {
+				return value;
+			}
+		}
+
 		$scope.remove = function(pkg) {
 			pkg.Config.loading = true;
 			if($scope.FG.Config.ondelete) {
@@ -108,8 +141,13 @@ flatgridControllers.controller('flatGrid_Controller',[
 		}
 		var process = function(row,grid) { return new FlatGrid.Row(row, grid); };
 
+		function resetPostForm() {
+			angular.forEach($scope.FG.pkg.data,function(key,value){
+				if(typeof value === 'string') $scope.FG.pkg.data[key] = "";
+			});
+		}
 		$scope.add = function(pkg) {
-			pkg.Config.loading = true;
+			if(pkg.Config) pkg.Config.loading = true;
 
 			if($scope.FG.Config.onadd) {
 				$scope[$scope.FG.Config.onadd](pkg).then(function(r) {
@@ -122,9 +160,9 @@ flatgridControllers.controller('flatGrid_Controller',[
 					} else {						
 						$scope.FG.rows.unshift(process(p));
 						$scope.nodata = false;
-					}					
-					pkg.Config.loading = false;
-					$scope.FG.pkg.data.Name = "";
+					}
+					if(pkg.Config) pkg.Config.loading = false;
+					resetPostForm();
 				});
 			} else {
 				$scope.FG.rows.unshift(pkg);	
@@ -170,6 +208,7 @@ flatgridControllers.controller('flatGrid_Controller',[
 					$scope.closeEditMode(pkg);
 				}
 			}
+
 		};
 
 		$scope.findById = function(id,index) {
