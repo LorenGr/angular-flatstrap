@@ -1,34 +1,32 @@
-flatgridDirectives.directive('dateTimePicker',function($timeout,$filter) {
+flatgridDirectives.directive('dateTimePicker',function(myGrid) {
     return {
         require : '?ngModel'
         ,restrict 	: "A",
-		scope : {
-			dateTimePickerCb : "&"
-		},
         link : function(scope,elem,attrs,ngModel) {
 
-			if(ngModel) {
-				ngModel.$render = function () {//
-					//ngModel.$setViewValue($filter('formatDate')(ngModel.$modelValue, "datetimepicker"));
-					ngModel.$setViewValue(ngModel.$modelValue);
-				}
-			}
-			elem.parent().bind("click",function() {
+			function openPicker() {
 				elem.datetimepicker({
-					format : 'd/m/Y-H:i',
+					value : ngModel.$modelValue,
+					format : 'd/m/Y H:i',
 					step : 5,
 					todayButton : false,
-					onChangeDateTime:function(dp,$input) {
-						ngModel.$setViewValue(dp);
+					closeOnDateSelect : false,
+					onChangeDateTime:function(dt,$input) {
+						var dp = angular.copy(dt);
+						scope.$apply(function(){
+							ngModel.$setViewValue(myGrid.convertDate(dp));
+						});
 					},
 					onClose : function() {
-						$timeout(function(){
-							scope.dateTimePickerCb();
-						},300);
+						elem.next().find(".datetimepicker").removeClass("activeElement");
 					}
 				});
 				elem.datetimepicker("show");
-			});
+			}
+	        elem.bind("click",function(evt) {
+		        openPicker();
+		        elem.next().find(".datetimepicker").addClass("activeElement");
+		    });
         }
     }
 });

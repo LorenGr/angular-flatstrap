@@ -5,13 +5,21 @@ flatgridControllers.controller('flatGrid_Controller',[
 	,function($scope,$timeout,$filter) {
 		
 		//keep track of what to UNEDIT on BLUR of fields (while editing)
-		var previousIndex=false;
+		var previousIndex=false
+			,blockSave = false;
 
 		$scope.forcedFocus = { page : 0 , col : 0 };
 		$scope.search = "";
 		$scope.activeListSize = 0;
 		$scope.nodata = false;
 		$scope.activeRowId = null;
+
+		// re1 = DDMMYYYY , re2 = White Space 1 , re3 = HourMinuteSec
+		var re1='((?:(?:[0-2]?\\d{1})|(?:[3][01]{1}))[-:\\/.](?:[0]?[1-9]|[1][012])[-:\\/.](?:(?:[1]{1}\\d{1}\\d{1}\\d{1})|(?:[2]{1}\\d{3})))(?![\\d])'
+			,re2='(\\s+)'
+			,re3='((?:(?:[0-1][0-9])|(?:[2][0-3])|(?:[0-9])):(?:[0-5][0-9])(?::[0-5][0-9])?(?:\\s?(?:am|AM|pm|PM))?)';
+
+		$scope.datetimePattern = new RegExp(re1+re2+re3,["i"]);
 
 		//Planner
 		$scope._activePlanner = false;
@@ -64,8 +72,11 @@ flatgridControllers.controller('flatGrid_Controller',[
 			}
 		}
 
+		$scope.getTabIndex = function(row,col,params) { return params.Editable != false ? (col+1)+($scope.FG.columns.length*row) : -1; }
+
 		$scope.nextPage = function(colindex) {
-			if(colindex != 'reset' && $scope.currentPage < $scope.NumPages) {
+			var pagesCount = Math.ceil($scope.activeListSize / $scope.FG.Config.Pager.ListSize);
+			if(colindex != 'reset' && $scope.currentPage < pagesCount ) {
 				$scope.currentPage++;
 				$scope.forcedFocus = { page : $scope.currentPage,col : colindex };
 			}
@@ -128,7 +139,9 @@ flatgridControllers.controller('flatGrid_Controller',[
 						$scope.FG.rows.splice($scope.findById(pkg.Id,true),1);
 					}
 					pkg.Config.loading = false;
-				},function(){
+					pkg.Config.error = null;
+				},function(err){
+					pkg.Config.error = err;
 					pkg.Config.loading = false;
 				});;
 			}
@@ -140,49 +153,57 @@ flatgridControllers.controller('flatGrid_Controller',[
 			}
 		}
 		var process = function(row,grid) { return new FlatGrid.Row(row, grid); };
-
 		function resetPostForm() {
 			angular.forEach($scope.FG.pkg.data,function(key,value){
 				if(typeof value === 'string') $scope.FG.pkg.data[key] = "";
 			});
 		}
-		$scope.add = function(pkg) {
-			if(pkg.Config) pkg.Config.loading = true;
+		$scope.add = function(pkg,gridPostForm) {
 
-			if($scope.FG.Config.onadd) {
-				$scope[$scope.FG.Config.onadd](pkg).then(function(r) {
-					var p = angular.copy(r);
-					if(Array.isArray(r)) {						
-						for(var x=0;x<=r.length-1;x++) {							
-							$scope.FG.rows.unshift(process(p[x]));
+			if(gridPostForm.$valid) {
+				if(pkg.Config) pkg.Config.loading = true;
+
+				if($scope.FG.Config.onadd) {
+					$scope[$scope.FG.Config.onadd](pkg).then(function(r) {
+						var p = angular.copy(r);
+						if(Array.isArray(r)) {
+							for(var x=0;x<=r.length-1;x++) {
+								$scope.FG.rows.unshift(process(p[x]));
+								$scope.nodata = false;
+							}
+						} else {
+							$scope.FG.rows.unshift(process(p));
 							$scope.nodata = false;
 						}
-					} else {						
-						$scope.FG.rows.unshift(process(p));
-						$scope.nodata = false;
-					}
-					if(pkg.Config) pkg.Config.loading = false;
-					resetPostForm();
-				});
-			} else {
-				$scope.FG.rows.unshift(pkg);	
-			}
+						if(pkg.Config) {
+							pkg.Config.error = null;
+							pkg.Config.loading = false;
+						}
+						resetPostForm();
+					},function(err){
+						if(pkg.Config) {
+							pkg.Config.error = err;
+							pkg.Config.loading = false;
+						}
 
+					});
+				} else {
+					$scope.FG.rows.unshift(pkg);
+				}
+			}
 		};
 		$scope.cancelThis = function(item) { item.Cache = item.data; };
-
 		$scope.closeEditMode = function(item) {
 			item.Config.editing = false;
 			item.Config.model = 'data';
 			item.Cache = angular.copy(item.data);
 		}
-
 		$scope.confirmPlanner = function(pkg,ignoreCache,repeaterType) {
 			$scope.confirm(pkg,ignoreCache);
 			if(repeaterType!="Weekly") $timeout(function(){$scope.togglePlanner(false)},200);
 		}
+		$scope.blockSave = function() { blockSave=true; };
 		$scope.confirm = function(pkg,ignoreCache,index,col) {
-
 			function validatePkg() {
 				if (col) {
 					return ( pkg.data[col] != pkg.Cache[col] && pkg.Cache[col] != '');
@@ -190,7 +211,7 @@ flatgridControllers.controller('flatGrid_Controller',[
 					return true;
 				}
 			}
-			if(!pkg.Config.running) {
+			if(!pkg.Config.running && !blockSave) {
 				pkg.Config.loading = true;
 				var p = angular.copy(pkg);
 				if(validatePkg() ) {
@@ -199,15 +220,22 @@ flatgridControllers.controller('flatGrid_Controller',[
 						pkg.Config.loading = false;
 						pkg.Cache = r;
 						pkg.data = r; //display server return
+						pkg.Config.error = null;
 						$scope.closeEditMode(pkg);
-					},function(r){
+					},function(err){
 						//error
+						pkg.Config.loading = false;
+						pkg.Cache = pkg.data;
+						pkg.Config.error = err;
+						$scope.closeEditMode(pkg);
+						console.log("error detected:"+err);
 					});
 				} else {
 					pkg.Config.loading = false;
 					$scope.closeEditMode(pkg);
 				}
 			}
+			blockSave = false;
 
 		};
 

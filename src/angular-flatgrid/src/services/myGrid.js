@@ -3,7 +3,16 @@ flatgridServices.service('myGrid',function() {
     return {
          getInstance : function () { return FG; }
         ,setData : function(_data) { data = _data; }
-        ,create : function(scope,o) {        	
+        ,convertDate : function(dt) {
+		    var dp = dt ? dt : new Date(),
+			    convertedDate = dp.getDate() +
+		                        "/"+(dp.getMonth()+1) +
+		                        "/"+dp.getFullYear() +
+		                        " "+(dp.getHours()<10?'0'+dp.getHours():dp.getHours()) +
+		                        ":"+(dp.getMinutes()<10?'0'+dp.getMinutes():dp.getMinutes());
+		    return convertedDate;
+	    }
+	    ,create : function(scope,o) {
 
         	//Create instance
         	FG = new FlatGrid.Grid(scope,o);
@@ -39,7 +48,7 @@ flatgridServices.service('myGrid',function() {
 					col 	= FG.columns[x].Name;
 				if(coltype) {
 					if(coltype == 'planner' )  					item.data[col] = freqObject;
-					if(coltype == 'datetime' && col !="Next" ) 	item.data[col] = new Date().toISOString();
+					if(coltype == 'datetime' && col !="Next" ) 	item.data[col] = this.convertDate();
 					if(coltype == 'checkbox' ) 					item.data[col] = false;
 					if(coltype == 'checkbox' && col=='Active' )	item.data[col] = true;
 				} else {

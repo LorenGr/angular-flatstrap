@@ -39,6 +39,9 @@ contextualTooltipDirectives.directive('contextualTooltip',[
 									off(); //auto-hide feature
 								}, autohideInterval, false);
 							}
+						},function(why){
+							ttOpen = false;
+							off();
 						});
 					}, popperInterval, false);
 				});

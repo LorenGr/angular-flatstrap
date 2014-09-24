@@ -9,6 +9,7 @@ angular.module('flatstrap.flatgrid',[
 	,'flatgrid.filters'
 	,'flatgrid.templates'
 	,'ui.multiselect'
+	,'ngMessages'
 ]);
 var FlatGrid = {
 	defaults : {

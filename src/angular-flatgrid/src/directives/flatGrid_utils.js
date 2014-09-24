@@ -167,7 +167,6 @@ flatgridDirectives.directive('fgGotoNextRow', function ($timeout) {
 		elem.bind("keyup", function (event) {
 			if(event.which === 13) { //ENTER
 				$timeout(function(){
-
 					var ref = elem.parent("div.td"),
 						startRowIndex = ref.parent("div.tr").index(),
 						rows = ref.parent("div.tr").parent("div.tbody").children().length,
@@ -184,6 +183,7 @@ flatgridDirectives.directive('fgGotoNextRow', function ($timeout) {
 								break;
 							}
 						} else {
+							elem.blur();
 							scope.$apply(attrs.fgEnterTabulation);
 							break;
 						}
@@ -237,6 +237,21 @@ flatgridDirectives.directive('fitRows', function ($window) {
 		}
 	};
 });
+
+flatgridDirectives.directive('tdFocus', function () {
+	return  {
+		require : 'ngModel',
+		link : function(scope, element, attrs) {
+			element.bind("focus",function(){
+				element.closest(".td").addClass("activeElement");
+			});
+			element.bind("blur",function(){
+				element.closest(".td").removeClass("activeElement");
+			});
+		}
+	};
+});
+
 
 
 

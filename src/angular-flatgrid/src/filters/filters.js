@@ -16,7 +16,7 @@ flatgridFilters.filter("formatDate",function(){
 			   o = newDate.getDate()
 				   + "/" + mth
 				   + "/" + newDate.getFullYear()
-				   + "-" + hrs + ":" + min;
+				   + " " + hrs + ":" + min;
 			   break;
 		   case "time" :
 			   o = hrs + ":" + min;

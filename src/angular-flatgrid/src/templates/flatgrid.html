@@ -1,5 +1,5 @@
 <div class="dataGridContainer">
-    <form name="gridPostForm" ng-submit="add(FG.pkg)">
+    <form name="gridPostForm" ng-submit="add(FG.pkg,gridPostForm)">
         <div class="dataGrid" ng-class="{'noControls':FG.Config.controls==false}">
             <header>
                 <h1 ng-if="::FG.Config.title" ng-bind=":: FG.Config.title"></h1>
@@ -26,16 +26,19 @@
                         ng-repeat="column in ::FG.columns"
 		                ng-class="{empty:column.Form=='button'}">
 
-                        <!-- Post Form = input -->
-                        <input ng-if="column.Form=='input' && column.Editable!=false" required
-                            ng-class="{'error-fld':error}"
-                            custom-tooltip="error"
-                            type=text
-                            ng-model="FG.pkg.data[column.Name]"
-                            placeholder="{{::column.FormPlaceholder}}"
-                            fg-auto-focus="{{::column.AutoFocus}}"
-                            tabindex=1
-                        />
+	                    <div class="innerForm">
+		                    <!-- Post Form = input -->
+	                        <input ng-if="column.Form=='input' && column.Editable!=false" required
+	                            name="inputfld"
+	                            ng-class="{'error-fld':error}"
+	                            custom-tooltip="error"
+	                            type=text
+	                            ng-model="FG.pkg.data[column.Name]"
+	                            placeholder="{{::column.FormPlaceholder}}"
+	                            fg-auto-focus="{{::column.AutoFocus}}"
+	                            tabindex=1
+	                        />
+	                    </div>
                         <!-- Post Form = textarea -->
                         <textarea ng-if="column.Form=='textarea' && column.Editable!=false" required
                                 ng-class="{'error-fld':error}"
@@ -45,18 +48,26 @@
                                 fg-auto-focus="{{::column.AutoFocus}}"
                                 tabindex=1
                         ></textarea>
+	                    <!-- Post Form : datetime-->
+	                    <div ng-if="column.Form=='datetime' && column.Editable!=false"
+	                         class="postElement datetimepickerHolder"
+	                         ng-class="{'editable':column.Editable!=false}">
 
-                        <!-- Post Form : datetime-->
-                        <div ng-if="column.Form=='datetime' && column.Editable!=false" class="postElement datetimepickerHolder">
+		                    <span ng-model="FG.pkg.data[column.Name]" class="icon icon-calendar" date-time-picker />
 
-							<input class="datetimepicker" date-time-picker
-								   value="{{FG.pkg.data[column.Name]}}"
-                                   ng-model="FG.pkg.data[column.Name]"
-                                   type="text"/>
-                            <date><span class="icon icon-calendar"></span>{{FG.pkg.data[column.Name] | formatDate:'date' }}</date>
-                            <time><span class="icon icon-time"></span>{{FG.pkg.data[column.Name] | formatDate:'time' }}</time>
-                        </div>
+		                    <ng-form class="innerForm" name="gridPostFormInner">
+			                    <ng-messages for="gridPostFormInner.datetimefld.$error">
+				                    <ng-message class="fielderror" when="pattern">Invalid date! DD/MM/YYYY hh:mm</ng-message>
+			                    </ng-messages>
 
+			                    <input name="datetimefld"
+					                   placeholder="DD/MM/YYYY hh:mm"
+					                   ng-pattern="datetimePattern" required
+					                   class="datetimepicker"
+			                           ng-model="FG.pkg.data[column.Name]"
+			                           type="text" tabindex="1" />
+		                    </ng-form>
+	                    </div>
                         <!-- Post Form : checkbox -->
                         <button   ng-if="column.Form=='checkbox' && column.Editable!=false"
                                   ng-model="FG.pkg.data[column.Name]"
@@ -66,15 +77,19 @@
                                   btn-checkbox
                                   btn-checkbox-true="FG.pkg.data[column.Name]"
                                   btn-checkbox-false="!FG.pkg.data[column.Name]"
+                                  tabindex="1" td-focus
                                 />
-
                         <!--Post Form : planner-->
                         <div ng-if="column.Form=='planner' && column.Editable!=false" class="postElement plannerHolder">
                             <input class="plannerpicker" planner ng-model="FG.pkg.data[column.Name]" />
                             <span class="icon noclick icon-repeat"></span>
                             <label>{{FG.pkg.data[column.Name].Repeat || 'Choose Frequency' }}</label>
                         </div>
-
+	                    <!--Form : multidropdown-->
+	                    <multiselect ng-if="column.Form=='multidropdown'"
+	                                 class="multiselectHolder" multiple="true"
+	                                 ng-model="FG.pkg.data[column.Name]"
+	                                 options="c for c in column.Options"></multiselect>
 	                    <!--Form : dropdown-->
 						<span ng-if="column.Form=='dropdown'" class="actiondropdownHolder">
 							<!--An object array found-->
@@ -87,11 +102,20 @@
 
 							<span class="icon icon-sort"></span>
 						</span>
-
                     </div>
                     <div class="td controls">
-                        <button type="submit" ng-show="!FG.pkg.Config.loading" class="icon icon-plus"></button>
-                        <span class="loading go" ng-show="FG.pkg.Config.loading"></span>
+	                    <!--ERROR-->
+						<span class="error" ng-show="FG.pkg.Config.error">
+							<span class="icon icon-warning"></span>
+							<label>{{FG.pkg.Config.error}}</label>
+							<span class="error-closer icon icon-close" ng-click="FG.pkg.Config.error=null"></span>
+
+						</span>
+	                    <!--Submit-->
+	                    <button type="submit" ng-show="!FG.pkg.Config.loading" class="icon icon-plus"></button>
+
+	                    <!--Loading-->
+	                    <span class="loading go" ng-show="FG.pkg.Config.loading"></span>
                     </div>
                 </div>
                 <!-- / Post Form -->
@@ -108,7 +132,7 @@
 				 ,'noControls':FG.Config.controls==false
 			}">
 			<div class="tbody">
-				<div ng-repeat="item in rowsArray() | orderBy:sorter:FG.Config.reverse track by item.Id "
+				<div ng-init="rowIndex=$index" ng-repeat="item in rowsArray() | orderBy:sorter:FG.Config.reverse track by item.Id "
 					ng-class="{
 						 'editing':item.Config.editing
 						,'running':item.Config.running
@@ -119,13 +143,13 @@
 					fg-force-focus="forcedFocus"
 					fg-forced-focus-cb="nextPage('reset')"
 					fg-forced-focus="{ currentPage : currentPage
-									  ,firstRow    : $first }"
-					>
+									  ,firstRow    : $first }">
 					<div ng-class="{'editable':column.Editable!=false}"
                         class="td {{column.Name}} coltype-{{column.Form}}"
-						ng-repeat="column in FG.columns">
+                        ng-init="colIndex=$index"
+                        ng-repeat="column in FG.columns">
                         <!--Form : input -->
-                        <input 	ng-if="column.Editable!=false && (column.Form=='input' || column.Form=='textarea')"
+						<input 	ng-if="column.Editable!=false && (column.Form=='input' || column.Form=='textarea')"
                                 fg-first-row-ready="{{$parent.$last && $parent.$parent.$first}}"
                                 ng-click="editThis(item,$index+1)"
                                 fg-focus="editThis(item,$index+1)"
@@ -134,14 +158,13 @@
                                 fg-goto-next-row
                                	ng-click="editThis(item,$index+1)"
                                	ng-model="item[item.Config.model][column.Name]"
-                               	type=text
+                               	type="text"
                                 ng-disabled="!item.data[column.Name] && item.data[column.Name]!=''"
                                 fg-enter-tabulation="nextPage($parent.$index)"
                                 fg-blur-on-escape="cancelThis(item)"
                                 fg-blur="confirm(item,false,$index+1,column.Name)"
-                                tabindex={{($parent.$index+1)+(FG.columns.length*$parent.$parent.$index)}}
+                                tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
                                 placeholder="{{column.CellPlaceholder}}"
-                                xng-maxlength="column.MaxLength"
                         />
 						<!--Form : title  -->
                         <label ng-if="column.Editable==false && column.Form=='input' && column.Name != 'Message' "
@@ -157,7 +180,9 @@
 							<span class="status-icon"></span>
 						</div>
 						<!--Form : checkbox-->
-                        <button   ng-change="confirm(item,true)"
+                        <button   fg-blur-on-escape="cancelThis(item)"
+		                          td-focus
+		                          ng-change="confirm(item,true)"
                                   ng-if="column.Editable!=false && column.Form=='checkbox'"
                                   ng-model="item.data[column.Name]"
                                   type="button"
@@ -166,6 +191,7 @@
                                   btn-checkbox
                                   btn-checkbox-true="item.data[column.Name]"
                                   btn-checkbox-false="!item.data[column.Name]"
+                                  tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
                                 />
                         <!--Toggler-->
                         <button fg-toggler ng-change="confirm(item,true)"
@@ -177,19 +203,23 @@
                                   btn-checkbox
                                   btn-checkbox-true="item.data[column.Name]"
                                   btn-checkbox-false="!item.data[column.Name]"
+                                  tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
                                 />
                         <!--Form : datetime-->
-                        <div ng-if="column.Form=='datetime'"
-                             class="datetimepickerHolder"
+						<div ng-if="column.Form=='datetime'"
+						     class="datetimepickerHolder"
                              ng-class="{'editable':column.Editable!=false}">
-                            <input ng-if="column.Editable!=false && column.Form=='datetime'"
+							<span class="icon icon-calendar"
+							      date-time-picker
+							      ng-model="item[item.Config.model][column.Name]"
+							      ng-click="editThis(item,$index+1)" />
+							<input fg-focus="editThis(item,$index+1)"
+							       ng-disabled="column.Editable==false"
                                    class="datetimepicker"
-                                   date-time-picker date-time-picker-cb="confirm(item,true)"
-								   value="{{item[item.Config.model][column.Name] | formatDate:'datetimepicker' }}"
+								   ng-click="editThis(item,$index+1)"
 								   ng-model="item[item.Config.model][column.Name]"
-								   type="text" />
-                            <date><span class="icon noclick icon-calendar"></span>{{item[item.Config.model][column.Name] | formatDate:'date' }}</date>
-                            <time><span class="icon noclick icon-time"></span>{{item[item.Config.model][column.Name] | formatDate:'time' }}</time>
+								   type="text" tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
+								   fg-blur-on-escape="cancelThis(item)"   />
                         </div>
                         <!-- Form : planner-->
                         <div ng-if="column.Form=='planner'"
@@ -200,16 +230,19 @@
 							 	,'activePlanner' : item == _activePlanner
 							 }"
 							 ng-click="togglePlanner(true,item);$event.stopPropagation()">
-                            <input class="plannerpicker"  />
+                            <input tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
+		                           class="plannerpicker"  />
                             <span class="icon noclick icon-repeat"></span>
                             <label>{{item.data[column.Name].Repeat}}</label>
                         </div>
 						<!--Form : multidropdown-->
-						<multiselect ng-if="column.Form=='multidropdown'"
+						<multiselect ng-if="column.Form=='multidropdown' && item.data[column.Name] != null"
 									 class="multiselectHolder" multiple="true"
 						             ng-model="item.data[column.Name]"
 						             options="c for c in column.Options"
-						             change="confirm(item,true)" ></multiselect>
+						             change="confirm(item,true)"
+						             tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
+								     ></multiselect>
                         <!--Form : button-->
                         <button ng-click="formButtonHandler(item);"
                                 ng-if="column.Form=='button'">{{column.FormLabel}}
@@ -228,15 +261,18 @@
 							</button>
 						</span>
 						<!--Form : dropdown-->
-						<span ng-if="column.Form=='dropdown'" class="actiondropdownHolder">
+						<span ng-if="column.Form=='dropdown'"
+						      class="actiondropdownHolder">
 							<!--An object array found-->
-							<select ng-change="confirm(item,true)"
+							<select tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
+									ng-change="confirm(item,true)"
 									ng-if="isDeep(column.Options)"
 							        ng-init="optionSelected=getDefaultOption(item.data,column.Name,column.Options)"
 									ng-model="optionSelected" ng-options="item.Name for item in column.Options"></select>
 
 							<!--A string array found-->
-							<select ng-change="confirm(item,true)"
+							<select tabindex="{{getTabIndex(rowIndex,colIndex,column)}}"
+									ng-change="confirm(item,true)"
 									ng-if="!isDeep(column.Options)"
 							        ng-model="item.data[column.Name]" ng-options="item for item in column.Options"></select>
 
@@ -246,19 +282,32 @@
 
                     <!-- Controls -->
 					<div ng-class-odd="'odd'" class="td controls">
-                        <span class="loading go" ng-show="item.Config.loading"></span>
-                        <!-- DELETE -->
-						<button ng-if="FG.Config.controls" ng-click="remove(item)"
-							ng-show="!item.Config.editing && !item.Config.loading && !item.Config.running" class="icon icon-close"
+
+						<!--LOADING-->
+						<span class="loading go" ng-show="item.Config.loading"></span>
+
+						<!--ERROR-->
+						<span class="error" ng-show="item.Config.error">
+							<span class="icon icon-warning"></span>
+							<label>{{item.Config.error}}</label>
+							<span class="error-closer icon icon-close" ng-click="item.Config.error=null"></span>
+
+						</span>
+
+						<!-- DELETE -->
+						<button type="button" ng-if="FG.Config.controls" ng-click="remove(item)"
+							ng-show="!item.Config.error && !item.Config.editing && !item.Config.loading && !item.Config.running" class="icon icon-close"
 						></button>
 						<!-- SAVE -->
-						<button ng-if="FG.Config.controls" ng-click="confirm(item)"
+						<button type="button" ng-if="FG.Config.controls" ng-click="confirm(item)"
 							ng-show="item.Config.editing && !item.Config.loading" 
 							class="icon icon-ok"
 						></button>
 						<!-- CANCEL -->
-						<button ng-if="FG.Config.controls" ng-click="closeEditMode(item)"
-							ng-show="item.Config.editing && !item.Config.loading" 
+						<button type="button" ng-if="FG.Config.controls"
+						        ng-mousedown="blockSave()"
+						        ng-mouseup="closeEditMode(item)"
+								ng-show="item.Config.editing && !item.Config.loading"
 							class="icon icon-wrong"
 						></button>
 						<!--PUBLISHING-->
@@ -277,8 +326,7 @@
 		 is-open="{{_activePlanner!=false}}"
 		 click-outside-identifier="planner"
 		 click-outside="togglePlanner(false)"
-		 onclick="event.stopPropagation();"
-		>
+		 onclick="event.stopPropagation();">
 
 		<!--Frequencies-->
 		<div class="col freq">

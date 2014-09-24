@@ -26,9 +26,9 @@ angular.module('ui.multiselect', [])
 		};
 	}])
 
-	.directive('multiselect', ['$parse', '$document', '$compile', 'optionParser',
+	.directive('multiselect', ['$parse', '$document', '$compile', 'optionParser','$timeout',
 
-		function ($parse, $document, $compile, optionParser) {
+		function ($parse, $document, $compile, optionParser, $timeout) {
 			return {
 				restrict: 'E',
 				require: 'ngModel',
@@ -89,10 +89,7 @@ angular.module('ui.multiselect', [])
 						//when directive initialize, newVal usually undefined. Also, if model value already set in the controller
 						//for preselected list then we need to mark checked in our scope item. But we don't want to do this every time
 						//model changes. We need to do this only if it is done outside directive scope, from controller, for example.
-						if (angular.isDefined(newVal)) {
-							markChecked(newVal);
-
-						}
+						if (angular.isDefined(newVal)) markChecked(newVal);
 						getHeaderText();
 						modelCtrl.$setValidity('required', scope.valid());
 					}, true);
@@ -111,9 +108,7 @@ angular.module('ui.multiselect', [])
 							});
 						}
 					}
-
 					parseModel();
-
 					element.append($compile(popUpEl)(scope));
 
 					function getHeaderText() {
@@ -166,7 +161,9 @@ angular.module('ui.multiselect', [])
 								if (item.checked) value.push(item.model);
 							});
 
-							scope.$eval(changeHandler);
+							$timeout(function(){
+								scope.$eval(changeHandler);
+							});
 
 						} else {
 							angular.forEach(scope.items, function (item) {
@@ -233,9 +230,7 @@ angular.module('ui.multiselect', [])
 			templateUrl: '/src/templates/multiselect.html',
 			link: function (scope, element, attrs) {
 
-
 				var ch = attrs.change || angular.noop;
-				console.log(ch);
 
 				scope.isVisible = false;
 
@@ -246,7 +241,6 @@ angular.module('ui.multiselect', [])
 					} else {
 						element.addClass('open');
 						$document.bind('click', clickHandler);
-						scope.focus();
 					}
 				};
 
@@ -256,11 +250,6 @@ angular.module('ui.multiselect', [])
 					element.removeClass('open');
 					$document.unbind('click', clickHandler);
 					scope.$apply();
-				}
-
-				scope.focus = function focus(){
-					//var searchBox = element.find('input')[0];
-					//searchBox.focus();
 				}
 
 				var elementMatchesAnyInArray = function (element, elementArray) {

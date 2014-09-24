@@ -27,7 +27,7 @@ module.exports = function (grunt) {
             dist: {
               src: [ 
                     '../src/templates/templates.js'
-	              ,'../src/directives/multiselect.js'
+	                ,'../src/directives/multiselect.js'
                     ,'../src/angular-flatgrid.js'
                     ,'../src/services/myGrid.js'
                     ,'../src/controllers/flatGrid.js'
